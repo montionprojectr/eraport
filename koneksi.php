@@ -1,7 +1,7 @@
 <?php 
 $host = "localhost";
-$username = "smkg6671";
-$password = "smksapra2123";
+$username = "smkg6671_eraport";
+$password = "eraportsapra2";
 $db_name = "smkg6671_eraportsapra2";
 
 $koneksi = mysqli_connect($host, $username, $password, $db_name) or die("Error Connection : " . mysqli_errno());
