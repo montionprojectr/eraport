@@ -4,5 +4,10 @@ unset($_SESSION['session']);
 unset($_SESSION['nama_lengkap']);
 //atau
 session_destroy();
-header("location: https://eraport.smksatyapraja2.id/");
+
+echo "<script>
+	alert('Anda Berhasil Logout');
+	document.location.href = 'https://eraport.smksatyapraja2.id/';
+</script>";
+// header("location: https://eraport.smksatyapraja2.id/");
 ?>
