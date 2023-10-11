@@ -32,9 +32,9 @@ require_once("koneksi.php");
 </style>
 </head>
 <body class="hold-transition login-page bg-image">
-<div class="login-box bg-warning elevation-1 card">
-  <img src="dist/img/logo_sapra2.png" alt="AdminLTE Logo" class="brand-image img-circle"
-           style="opacity: .8" height="200px">
+<div class="login-box bg-cyan elevation-1 card">
+  <img src="dist/img/logo_sapra2.png" alt="AdminLTE Logo" class="brand-image"
+           style="opacity: .8" height="220px">
   <div class="login-logo">
     <a href="index2.html"><b>E-Raport SAPRA2</b></a>
   </div>
