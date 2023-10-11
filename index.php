@@ -117,11 +117,11 @@ if ($data > 0 ) {
   if ($users['level'] == "operator") {
     $_SESSION['session'] = "ADMINISTRATOR";
     $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
-    header("location: https://eraport.smksatyapraja2.id/admin");
+    header("location: admin");
   }else if ($users['level'] == "guru") {
     $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
     $_SESSION['session'] = "GURU";
-    header("location: https://eraport.smksatyapraja2.id/guru");
+    header("location: guru");
   }else if ($users['level'] == "siswa") {
     $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
     $_SESSION['session'] = "SISWA";
