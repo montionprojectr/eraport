@@ -1,6 +1,11 @@
 <?php 
 session_start();
 include "koneksi.php";
+
+if (!isset($_SESSION['login'])) {
+  header('location : https://eraport.smksatyapraja2.id/');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
