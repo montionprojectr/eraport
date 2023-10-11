@@ -112,18 +112,26 @@ if (isset($_POST['login'])) {
 $query = mysqli_query($koneksi, "select * from tb_users x inner join tb_rolsusers y on y.id_user = x.id_user inner join tb_levelusers z ON z.id_levelusers = y.id_leveluser where x.username = '$user' and x.password = '$pass'");
 
 $data = mysqli_num_rows($query);
+$users = mysqli_fetch_array($query);
 if ($data > 0 ) { 
-  $users = mysqli_fetch_array($query);
   if ($users['level'] == "operator") {
     $_SESSION['login'] = 'login';
     $_SESSION['session'] = "ADMINISTRATOR";
     $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
-    header("location: https://eraport.smksatyapraja2.id/admin");
+    echo "<script>
+    alert('Anda Berhasil Login');
+    document.location.href = 'https://eraport.smksatyapraja2.id/admin';
+    </script>";
+    // header("location: https://eraport.smksatyapraja2.id/admin");
   }else if ($users['level'] == "guru") {
     $_SESSION['login'] = 'login';
     $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
     $_SESSION['session'] = "GURU";
-    header("location: https://eraport.smksatyapraja2.id/guru");
+    echo "<script>
+    alert('Anda Berhasil Login');
+    document.location.href = 'https://eraport.smksatyapraja2.id/guru';
+    </script>";
+    // header("location: https://eraport.smksatyapraja2.id/guru");
   }else if ($users['level'] == "siswa") {
     $_SESSION['login'] = 'login';
     $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
