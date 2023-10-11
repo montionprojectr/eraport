@@ -1,5 +1,5 @@
 ---
 deployment:
 tasks:
-- export DEPLOYPATH=/home/usercpanel/public_html/eraport
+- export DEPLOYPATH=/home/smkg6671/public_html/eraport
 - /bin/cp -r * $DEPLOYPATH
