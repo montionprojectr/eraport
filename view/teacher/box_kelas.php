@@ -27,6 +27,7 @@ include "../../koneksi.php";
         <div class="inner">
           <h3><?= $dkelas['kel']." ".$dkelas['pkelas']; ?></h3>
           <div class="form-group" hidden>
+            <input type="text" name="th_pelajaran" value="<?= $th_pelajaran; ?>">
             <input type="text" name="kelas" value="<?= $dkelas['kelas'] ?>">
             <input type="text" name="komp_keahlian" value="<?= $dkelas['komp_keahlian'] ?>">
             <input type="text" name="pkelas" value="<?= $dkelas['pkelas'] ?>">
@@ -36,6 +37,14 @@ include "../../koneksi.php";
             <select class="form-control-sm select2" style="width: 100%;" name="semester">
               <option value="Semester 1">Semester 1</option>
               <option value="Semester 2">Semester 2</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Pilih Penilaian</label>
+            <select class="form-control-sm select2" style="width: 100%;" name="penilaian">
+              <option value="Fomatif">Formatif</option>
+              <option value="Sumatif">Sumatif</option>
+              <option value="Sumatif_Akhir">Sumatif Akhir</option>
             </select>
           </div>
         </div>
