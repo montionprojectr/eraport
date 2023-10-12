@@ -13,16 +13,29 @@ if (isset($_POST['semester'])) {
     $_SESSION['pkelas'] = $pkelas;
   }
 }
+
+$class = $_SESSION['kelas']. " " .$_SESSION['komp_keahlian']." ".$_SESSION['pkelas'];
 ?>
 <div class="row">
   <div class="col-sm-12">
     <ol class="breadcrumb">
 	    <li><a href="guru" class="pr-1"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href=""><i class="fas fa-angle-right"></i> <?= $_SESSION['kelas']; ?></a></li>
-      <li><a href=""><i class="fas fa-angle-right"></i> <?= $_SESSION['komp_keahlian']; ?></a></li>
-      <li><a href=""><i class="fa-angle-right"></i> <?= $_SESSION['pkelas']; ?></a></li>
-	    <li class="active"> <a href="guru"> <i class="fas fa-angle-right"></i> <?= $_SESSION['kelas']." ". $_SESSION['komp_keahlian']." ".$_SESSION['pkelas']." > " ?> </a> <?= $_SESSION['semester']; ?></li>
-      <li> > <?= $_SESSION['penilaian']; ?></li>
+      <li>
+        <i class="fas fa-angle-right"></i> 
+        <?= $class;?>
+      </li>
+	    <li class="active"><i class="fas fa-angle-right"></i> <?= $_SESSION['semester']; ?></li>
+      <li><i class="fas fa-angle-right"></i> <?= $_SESSION['penilaian']; ?></li>
 	  </ol>
   </div><!-- /.col -->
 </div><!-- /.row -->
+
+<!-- Penilaian -->
+<div class="card">
+  <div class="card-header bg-warning">
+    <h3 class="card-title"><b><?= $class; ?></b></h3>
+  </div>
+  <div class="card-body">
+    
+  </div>
+</div>
