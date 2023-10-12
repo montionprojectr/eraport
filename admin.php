@@ -94,45 +94,43 @@ if (!isset($_SESSION['login'])) {
           <a href="admin" class="d-block"><?= $_SESSION['nama_lengkap']; ?></a>
         </div>
       </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="?view=profil_sekolah" class="nav-link">
+            <a href="?view=profil_sekolah" class="nav-link <?= $_GET['view'] == 'profil_sekolah' ? 'active' : ''; ?>">
               <i class="nav-icon fas fa-school"></i>
               <p>
                 PROFIL SEKOLAH
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 USER
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">3</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="admin?view=guru" class="nav-link">
+                <a href="admin?view=guru" class="nav-link <?= $_GET['view'] == 'guru' ? 'active' : ''; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Guru</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin?view=operator" class="nav-link">
+                <a href="admin?view=operator" class="nav-link <?= $_GET['view'] == 'operator' ? 'active' : ''; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Operator </p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-sitemap"></i>
               <p>
@@ -142,13 +140,13 @@ if (!isset($_SESSION['login'])) {
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="admin?view=walikelas" class="nav-link">
+                <a href="admin?view=walikelas" class="nav-link <?= $_GET['view'] == 'walikelas' ? 'active' : ''; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Walikelas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin?view=guru_mapel" class="nav-link">
+                <a href="admin?view=guru_mapel" class="nav-link <?= $_GET['view'] == 'guru_mapel' ? 'active' : ''; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Guru Pelajaran</p>
                 </a>
@@ -156,7 +154,7 @@ if (!isset($_SESSION['login'])) {
             </ul>
           </li>
           <li class="nav-item">
-            <a href="admin?view=mapel_page" class="nav-link">
+            <a href="admin?view=mapel_page" class="nav-link <?= $_GET['view'] == 'mapel_page' ? 'active' : ''; ?>">
               <i class="nav-icon fas  fa-book"></i>
               <p>
                 MATA PELAJARAN
@@ -164,7 +162,7 @@ if (!isset($_SESSION['login'])) {
             </a>
           </li>
           <li class="nav-item">
-            <a href="admin?view=siswa" class="nav-link">
+            <a href="admin?view=siswa" class="nav-link <?= $_GET['view'] == 'siswa' ? 'active' : ''; ?>">
               <i class="nav-icon fas fa-child"></i>
               <p>
                 DATA SISWA
@@ -174,19 +172,19 @@ if (!isset($_SESSION['login'])) {
           </li>
         <li class="nav-header">LAPORAN</li>
         <li class="nav-item">
-          <a href="?view=leger" class="nav-link">
+          <a href="?view=leger" class="nav-link <?= $_GET['view'] == 'leger' ? 'active' : ''; ?>">
             <i class="nav-icon fas fa-cloud"></i>
             <p>LEGER</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="?view=siswa_resign" class="nav-link">
+          <a href="?view=siswa_resign" class="nav-link <?= $_GET['view'] == 'siswa_resign' ? 'active' : ''; ?>">
             <i class="nav-icon fas fa-table"></i>
             <p>SISWA RESIGN</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="?view=siswa_pindahan" class="nav-link">
+          <a href="?view=siswa_pindahan" class="nav-link <?= $_GET['view'] == 'siswa_pindahan' ? 'active' : ''; ?>">
             <i class="nav-icon fas fa-table"></i>
             <p>SISWA PINDAHAN</p>
           </a>

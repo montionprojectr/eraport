@@ -120,7 +120,7 @@ if ($data > 0 ) {
     $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
     echo "<script>
     alert('Anda Berhasil Login');
-    document.location.href = 'https://eraport.smksatyapraja2.id/admin';
+    document.location.href = 'admin';
     </script>";
     // header("location: https://eraport.smksatyapraja2.id/admin");
   }else if ($users['level'] == "guru") {
@@ -129,7 +129,7 @@ if ($data > 0 ) {
     $_SESSION['session'] = "GURU";
     echo "<script>
     alert('Anda Berhasil Login');
-    document.location.href = 'https://eraport.smksatyapraja2.id/guru';
+    document.location.href = 'guru';
     </script>";
     // header("location: https://eraport.smksatyapraja2.id/guru");
   }else if ($users['level'] == "siswa") {
