@@ -26,12 +26,13 @@ include "../../koneksi.php";
       <!-- small box -->
       <div class="small-box <?= $bg; ?>">
         <div class="inner">
-          <h3><?= $dkelas['kel']." ".$dkelas['pkelas']; ?></h3>
+          <h3><?= $dkelas['kel']." ".$dkelas['pkelas']; ?></h3><b><?= $data['nama_mapel'] ?></b><br>
           <div class="form-group" hidden>
             <input type="text" name="th_pelajaran" value="<?= $th_pelajaran; ?>">
             <input type="text" name="kelas" value="<?= $dkelas['kelas'] ?>">
             <input type="text" name="komp_keahlian" value="<?= $dkelas['komp_keahlian'] ?>">
             <input type="text" name="pkelas" value="<?= $dkelas['pkelas'] ?>">
+            <input type="text" name="nama_mapel" value="<?= $data['nama_mapel'] ?>">
           </div>
           <div class="form-group">
             <label>Pilih Semester</label>

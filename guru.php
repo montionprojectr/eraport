@@ -280,6 +280,26 @@ unset($_SESSION['penilaian']);
           }
       });
     });
+
+    $("#type_test").change(function(){
+    var type_test = $("#type_test").val();
+    var th_pelajaran = $("#th_pelajaran").val();
+    var semester = $("#semester").val();
+    var kelas = $("#kelas").val();
+    var komp_keahlian = $("#komp_keahlian").val();
+    var pkelas = $("#pkelas").val();
+    var nama_mapel = $('#nama_mapel').val();
+      $.ajax({
+        type: 'POST',
+          url: "view/teacher/view_penilaian.php",
+          data: {type_test: type_test, th_pelajaran: th_pelajaran, semester: semester,kelas: kelas, komp_keahlian: komp_keahlian, pkelas: pkelas, nama_mapel: nama_mapel},
+          cache: false,
+          success: function(msg){
+            $("#view_penilaian").html(msg);
+          }
+      });
+    });
+
   });
 </script>
 </body>

@@ -6,6 +6,7 @@ if (isset($_POST['semester'])) {
   $komp_keahlian = $_POST['komp_keahlian'];
   $pkelas = $_POST['pkelas'];
   $penilaian = $_POST['penilaian'];
+  $nama_mapel = $_POST['nama_mapel'];
   if ($semester) {
     $_SESSION['th_pelajaran'] = $th_pelajaran;
   	$_SESSION['semester'] = $semester;
@@ -13,6 +14,7 @@ if (isset($_POST['semester'])) {
     $_SESSION['kelas'] = $kelas;
     $_SESSION['komp_keahlian'] = $komp_keahlian;
     $_SESSION['pkelas'] = $pkelas;
+    $_SESSION['nama_mapel'] = $nama_mapel;
   }
 }
 
@@ -48,79 +50,36 @@ $class = $_SESSION['kelas']. " " .$_SESSION['komp_keahlian']." ".$_SESSION['pkel
       <div class="input-group-prepend">
         <a href="?page=home" class="btn btn-outline-primary bg-primary"><i class="fas fa-angle-left"></i> Kembali</a> 
       </div>
-      <select class="custom-select" name="penilaian" id="inputGroupSelect03">
+      <select class="custom-select" name="type_test" id="type_test">
+        <option>Pilih Penilaian</option>
         <?php 
         if ($_SESSION['penilaian'] == 'Formatif') { ?>
-          <option>ULangan Harian 1</option>
-          <option>ULangan Harian 2</option>
+          <option value="formatif">Formatif</option>
         <?php }else if($_SESSION['penilaian'] == 'Sumatif'){ ?>
-          <option>Ulangan Tengah Semester 1</option>
-          <option>ULangan Akhir Semester 1</option>
-          <option>ULangan Tengah Semester 2</option>
-          <option>ULangan Akhir Semester 2</option>
+          <option value="sumatif_1">Sumatif 1</option>
+          <option value="sumatif_2">Sumatif 2</option>
+          <option value="sumatif_3">Sumatif 3</option>
+          <option value="sumatif_4">Sumatif 4</option>
         <?php }else if($_SESSION['penilaian'] == 'Sumatif_Akhir'){ ?>
-          <option>PTS</option>
-          <option>Assesment Sumatif Akhir</option>
+          <option value="asas_nontest">Sumatif Akhir Semester (Non Test)</option>
+          <option value="asas_test">Sumatif Akhir Semester (Test)</option>
         <?php }
         ?>
       </select>
     </div>
+    <div class="form-group">
+      <input type="text" id="th_pelajaran" value="<?= $_SESSION['th_pelajaran']; ?>">
+      <input type="text" id="semester" value="<?= $_SESSION['semester']; ?>">
+      <input type="text" id="kelas" value="<?= $_SESSION['kelas']; ?>">
+      <input type="text" id="komp_keahlian" value="<?= $_SESSION['komp_keahlian']; ?>">
+      <input type="text" id="pkelas" value="<?= $_SESSION['pkelas']; ?>">
+      <input type="text" id="nama_mapel" value="<?= $nama_mapel; ?>">
+    </div>
   </div>
 </div>
 
-<!-- Penilaian -->
-<div class="card" hidden>
-  <div class="card-header bg-warning">
-    <h3 class="card-title"><b><?= $class; ?></b></h3>
-  </div>
-  <div class="card-body">
-  <form>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Input Capaian 1</label>
-          <textarea class="form-control"></textarea>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Input Capaian 2</label>
-          <textarea class="form-control"></textarea>
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <div class="card card-body p-0">
-          <table class="table table-striped">
-            <thead class="bg-primary">
-              <tr>
-                <th style="width: 10px">No</th>
-                <th>NIS</th>
-                <th>Nama</th>
-                <th style="width: 40px">Nilai</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php 
-              $no =1;
-              $array = array('3210001' => 'Muhammad', '3210002' => 'Irfa', '3210003' => 'Nufaiyal', '3210004' => 'Kharish', '3210005' => 'S.Kom');
-              foreach ($array as $key => $val) { ?>
-                <tr>
-                  <td><?= $no++; ?></td>
-                  <td><?= $key ?></td>
-                  <td><?= $val ?></td>
-                  <td>
-                    <div class="form-group">
-                      <input type="number" name="nilai" class="form-control-md">    
-                    </div>
-                  </td>
-                </tr>
-              <?php }
-              ?>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </form>
+<div class="row">
+  <div class="col-sm-12" id="view_penilaian">
+    <!-- isi view_penilaian.php -->
   </div>
 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2023 at 08:55 PM
+-- Generation Time: Oct 16, 2023 at 05:29 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -51,7 +51,10 @@ INSERT INTO `tb_guru_mapel` (`id_guru_mapel`, `th_pelajaran`, `nipy`, `nama_user
 (64, '2023/2024', '32120050027', 'Munasir, S.Pd, M.T', 'Konsentrasi Keahlian Teknik Kendaraan Ringan', 'XI', 'TKR'),
 (65, '2023/2024', '32120080058', 'Octovian Andy S, S.T', 'Konsentrasi Keahlian Teknik Kendaraan Ringan', 'X', 'TKR'),
 (66, '2023/2024', '32120080047', 'Sugeng Nur Arif, S.Pd', 'Dasar-Dasar Teknik Mesin', 'X', 'TMI'),
-(67, '2023/2024', '32120080047', 'Sugeng Nur Arif, S.Pd', 'Mata Pelajaran Pilihan', 'XI', 'TMI');
+(67, '2023/2024', '32120080047', 'Sugeng Nur Arif, S.Pd', 'Mata Pelajaran Pilihan', 'XI', 'TMI'),
+(68, '2023/2024', '32120220202', 'Muhammad Irfa Nufaiyal Kharish, S.Kom', 'Dasar-Dasar Pengembangan Perangkat Lunak Dan Gim', 'X', 'PPLG'),
+(69, '2023/2024', '32120220202', 'Muhammad Irfa Nufaiyal Kharish, S.Kom', 'Projek Kreatif dan Kewirausahaan', 'XI', 'PPLG'),
+(70, '2023/2024', '32120220202', 'Muhammad Irfa Nufaiyal Kharish, S.Kom', 'Projek Kreatif dan Kewirausahaan', 'XI', 'TE');
 
 -- --------------------------------------------------------
 
@@ -2745,7 +2748,7 @@ ALTER TABLE `tb_walikelas`
 -- AUTO_INCREMENT for table `tb_guru_mapel`
 --
 ALTER TABLE `tb_guru_mapel`
-  MODIFY `id_guru_mapel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id_guru_mapel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `tb_jurusan`
