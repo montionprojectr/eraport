@@ -125,35 +125,18 @@ if (isset($_POST['save_walikelas'])) {
 ?>
 <!-- Table Walikelas -->
 <div class="card">
-	<div class="card-header bg-danger"><h3 class="card-title">TABLE WALIKELAS</h3></div>
-	<div class="card-body">
-		<table id="example1" class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>No</th>
-					<th>Th. Pelajaran</th>
-					<th>NIPY</th>
-					<th>Guru/Wali</th>
-					<th>Kelas</th>
-					<th>Edit</th>
-				</tr>		
-			</thead>
-			<tbody>
-				<?php 
-				$no = 1;
-				$query = mysqli_query($koneksi, "select * from tb_walikelas group by id_walikelas desc");
-				while ($data = mysqli_fetch_array($query)) { 
-					echo "<tr>";
-					echo "<td>".$no++."</td>";
-					echo "<td>".$data['th_pelajaran']."</td>";
-					echo "<td>".$data['nipy']."</td>";
-					echo "<td>".$data['user_guru']."</td>";
-					echo "<td>".$data['kelas']." " . $data['komp_keahlian'] ." " . $data['pkelas']."</td>";
-					echo "<td><a href='admin?view=up_walikelas&up=".$data['id_walikelas']."' class='btn btn-primary'><i class='fas fa-edit'></i></a></td>";
-					echo "</tr>";
-				}
-				?>
-			</tbody>
-		</table>
+	<div class="card-header bg-danger">
+		<h3 class="card-title">TABLE WALIKELAS</h3>
+		<div class="form-group float-right">
+			<select class="form-control-sm select2" style="width:100%" id="th_pelajaran1">
+				<option value="">Pilih Th. Pelajaran</option>
+				<option value="2023/2024">2023/2024</option>
+				<option value="2024/2025">2024/2025</option>
+				<option value="2025/2026">2025/2026</option>
+			</select>
+		</div>
+	</div>
+	<div class="card-body" id="tampil_walikelas">
+		<!-- tampil_kelas dari 'view/operator/table_walikelas.php' -->
 	</div>
 </div>

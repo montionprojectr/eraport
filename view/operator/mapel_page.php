@@ -22,7 +22,8 @@
 <div class="card">
 	<div class="card-header bg-danger">
 		<h3 class="card-title">Data Mata Pelajaran</h3>
-		<div class="form-group-sm float-right"><form action="" method="post">
+		<div class="form-group-sm float-right">
+			<form action="" method="post">
       <select class="form-control-sm select2" style="width: 100%;" name="kelas" id="mapel">
       	<option value="">Pilih Kelas</option>
         <option value="X">Kelas X</option>

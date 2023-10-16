@@ -4,6 +4,7 @@
 		<th>ID Mapel</th>
 		<th>Nama Mata Pelajaran</th>
 		<th>Kelas</th>
+		<th>Kategori</th>
 		<th>Edit</th>
 	</tr>		
 </thead>
@@ -24,6 +25,7 @@
 		echo "<td>".$data['id_mapel']."</td>";
 		echo "<td>".$data['nama']."</td>";
 		echo "<td>".$data['kelas']."</td>";
+		echo "<td>".$data['kategori_mapel']."</td>";
 		echo "<td><a href='' class='btn btn-primary'><i class='fas fa-edit'></i></a></td>";
 		echo "</tr>";
 	}

@@ -1,10 +1,17 @@
 <?php 
 session_start();
 require_once('koneksi.php');
+// Load file autoload.php
+require 'vendor/autoload.php';
 
 if (!isset($_SESSION['login'])) {
   header('location : https://eraport.smksatyapraja2.id/');
 }
+
+// Include librari PhpSpreadsheet
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +40,7 @@ if (!isset($_SESSION['login'])) {
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-danger navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-primary navbar-light">
 
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -344,6 +351,7 @@ if (!isset($_SESSION['login'])) {
 <!-- select kelas tanpa reload -->
 <script type="text/javascript">
   $(document).ready(function(){
+
     $("#mapel").change(function(){
     var mapel = $("#mapel").val();
       $.ajax({
@@ -356,6 +364,33 @@ if (!isset($_SESSION['login'])) {
           }
       });
     });
+
+    $("#th_pelajaran1").change(function(){
+    var th_pelajaran = $("#th_pelajaran1").val();
+      $.ajax({
+        type: 'POST',
+          url: "view/operator/table_walikelas.php",
+          data: {th_pelajaran: th_pelajaran},
+          cache: false,
+          success: function(msg){
+            $("#tampil_walikelas").html(msg);
+          }
+      });
+    });
+
+    $("#th_pelajaran2").change(function(){
+    var th_pelajaran = $("#th_pelajaran2").val();
+      $.ajax({
+        type: 'POST',
+          url: "view/operator/table_guru_mapel.php",
+          data: {th_pelajaran: th_pelajaran},
+          cache: false,
+          success: function(msg){
+            $("#tampil_guru_mapel").html(msg);
+          }
+      });
+    });
+
   });
 </script>
 </body>

@@ -94,7 +94,9 @@ if (isset($_POST['simpan'])) {
 							<td><?= $rest['nipy'] ?></td>
 							<td><?= $rest['nama_lengkap'] ?></td>
 							<td>
-								<a href="?view=update_operator&id=<?= $rest['id_rolsuser'] ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a> || <a href="view/operator/del/delete_rols_operator.php?id=<?= $rest['id_rolsuser'] ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data <?= $rest['nama_lengkap'] ?> sebagai operator?')"><i class="fas fa-trash"></i></a>
+								<!-- <a href="?view=update_operator&id=<?= $rest['id_rolsuser'] ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a> 
+								||  -->
+								<a href="view/operator/del/delete_rols_operator.php?id=<?= $rest['id_rolsuser'] ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data <?= $rest['nama_lengkap'] ?> sebagai operator?')"><i class="fas fa-trash"></i></a>
 							</td>
 						</tr>
 						<?php }

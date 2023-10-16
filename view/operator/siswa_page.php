@@ -15,21 +15,61 @@
 			<table id="example1" class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Username</th>
-						<th>Password</th>
-						<th>Nik</th>
-						<th>Nama Lengkap</th>
-						<th>Rols</th>
+						<th>No</th>
+						<th>NIS</th>
+						<th>NISN</th>
+						<th>Nama</th>
+						<th>Kelas</th>
+						<th>TTL</th>
+						<th>J.Kel</th>
+						<th>Agama</th>
+						<th>Status</th>
+						<th>Anak Ke</th>
+						<th>Alamat Siswa</th>
+						<th>Hp Siswa</th>
+						<th>Asal Sekolah</th>
+						<th>Tgl Terima</th>
+						<th>Ayah Ibu</th>
+						<th>Alamat Ortu</th>
+						<th>Hp Ortu</th>
+						<th>Kerja Ayah & Ibu</th>
+						<th>Nama Wali</th>
+						<th>Alamat Wali</th>
+						<th>Hp Wali</th>
+						<th>Kerja Wali</th>
 					</tr>		
 				</thead>
 				<tbody>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<?php 
+					$no=1;
+					$query = mysqli_query($koneksi, "select * from tb_siswa");
+					while ($data = mysqli_fetch_array($query)) { ?>
+						<tr>
+							<td><?= $no++; ?></td>
+							<td><?= $data['nis'] ?></td>
+							<td><?= $data['nisn'] ?></td>
+							<td><?= $data['nama'] ?></td>
+							<td><?= $data['kelas'] ?></td>
+							<td><?= $data['ttl'] ?></td>
+							<td><?= $data['kelamin'] ?></td>
+							<td><?= $data['agama'] ?></td>
+							<td><?= $data['status'] ?></td>
+							<td><?= $data['anak_ke'] ?></td>
+							<td><?= $data['alamat_siswa'] ?></td>
+							<td><?= $data['hp_siswa'] ?></td>
+							<td><?= $data['asal_sekolah'] ?></td> 
+							<td><?= $data['tgl_terima'] ?></td>
+							<td><?= $data['ayah']." ".$data['ibu']; ?></td>
+							<td><?= $data['alamat_ortu'] ?></td>
+							<td><?= $data['hp_ortu'] ?></td>
+							<td><?= $data['kerja_ayah']." ".$data['kerja_ibu']; ?></td>
+							<td><?= $data['nama_wali'] ?></td>
+							<td><?= $data['alamat_wali'] ?></td>
+							<td><?= $data['hp_wali'] ?></td>
+							<td><?= $data['kerja_wali'] ?></td>
+						</tr>	
+					<?php }
+					?>
 				</tbody>
 			</table>
 			</div>

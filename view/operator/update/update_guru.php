@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
 	$data = mysqli_fetch_array($query);
 	?>
 	<div class="card">
-	<div class="card-header">
+	<div class="card-header bg-warning">
 		<h3 class="card-title">Edit data user guru</h3>
 	</div>
 	<div class="card-body">
@@ -52,10 +52,11 @@ if (isset($_GET['id'])) {
 							<tr>
 								<td>
 									<div class="form-group float-center">
-										<button class="btn btn-primary float-center" type="submit" name="simpan_perubahan"><i class="fas fa-save"></i> Simpan Perubahan</button>	
-										<!-- <a href="#" class="btn btn-primary">Download Template</a>	
-										<a href="#" class="btn btn-primary">Import Data</a>	 -->
+										<button class="btn btn-primary float-center" type="submit" name="simpan_perubahan"><i class="fas fa-save"></i> Simpan Perubahan</button>
 									</div>			
+								</td>
+								<td>
+									<a href="admin?view=guru" class="btn btn-primary"> Kembali</a>
 								</td>
 							</tr>
 						</table>

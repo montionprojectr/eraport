@@ -5,7 +5,8 @@ include "../../koneksi.php";
 
   $query = mysqli_query($koneksi, "select * from tb_guru_mapel where nama_user_guru = '$nama_lengkap' and th_pelajaran = '$th_pelajaran'");
   while ($data = mysqli_fetch_array($query)) { 
-    $kelas = mysqli_query($koneksi, "select kelas, komp_keahlian, concat_ws(' ', kelas, komp_keahlian) as kel, pkelas from tb_walikelas where CONCAT_WS(' ', kelas, komp_keahlian) = '".$data['kelas_dan_komp']."'");
+    // where before = CONCAT_WS(' ', kelas, komp_keahlian) = '".$data['kelas_dan_komp']."'
+    $kelas = mysqli_query($koneksi, "select kelas, komp_keahlian, concat_ws(' ', kelas, komp_keahlian) as kel, pkelas from tb_walikelas where kelas = '".$data['kelas']."' and komp_keahlian = '".$data['komp']."'");
       
     while ($dkelas = mysqli_fetch_array($kelas)) {
       if ($dkelas['komp_keahlian'] == 'PPLG') {
@@ -42,7 +43,7 @@ include "../../koneksi.php";
           <div class="form-group">
             <label>Pilih Penilaian</label>
             <select class="form-control-sm select2" style="width: 100%;" name="penilaian">
-              <option value="Fomatif">Formatif</option>
+              <option value="Formatif">Formatif</option>
               <option value="Sumatif">Sumatif</option>
               <option value="Sumatif_Akhir">Sumatif Akhir</option>
             </select>

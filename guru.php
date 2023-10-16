@@ -5,7 +5,7 @@ include "koneksi.php";
 if (!isset($_SESSION['login'])) {
   header('location : https://eraport.smksatyapraja2.id/');
 }
-
+unset($_SESSION['penilaian']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +31,7 @@ if (!isset($_SESSION['login'])) {
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-info navbar-light bg-danger">
+  <nav class="main-header navbar navbar-expand navbar-primary navbar-light">
 
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -98,15 +98,20 @@ if (!isset($_SESSION['login'])) {
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="?page=management_siswa" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Management Siswa
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
+          <?php 
+          $query = mysqli_query($koneksi, "select * from tb_walikelas where user_guru = '".$_SESSION['nama_lengkap']."'");
+          $row = mysqli_num_rows($query);
+          if ($row > 0) { ?>
+            <li class="nav-item">
+              <a href="?page=walikelas" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Walikelas
+                </p>
+              </a>
+            </li>  
+          <?php }
+          ?>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-print"></i>
@@ -171,8 +176,8 @@ if (!isset($_SESSION['login'])) {
             case 'home':
               require_once('view/teacher/home.php');
               break;
-            case 'management_siswa':
-              require_once("view/teacher/management_siswa.php");
+            case 'walikelas':
+              require_once("view/teacher/walikelas.php");
               break;
             case 'cover':
               require_once('view/teacher/cover.php');
@@ -207,7 +212,7 @@ if (!isset($_SESSION['login'])) {
     <strong>Copyright &copy; 2023-2024 <a href="https://smksatyapraja2.id">SMK SATYA PRAJA 2</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.3
+      <b>Version</b> 0.0.1
     </div>
   </footer>
 </div>

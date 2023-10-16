@@ -17,6 +17,10 @@ if (isset($_GET['up'])) {
 			</div>
 			<div class="form-group">
 				<label>Th. Pelajaran</label>
+				<input type="text" name="viewth_pelajaran" class="form-control" value="<?= $data['th_pelajaran']; ?>" readonly>
+			</div>
+			<div class="form-group" hidden>
+				<label>Th. Pelajaran</label>
 				<select class="form-control-sm select2" style="width: 100%;" name="th_pelajaran">
 				<?php 
 				$arr = array('2023/2024' => '2023/2024' , '2024/2025' => '2024/2025', '2025/2026' => '2025/2026');
@@ -31,20 +35,24 @@ if (isset($_GET['up'])) {
 			</div>
 			<div class="form-group">
 				<label>Nama Guru</label>
-				<select class="form-control-sm select2" name="user_guru">
+				<select class="form-control-sm select2" name="nipy">
 					<?php 
-					$query1 = mysqli_query($koneksi,"select * from tb_users");
+					$query1 = mysqli_query($koneksi,"select * from tb_users group by nipy asc");
 					while ($data1 = mysqli_fetch_array($query1)) {
 						if ($data1['nama_lengkap'] == $data['user_guru'] ) {
-							echo "<option value='".$data1['nama_lengkap']."' selected>".$data1['nama_lengkap']."</option>";
+							echo "<option value='".$data1['nipy']."' selected>".$data1['nama_lengkap']."</option>";
 						}else{
-							echo "<option value='".$data1['nama_lengkap']."'>".$data1['nama_lengkap']."</option>";
+							echo "<option value='".$data1['nipy']."'>".$data1['nama_lengkap']."</option>";
 						}
 					}
 					 ?>
 				</select>
 			</div>
 			<div class="form-group">
+				<label>Kelas</label>
+				<input type="text" name="viewkelas" class="form-control" value="<?= $data['kelas']." ".$data['komp_keahlian']." ".$data['pkelas']; ?>" readonly>
+			</div>
+			<div class="form-group" hidden>
 				<label>Kelas</label>
 				<select class="form-control-sm select2" style="width: 100%;" name="kelas">
 					<?php 
@@ -59,7 +67,7 @@ if (isset($_GET['up'])) {
 					 ?>
 				</select>
 			</div>
-			<div class="form-group">
+			<div class="form-group" hidden>
 				<label>Kompetensi Kejuruan</label>
 				<select class="form-control-sm select2" style="width: 100%;" name="komp_keahlian">
 			      	<?php 
@@ -75,7 +83,7 @@ if (isset($_GET['up'])) {
 			      </select>
 			</div>
 						<!-- radio -->
-            <div class="form-group card bg-light p-3">
+            <div class="form-group card bg-light p-3" hidden>
             	<label><u>Pembagian Kelas</u></label>
             	<?php 
             	$array = array('1' => 1, '2' => 2, '3' => 3, '4' => 4 );
@@ -83,12 +91,12 @@ if (isset($_GET['up'])) {
             	foreach ($array as $ke => $val) { 
             		if ($val == $data['pkelas']) { ?>
             		<div class="form-check">
-		                <input class="form-check-input" type="radio" name="pkelas" value="<?= $val; ?>" checked>
+		                <input class="form-check-input" type="radio" name="pkelas" value="<?= $val; ?>" checked readonly>
 		                <label class="form-check-label"><?= $val; ?></label>
 		              </div>
             		<?php }else{ ?>
             		<div class="form-check">
-		                <input class="form-check-input" type="radio" name="pkelas" value="<?= $val; ?>">
+		                <input class="form-check-input" type="radio" name="pkelas" value="<?= $val; ?>" readonly>
 		                <label class="form-check-label"><?= $val; ?></label>
 		              </div>
             		<?php }
@@ -111,12 +119,15 @@ if (isset($_GET['up'])) {
 if (isset($_POST['simpan'])) {
 	$id_walikelas = $_POST['id_walikelas'];
 	$th_pelajaran = $_POST['th_pelajaran'];
-	$user_guru = $_POST['user_guru'];
+	$user_guru_nipy = $_POST['nipy'];
 	$kelas = $_POST['kelas'];
 	$komp_keahlian = $_POST['komp_keahlian'];
 	$pkelas = $_POST['pkelas'];
 
-	$sqledit = mysqli_query($koneksi, "update tb_walikelas set th_pelajaran = '$th_pelajaran', user_guru = '$user_guru', kelas = '$kelas', komp_keahlian = '$komp_keahlian', pkelas = '$pkelas' where id_walikelas = '$id_walikelas'");
+	$query = mysqli_query($koneksi, "select * from tb_users where nipy = '$user_guru_nipy' group by nipy asc");
+	$row = mysqli_fetch_array($query);
+
+	$sqledit = mysqli_query($koneksi, "update tb_walikelas set th_pelajaran = '$th_pelajaran', nipy = '$user_guru_nipy', user_guru = '".$row['nama_lengkap']."', kelas = '$kelas', komp_keahlian = '$komp_keahlian', pkelas = '$pkelas' where id_walikelas = '$id_walikelas'");
 
 	if ($sqledit) {
 		echo "<script>

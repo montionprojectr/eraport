@@ -7,7 +7,6 @@
   </div><!-- /.col -->
  
 </div><!-- /.row -->
-
 <div class="card collapsed-card">
 	<div class="card-header bg-danger">
 		<h4 class="card-title">INPUT DATA GURU MATA PELAJARAN</h4>
@@ -96,6 +95,7 @@ if (isset($_POST['simpan'])) {
 	$nama_mapel = $_POST['nama_mapel'];
 	$kelas_dan_komp = $_POST['kelas_dan_komp'];
 
+
 		$sqlniipy = mysqli_query($koneksi, "select nipy from tb_users where nama_lengkap = '$nama_user_guru'");
 		$d = mysqli_fetch_array($sqlniipy);
 
@@ -103,7 +103,10 @@ if (isset($_POST['simpan'])) {
 	$jml = count($kelas_dan_komp);
 
 	for ($i=0; $i < $jml ; $i++) { 
-		$query = mysqli_query($koneksi, "insert into tb_guru_mapel(id_guru_mapel, th_pelajaran, nipy, nama_user_guru, nama_mapel, kelas_dan_komp) values('','".$th_pelajaran."', '".$d['nipy']."','".$nama_user_guru."','".$nama_mapel."','".$kelas_dan_komp[$i]."')");
+		$array = explode(" ", $kelas_dan_komp[$i]);
+
+		// echo $array[1];
+		$query = mysqli_query($koneksi, "insert into tb_guru_mapel(id_guru_mapel, th_pelajaran, nipy, nama_user_guru, nama_mapel, kelas, komp) values('','".$th_pelajaran."', '".$d['nipy']."','".$nama_user_guru."','".$nama_mapel."','".$array[0]."','".$array[1]."')");
 		if ($query) {
             echo "<script>
                 alert('Data berhasil tersimpan');
@@ -120,57 +123,18 @@ if (isset($_POST['simpan'])) {
 ?>
 <!-- Table Walikelas -->
 <div class="card">
-	<div class="card-header bg-danger"><h3 class="card-title">TABLE GURU MATA PELAJARAN</h3></div>
-	<div class="card-body table-responsive">
-		<table id="examp" class="table table-sm table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>Action</th>
-					<th>Th. Pelajaran</th>
-					<th>NIPY</th>
-					<th>Nama Guru</th>
-					<th>Mapel</th>
-					<th>Kelas</th>
-				</tr>		
-			</thead>
-			<tbody>	
-				<?php 
-				$query = mysqli_query($koneksi, "select * from tb_guru_mapel");
-
-				$arr[] = array();
-				while ($row = mysqli_fetch_object($query)) { 
-					$arr[$row->nama_user_guru][] = $row;
-				}
-
-				foreach ($arr as $key => $val) {
-					foreach ($val as $k => $v) { ?>
-						<tr>
-							<?php 
-							if ( $k == 0) { ?>
-								<td rowspan="<?= count($val); ?>">
-									<a href="?view=update_guru_mapel&id=<?= $v->nipy; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-								</td>
-								<td rowspan="<?= count($val); ?>">
-									<?php echo $v->th_pelajaran; ?>
-								</td>
-								<td rowspan="<?= count($val); ?>">
-									<?php echo $v->nipy; ?>
-								</td>
-								<td rowspan="<?= count($val); ?>">
-									<?php echo $v->nama_user_guru; ?>
-								</td>
-							<?php } ?>
-								<td>
-									<?php echo $v->nama_mapel; ?>
-								</td>
-								<td>
-									<?php echo $v->kelas_dan_komp; ?>
-								</td>
-						</tr>
-						<?php }
-				}
-				?>	
-			</tbody>
-		</table>
+	<div class="card-header bg-danger">
+		<h3 class="card-title">TABLE GURU MATA PELAJARAN</h3>
+		<div class="form-group float-right">
+			<select class="form-control-sm select2" style="width:100%" id="th_pelajaran2">
+				<option value="">Pilih Th. Pelajaran</option>
+				<option value="2023/2024">2023/2024</option>
+				<option value="2024/2025">2024/2025</option>
+				<option value="2025/2026">2025/2026</option>
+			</select>
+		</div>
+	</div>
+	<div class="card-body table-responsive" id="tampil_guru_mapel">
+		<!-- tampil_kelas dari 'view/operator/table_guru_mapel.php' -->
 	</div>
 </div>
