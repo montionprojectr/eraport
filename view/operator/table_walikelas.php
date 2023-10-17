@@ -13,7 +13,7 @@
 		include "../../koneksi.php";
 		if (isset($_POST['th_pelajaran'])) {
 			$th_pelajaran = $_POST['th_pelajaran'];
-			$query = mysqli_query($koneksi, "select * from tb_walikelas where th_pelajaran = '$th_pelajaran'");
+			$query = mysqli_query($koneksi, "select id_walikelas, th_pelajaran, concat_ws(' ', kelas, komp_keahlian, pkelas) as class, y.nipy, nama_lengkap from tb_walikelas x inner join tb_users y on y.nipy = x.nipy where th_pelajaran = '$th_pelajaran'");
 		}
 		
 		$no = 1;
@@ -21,8 +21,8 @@
 			echo "<tr>";
 			echo "<td>".$no++."</td>";
 			echo "<td>".$data['th_pelajaran']."</td>";
-			echo "<td class='bg-grey'><b>".$data['kelas']." " . $data['komp_keahlian'] ." " . $data['pkelas']."</b></td>";
-			echo "<td>".$data['user_guru']."</td>";
+			echo "<td class='bg-grey'><b>".$data['class']."</b></td>";
+			echo "<td>".$data['nama_lengkap']."</td>";
 			echo "<td><a href='admin?view=up_walikelas&up=".$data['id_walikelas']."' class='btn btn-primary'><i class='fas fa-edit'></i></a></td>";
 			echo "</tr>";
 		}

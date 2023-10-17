@@ -6,6 +6,8 @@ if (!isset($_SESSION['login'])) {
   header('location : https://eraport.smksatyapraja2.id/');
 }
 unset($_SESSION['penilaian']);
+$cek_guru = mysqli_query($koneksi, "select * from tb_users where nipy = '".$_SESSION['nipy']."'");
+$guru = mysqli_fetch_array($cek_guru);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +101,7 @@ unset($_SESSION['penilaian']);
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <?php 
-          $query = mysqli_query($koneksi, "select * from tb_walikelas where user_guru = '".$_SESSION['nama_lengkap']."'");
+          $query = mysqli_query($koneksi, "select * from tb_walikelas where nipy = '".$guru['nipy']."'");
           $row = mysqli_num_rows($query);
           if ($row > 0) { ?>
             <li class="nav-item">
@@ -269,11 +271,11 @@ unset($_SESSION['penilaian']);
 
     $("#th_pelajaran").change(function(){
     var th_pelajaran = $("#th_pelajaran").val();
-    var nama_lengkap = $("#nama_lengkap").val();
+    var nipy = $("#nipy").val();
       $.ajax({
         type: 'POST',
           url: "view/teacher/box_kelas.php",
-          data: {th_pelajaran: th_pelajaran, nama_lengkap: nama_lengkap},
+          data: {th_pelajaran: th_pelajaran, nipy: nipy},
           cache: false,
           success: function(msg){
             $("#box_kelas").html(msg);

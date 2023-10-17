@@ -10,7 +10,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="form-group" hidden>
-      <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" value="<?= $_SESSION['nama_lengkap']; ?>">
+      <input type="text" class="form-control" name="nipy" id="nipy" value="<?= $_SESSION['nipy']; ?>">
     </div>
     <div class="form-group">
       <label>Pilih : Th. Pelajaran</label>

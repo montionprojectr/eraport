@@ -33,12 +33,12 @@
 					<div class="col-sm-4">
 						<div class="form-group">
 				      <label>Pilih Nama Guru</label>
-				      <select class="form-control-sm select2" style="width: 100%;" name="nama_user_guru">
+				      <select class="form-control-sm select2" style="width: 100%;" name="nipy">
+				      	<option value="">Pilih Data</option>
 				      	<?php 
 				      	$queryu = mysqli_query($koneksi, "select * from tb_users group by nama_lengkap asc");
 				      	while ($du = mysqli_fetch_array($queryu)) { ?>
-				      		<option value="">Pilih Data</option>
-				      		<option value="<?= $du['nama_lengkap'] ?>"><?= $du['nama_lengkap'] ?></option>
+				      		<option value="<?= $du['nipy'] ?>"><?= $du['nama_lengkap'] ?></option>
 				      	<?php }
 				      	?>
 				      </select>
@@ -47,13 +47,13 @@
 					<div class="col-sm-4">
 						<div class="form-group">
 				      <label>Pilih Mata Pelajaran</label>
-				      <select class="form-control-sm select2" style="width: 100%;" name="nama_mapel" required>
+				      <select class="form-control-sm select2" style="width: 100%;" name="kode_mapel" required>
+				      	<option value=''>Pilih Data</option>
 				      	<?php 
 				      	$no=1;
 				      	$querym = mysqli_query($koneksi, "select * from tb_mapel");
 				      	while ($dm = mysqli_fetch_array($querym)) {
-				      		echo "<option value=''>Pilih Data</option>";
-				      		echo "<option value='".$dm['nama']."'>" . $no++ . " - " . $dm['kelas']. " " . $dm['nama'] . "</option>";
+				      		echo "<option value='".$dm['kode_mapel']."'>" . $no++ . " - " . $dm['kelas']. " " . $dm['nama_mapel'] . "</option>";
 				      	}
 				      	?>
 				      </select>
@@ -62,10 +62,10 @@
 							<div class="select2-purple">
 								<label>Pilih Kelas</label>
 					      <select class="form-control-sm select2" multiple="multiple" data-placeholder="Select a Class" data-dropdown-css-class="select2-purple" style="width: 100%;" name="kelas_dan_komp[]" required>
+					      	<option value=""></option>
 					      	<?php 
 					      	$queryw = mysqli_query($koneksi, "select * from tb_walikelas group by kelas, komp_keahlian");
 					      	while ($dw = mysqli_fetch_array($queryw)) { ?>
-					      		<option value=""></option>
 					      		<option value="<?= $dw['kelas']." ".$dw['komp_keahlian']?>"><?= $dw['kelas']." ".$dw['komp_keahlian']?></option>
 					      	<?php }
 					      	?>
@@ -91,13 +91,13 @@
 
 if (isset($_POST['simpan'])) {
 	$th_pelajaran = $_POST['th_pelajaran'];
-	$nama_user_guru = $_POST['nama_user_guru'];
-	$nama_mapel = $_POST['nama_mapel'];
+	$nipy = $_POST['nipy'];
+	$kode_mapel = $_POST['kode_mapel'];
 	$kelas_dan_komp = $_POST['kelas_dan_komp'];
 
 
-		$sqlniipy = mysqli_query($koneksi, "select nipy from tb_users where nama_lengkap = '$nama_user_guru'");
-		$d = mysqli_fetch_array($sqlniipy);
+		// $sqlniipy = mysqli_query($koneksi, "select nipy from tb_users where nama_lengkap = '$nama_user_guru'");
+		// $d = mysqli_fetch_array($sqlniipy);
 
 
 	$jml = count($kelas_dan_komp);
@@ -106,7 +106,7 @@ if (isset($_POST['simpan'])) {
 		$array = explode(" ", $kelas_dan_komp[$i]);
 
 		// echo $array[1];
-		$query = mysqli_query($koneksi, "insert into tb_guru_mapel(id_guru_mapel, th_pelajaran, nipy, nama_user_guru, nama_mapel, kelas, komp) values('','".$th_pelajaran."', '".$d['nipy']."','".$nama_user_guru."','".$nama_mapel."','".$array[0]."','".$array[1]."')");
+		$query = mysqli_query($koneksi, "insert into tb_guru_mapel(id_guru_mapel, th_pelajaran, nipy, kode_mapel, kelas, komp) values('','".$th_pelajaran."', '".$nipy."','".$kode_mapel."','".$array[0]."','".$array[1]."')");
 		if ($query) {
             echo "<script>
                 alert('Data berhasil tersimpan');

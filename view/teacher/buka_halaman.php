@@ -67,7 +67,7 @@ $class = $_SESSION['kelas']. " " .$_SESSION['komp_keahlian']." ".$_SESSION['pkel
         ?>
       </select>
     </div>
-    <div class="form-group">
+    <div class="form-group" hidden>
       <input type="text" id="th_pelajaran" value="<?= $_SESSION['th_pelajaran']; ?>">
       <input type="text" id="semester" value="<?= $_SESSION['semester']; ?>">
       <input type="text" id="kelas" value="<?= $_SESSION['kelas']; ?>">

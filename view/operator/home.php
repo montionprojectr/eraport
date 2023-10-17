@@ -28,7 +28,7 @@
 	$sel = mysqli_fetch_array($sql);
 	$array = array('X' => 'X', 'XI' => 'XI', 'XII' => 'XII' );
 	foreach ($array as $key => $value) { 
-		$query = mysqli_query($koneksi, "select th_pelajaran, concat_ws(' ', kelas, komp_keahlian, pkelas) as class, kelas, user_guru from tb_walikelas where kelas = '$value' and th_pelajaran = '".$sel['select_tahunpel']."'"); ?>
+		$query = mysqli_query($koneksi, "select th_pelajaran, concat_ws(' ', kelas, komp_keahlian, pkelas) as class, kelas, nama_lengkap from tb_walikelas x inner join tb_users y on y.nipy = x.nipy where kelas = '$value' and th_pelajaran = '".$sel['select_tahunpel']."'"); ?>
 		<div class="col-sm-4">
 			<div class="card">
 				<div class="card-header bg-danger">
@@ -41,7 +41,7 @@
 					      <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
 
 					      <div class="info-box-content text-sm">
-					        <div class=""><?= $row['user_guru']; ?></div>
+					        <div class=""><?= $row['nama_lengkap']; ?></div>
 					        <span class="info-box-number">
 					          <?= $row['class']; ?>
 					        </span>

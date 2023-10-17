@@ -14,12 +14,12 @@
 		include "../../koneksi.php";
 		if (isset($_POST['th_pelajaran'])) {
 			$th_pelajaran = $_POST['th_pelajaran'];
-			$query = mysqli_query($koneksi, "select * from tb_guru_mapel where th_pelajaran = '$th_pelajaran'");
+			$query = mysqli_query($koneksi, "select th_pelajaran, x.nipy, nama_lengkap, x.kode_mapel, nama_mapel, x.kelas, komp from tb_guru_mapel x inner join tb_users y on y.nipy = x.nipy inner join tb_mapel z on z.kode_mapel = x.kode_mapel where th_pelajaran = '$th_pelajaran' group by id_guru_mapel");
 		}
 
 		$arr[] = array();
 		while ($row = mysqli_fetch_object($query)) { 
-			$arr[$row->nama_user_guru][] = $row;
+			$arr[$row->nama_lengkap][] = $row;
 		}
 
 		foreach ($arr as $key => $val) {
@@ -37,7 +37,7 @@
 							<?php echo $v->nipy; ?>
 						</td>
 						<td rowspan="<?= count($val); ?>">
-							<?php echo $v->nama_user_guru; ?>
+							<?php echo $v->nama_lengkap; ?>
 						</td>
 					<?php } ?>
 						<td>

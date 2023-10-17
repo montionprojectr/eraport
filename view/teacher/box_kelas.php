@@ -1,9 +1,9 @@
   <?php 
 include "../../koneksi.php";
   $th_pelajaran = $_POST['th_pelajaran'];
-  $nama_lengkap = $_POST['nama_lengkap'];
+  $nipy = $_POST['nipy'];
 
-  $query = mysqli_query($koneksi, "select * from tb_guru_mapel where nama_user_guru = '$nama_lengkap' and th_pelajaran = '$th_pelajaran'");
+  $query = mysqli_query($koneksi, "select * from tb_guru_mapel x inner join tb_mapel y on y.kode_mapel = x.kode_mapel where nipy = '$nipy' and th_pelajaran = '$th_pelajaran' group by id_guru_mapel");
   while ($data = mysqli_fetch_array($query)) { 
     // where before = CONCAT_WS(' ', kelas, komp_keahlian) = '".$data['kelas_dan_komp']."'
     $kelas = mysqli_query($koneksi, "select kelas, komp_keahlian, concat_ws(' ', kelas, komp_keahlian) as kel, pkelas from tb_walikelas where kelas = '".$data['kelas']."' and komp_keahlian = '".$data['komp']."'");
@@ -26,7 +26,9 @@ include "../../koneksi.php";
       <!-- small box -->
       <div class="small-box <?= $bg; ?>">
         <div class="inner">
-          <h3><?= $dkelas['kel']." ".$dkelas['pkelas']; ?></h3><b><?= $data['nama_mapel'] ?></b><br>
+          <div class="form-group">
+            <h3><?= $dkelas['kel']." ".$dkelas['pkelas']; ?></h3><b>MAPEL: <?= $data['nama_mapel'] ?></b>  
+          </div>
           <div class="form-group" hidden>
             <input type="text" name="th_pelajaran" value="<?= $th_pelajaran; ?>">
             <input type="text" name="kelas" value="<?= $dkelas['kelas'] ?>">

@@ -30,11 +30,11 @@
 				    </div>
 						<div class="form-group">
 				      <label>Pilih Nama Guru</label>
-				      <select class="form-control-sm select2" style="width: 100%;" name="user_guru">
+				      <select class="form-control-sm select2" style="width: 100%;" name="nipy">
 				      	<?php 
-				      	$queryu = mysqli_query($koneksi, "select * from tb_users group by nama_lengkap asc");
+				      	$queryu = mysqli_query($koneksi, "select * from tb_users group by nipy asc");
 				      	while ($du = mysqli_fetch_array($queryu)) {
-				      		echo "<option value='".$du['nama_lengkap']."'>" . $du['nama_lengkap'] . "</option>";
+				      		echo "<option value='".$du['nipy']."'>" . $du['nama_lengkap'] . "</option>";
 				      	}
 				      	?>
 				      </select>
@@ -100,15 +100,12 @@
 <?php 
 if (isset($_POST['save_walikelas'])) {
 	$th_pelajaran = $_POST['th_pelajaran'];
-	$user_guru = $_POST['user_guru'];
+	$nipy = $_POST['nipy'];
 	$kelas = $_POST['kelas'];
 	$komp_keahlian = $_POST['komp_keahlian'];
 	$pkelas = $_POST['pkelas'];
 
-	$sqlniipy = mysqli_query($koneksi, "select nipy from tb_users where nama_lengkap = '$user_guru'");
-	$d = mysqli_fetch_array($sqlniipy);
-
-	$query = mysqli_query($koneksi, "insert into tb_walikelas (id_walikelas, th_pelajaran, nipy, user_guru, kelas, komp_keahlian, pkelas) values('','$th_pelajaran', '".$d['nipy']."','$user_guru','$kelas','$komp_keahlian','$pkelas')");
+	$query = mysqli_query($koneksi, "insert into tb_walikelas (id_walikelas, th_pelajaran, nipy, kelas, komp_keahlian, pkelas) values('','$th_pelajaran', '$nipy','$kelas','$komp_keahlian','$pkelas')");
 
 	if ($query) {
 		echo "<script>

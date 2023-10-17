@@ -2,6 +2,7 @@
 <thead>
 	<tr>
 		<th>ID Mapel</th>
+		<th>Kode Mapel</th>
 		<th>Nama Mata Pelajaran</th>
 		<th>Kelas</th>
 		<th>Kategori</th>
@@ -23,7 +24,8 @@
 	while ($data = mysqli_fetch_array($query)) { 
 		echo "<tr>";
 		echo "<td>".$data['id_mapel']."</td>";
-		echo "<td>".$data['nama']."</td>";
+		echo "<td>".$data['kode_mapel']."</td>";
+		echo "<td>".$data['nama_mapel']."</td>";
 		echo "<td>".$data['kelas']."</td>";
 		echo "<td>".$data['kategori_mapel']."</td>";
 		echo "<td><a href='' class='btn btn-primary'><i class='fas fa-edit'></i></a></td>";

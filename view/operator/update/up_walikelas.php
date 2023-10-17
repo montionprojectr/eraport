@@ -39,7 +39,7 @@ if (isset($_GET['up'])) {
 					<?php 
 					$query1 = mysqli_query($koneksi,"select * from tb_users group by nipy asc");
 					while ($data1 = mysqli_fetch_array($query1)) {
-						if ($data1['nama_lengkap'] == $data['user_guru'] ) {
+						if ($data1['nipy'] == $data['nipy'] ) {
 							echo "<option value='".$data1['nipy']."' selected>".$data1['nama_lengkap']."</option>";
 						}else{
 							echo "<option value='".$data1['nipy']."'>".$data1['nama_lengkap']."</option>";
@@ -127,7 +127,7 @@ if (isset($_POST['simpan'])) {
 	$query = mysqli_query($koneksi, "select * from tb_users where nipy = '$user_guru_nipy' group by nipy asc");
 	$row = mysqli_fetch_array($query);
 
-	$sqledit = mysqli_query($koneksi, "update tb_walikelas set th_pelajaran = '$th_pelajaran', nipy = '$user_guru_nipy', user_guru = '".$row['nama_lengkap']."', kelas = '$kelas', komp_keahlian = '$komp_keahlian', pkelas = '$pkelas' where id_walikelas = '$id_walikelas'");
+	$sqledit = mysqli_query($koneksi, "update tb_walikelas set th_pelajaran = '$th_pelajaran', nipy = '$user_guru_nipy', kelas = '$kelas', komp_keahlian = '$komp_keahlian', pkelas = '$pkelas' where id_walikelas = '$id_walikelas'");
 
 	if ($sqledit) {
 		echo "<script>

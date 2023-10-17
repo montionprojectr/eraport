@@ -117,6 +117,7 @@ if ($data > 0 ) {
   if ($users['level'] == "operator") {
     $_SESSION['login'] = 'login';
     $_SESSION['session'] = "ADMINISTRATOR";
+    $_SESSION['nipy'] = $users['nipy'];
     $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
     echo "<script>
     alert('Anda Berhasil Login');
@@ -125,8 +126,9 @@ if ($data > 0 ) {
     // header("location: https://eraport.smksatyapraja2.id/admin");
   }else if ($users['level'] == "guru") {
     $_SESSION['login'] = 'login';
-    $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
     $_SESSION['session'] = "GURU";
+    $_SESSION['nipy'] = $users['nipy'];
+    $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
     echo "<script>
     alert('Anda Berhasil Login');
     document.location.href = 'guru';
