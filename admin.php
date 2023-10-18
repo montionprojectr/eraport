@@ -179,10 +179,24 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
           </li>
         <li class="nav-header">LAPORAN</li>
         <li class="nav-item">
-          <a href="?view=leger" class="nav-link <?= $_GET['view'] == 'leger' ? 'active' : ''; ?>">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-cloud"></i>
-            <p>LEGER</p>
+            <p>LEGER<i class="fas fa-angle-left right"></i></p>
           </a>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="admin?view=pembagian" class="nav-link <?= $_GET['view'] == 'pembagian' ? 'active' : ''; ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tanggal Raport</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin?view=leger" class="nav-link <?= $_GET['view'] == 'leger' ? 'active' : ''; ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Nilai </p>
+                </a>
+              </li>
+            </ul>
         </li>
         <li class="nav-item">
           <a href="?view=siswa_resign" class="nav-link <?= $_GET['view'] == 'siswa_resign' ? 'active' : ''; ?>">
@@ -259,6 +273,15 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
               break;
             case 'siswa_pindahan':
               require_once('view/operator/siswa_pindahan.php');
+              break;
+            case 'update_siswa':
+              require_once('view/operator/update/update_siswa.php');
+              break;
+            case 'pembagian':
+              require_once('view/operator/tanggal_raport.php');
+              break;
+            case 'update_pembagian':
+              require_once('view/operator/update/update_tgl_bagiraport.php');
               break;
             
             default:

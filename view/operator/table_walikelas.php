@@ -13,7 +13,7 @@
 		include "../../koneksi.php";
 		if (isset($_POST['th_pelajaran'])) {
 			$th_pelajaran = $_POST['th_pelajaran'];
-			$query = mysqli_query($koneksi, "select id_walikelas, th_pelajaran, concat_ws(' ', kelas, komp_keahlian, pkelas) as class, y.nipy, nama_lengkap from tb_walikelas x inner join tb_users y on y.nipy = x.nipy where th_pelajaran = '$th_pelajaran'");
+			$query = mysqli_query($koneksi, "select id_walikelas, th_pelajaran, concat_ws(' ', kelas, komp_keahlian, pkelas) as class, y.nipy, nama_lengkap from tb_walikelas x inner join tb_users y on y.nipy = x.nipy where th_pelajaran = '$th_pelajaran' group by id_walikelas");
 		}
 		
 		$no = 1;

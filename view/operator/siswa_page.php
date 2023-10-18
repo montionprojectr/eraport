@@ -7,72 +7,288 @@
   </div><!-- /.col -->
 </div><!-- /.row -->
 
+<div class="card collapsed-card">
+  <div class="card-header bg-danger">
+    <h4 class="card-title">Input Siswa Baru</h4>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body bg-dark">
+    <div class="row">
+    
+      <div class="col-sm-6">
+    <form action="" method="post">
+        <table class="table table-sm">
+          <tr>
+            <th><label>NIS</label></th>
+            <td>
+              <div class="form-group">
+                <input type="text" class="form-control" name="nis" required>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <tr>
+            <th><label>NISN</label></th>
+            <td>
+              <div class="form-group">
+                <input type="text" class="form-control" name="nisn" required>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th><label>Nama Siswa</label></th>
+            <td>
+              <div class="form-group">
+                <input type="text" class="form-control" name="nama" required>
+              </div>
+            </td>
+          </tr>
+           <tr>
+            <th><label>Jenis Kelamin</label></th>
+            <td>
+              <div class="form-group">
+                <select class="form-control-sm select2" style="width: 100%;" name="kelamin">
+                  <option value=""></option>
+                <option value="L">Laki-Laki</option>
+                <option value="P">Perempuan</option>
+
+              </select>
+              </div>
+            </td>
+
+          <tr>
+          <td>
+            <div class="form-group">
+              <label>Pilih Kelas</label>
+              <select class="form-control-sm select2" style="width: 100%;" name="kelas">
+                <?php 
+                $queryk = mysqli_query($koneksi, "select * from tb_kelas");
+                while ($dk = mysqli_fetch_array($queryk)) {
+                  echo "<option value='".$dk['nama_kelas']."'> Kelas " . $dk['nama_kelas'] . "</option>";
+                }
+                ?>
+              </select>
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+              <label>Pilih Kompetensi Keahlian</label>
+              <select class="form-control-sm select2" style="width: 100%;" name="jurusan">
+                <?php 
+                $queryj = mysqli_query($koneksi, "select * from tb_jurusan");
+                while ($dj = mysqli_fetch_array($queryj)) {
+                  echo "<option value='".$dj['nama_Sjurusan']."'>" . $dj['nama_Sjurusan']." - ". $dj['nama_Ljurusan'] . "</option>";
+                }
+                ?>
+              </select>
+            </div>
+          </div>
+        </td>
+        <td>
+        <div class="form-group">
+              <label>Pilih Kelas</label>
+                <!-- radio -->
+                <select class="form-control-sm select2" style="width: 100%;" name="pemkelas">
+                  <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="4">3</option>
+                <option value="4">4</option>
+              </select>
+              </div>
+            </td>
+                </div>      
+              </div>
+            </div>
+          </div></td>
+          </tr>
+  <tr>
+            <th><label>Semester</label></th>
+            <td> 
+              <div class="form-group">
+            <select class="form-control-sm select2" style="width: 100%;" name="semester">
+                 <option value="Ganjil">Ganjil</option>
+                <option value="Genap">Genap</option>
+              </select>
+              </div>
+            </td>
+          </tr> 
+          <tr>
+            <th><label>Tahun Pelajaran</label></th>
+            <td> 
+              <div class="form-group">
+            <select class="form-control-sm select2" style="width: 100%;" name="th_pelajaran">
+               <?php 
+                $queryk = mysqli_query($koneksi, "select * from tb_thpelajaran");
+                while ($dk = mysqli_fetch_array($queryk)) {
+                  
+                  echo "<option value='".$dk['tahun_pelajaran']."'>" . $dk['tahun_pelajaran'] ."</option>";
+
+                }
+                ?>
+                            
+              </select>
+          
+              </div>
+            </td>
+          </tr>
+
+        
+          <tr>
+            <td>
+              <div class="form-group float-center">
+                <button class="btn btn-primary float-center" type="submit" name="simpan"><i class="fas fa-save"></i> Simpan</button>
+                <a href="view/operator/del/delete_semua_siswa.php" onclick="javascript: return confirm('Anda yakin ingin menghapus semua data peserta didik ?')" class="btn btn-danger">Hapus Semua Siswa</a>  
+            <!--     <a href="#" class="btn btn-primary">Import Data</a>  -->
+              </div>
+
+            </td>
+          </tr>
+        </table>
+        INFORMASI !!! Input Data ini juga tersimpan kedalam LEGER dan untuk melengkapi Data peserta didik bisa update dengan klik icon <i class='fas btn-primary fa-edit'></i> pada setiap peserta didik
+    </form>
+      </div>
+    
+      <div class="col-sm-6">
+       <div class="card card-danger">
+          <div class="card-header">
+            <h3 class="card-title">IMPORT DATA SISWA</h3>
+          </div>
+          <div class="card-body">
+           <form method="post" enctype="multipart/form-data" action="view/operator/proses_upload.php">
+              <div class="form-group text-dark">
+                <label>Pilih File</label> <a href="view/operator/file/tb_siswa.xls">Download Template</a>
+                <input name="filedata" class="form-control" type="file" required="required">  
+              </div> 
+              <div class="form-group">
+                <button class="btn btn-primary" type="submit" name="upload" value="upload">IMPORT</button>
+              </div>
+            </form>     
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php 
+if (isset($_POST['simpan'])) {
+
+  $nis = $_POST['nis'];
+  $nisn = $_POST['nisn'];
+  $nama = $_POST['nama'];
+  $kelamin = $_POST['kelamin'];
+  $kelas = $_POST['kelas'];
+  $jurusan = $_POST['jurusan'];
+  $pemkelas = $_POST['pemkelas'];
+  $semester = $_POST['semester'];
+  $th_pelajaran = $_POST['th_pelajaran'];
+  
+
+
+  require_once('view/operator/id_max.php');
+  $query = mysqli_query($koneksi, "insert into tb_leger(id, nis, nama,  kelas, jurusan, pemkelas, semester, th_pelajaran) values('','$nis','$nama', '$kelas', '$jurusan', '$pemkelas','$semester','$th_pelajaran')");
+$kelasku= $kelas.' '.$jurusan.' '.$pemkelas;
+$insert_rols = mysqli_query($koneksi, "insert into tb_siswa(id, nis, nisn, nama, kelamin, kel, kelas, jurusan, pemkelas, semester,th_pelajaran) values('','$nis','$nisn','$nama', '$kelamin', '$kelasku', '$kelas','$jurusan','$pemkelas','$semester','$th_pelajaran')");
+
+  if ($query && $insert_rols) {
+    echo "<script>
+    alert('DATA BERHASIL DISIMPAN');
+    document.location.href = '?view=siswa';
+    </script>";
+  }else{
+    echo "<script>
+    alert('DATA GAGAL DISIMPAN');
+    document.location.href = '?view=siswa';
+    </script>";
+  }
+}
+?>
 <div class="row">
-	<div class="col-sm-12">
-		<div class="card">
-			<div class="card-header bg-danger"><h3 class="card-title">Data Siswa</h3></div>
-			<div class="card-body">
-			<table id="example1" class="table table-bordered table-striped">
-				<thead>
-					<tr>
-						<th>No</th>
-						<th>NIS</th>
-						<th>NISN</th>
-						<th>Nama</th>
-						<th>Kelas</th>
-						<th>TTL</th>
-						<th>J.Kel</th>
-						<th>Agama</th>
-						<th>Status</th>
-						<th>Anak Ke</th>
-						<th>Alamat Siswa</th>
-						<th>Hp Siswa</th>
-						<th>Asal Sekolah</th>
-						<th>Tgl Terima</th>
-						<th>Ayah Ibu</th>
-						<th>Alamat Ortu</th>
-						<th>Hp Ortu</th>
-						<th>Kerja Ayah & Ibu</th>
-						<th>Nama Wali</th>
-						<th>Alamat Wali</th>
-						<th>Hp Wali</th>
-						<th>Kerja Wali</th>
-					</tr>		
-				</thead>
-				<tbody>
-					<?php 
-					$no=1;
-					$query = mysqli_query($koneksi, "select * from tb_siswa");
-					while ($data = mysqli_fetch_array($query)) { ?>
-						<tr>
-							<td><?= $no++; ?></td>
-							<td><?= $data['nis'] ?></td>
-							<td><?= $data['nisn'] ?></td>
-							<td><?= $data['nama'] ?></td>
-							<td><?= $data['kelas'] ?></td>
-							<td><?= $data['ttl'] ?></td>
-							<td><?= $data['kelamin'] ?></td>
-							<td><?= $data['agama'] ?></td>
-							<td><?= $data['status'] ?></td>
-							<td><?= $data['anak_ke'] ?></td>
-							<td><?= $data['alamat_siswa'] ?></td>
-							<td><?= $data['hp_siswa'] ?></td>
-							<td><?= $data['asal_sekolah'] ?></td> 
-							<td><?= $data['tgl_terima'] ?></td>
-							<td><?= $data['ayah']." ".$data['ibu']; ?></td>
-							<td><?= $data['alamat_ortu'] ?></td>
-							<td><?= $data['hp_ortu'] ?></td>
-							<td><?= $data['kerja_ayah']." ".$data['kerja_ibu']; ?></td>
-							<td><?= $data['nama_wali'] ?></td>
-							<td><?= $data['alamat_wali'] ?></td>
-							<td><?= $data['hp_wali'] ?></td>
-							<td><?= $data['kerja_wali'] ?></td>
-						</tr>	
-					<?php }
-					?>
-				</tbody>
-			</table>
-			</div>
-		</div>
-	</div>
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header bg-danger"><h3 class="card-title">DATA PESERTA DIDIK</h3></div>
+      <div class="card-body bg-coral">
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+    <th>No</th>
+     <th>NIS</th>
+    <th>NISN</th>
+    <th>NAMA</th>
+    <th>KELAS</th>
+    <th>TTL</th>
+    <th>Jenis Kelamin</th>
+    <th>Agama</th>
+    <th>Status Keluarga</th>
+    <th>Anak Ke-</th>
+    <th>Alamat Siswa</th>
+    <th>HP Siswa</th>
+    <th>Asal Sekolah</th>
+    <th>tgl Diterima</th>
+    <th>Nama Ayah </th>
+    <th>Nama Ibu</th>
+    <th>Alamat Ortu</th>
+    <th>HP Ortu</th>
+    <th>Pekerjaan Ayah</th>
+    <th>Pekerjaan Ibu</th>
+    <th>Nama Wali</th>
+    <th>Alamat Wali</th>
+     <th>HP Wali</th>
+     <th>Pekerjaan Wali</th>
+     <th>Semester</th>
+     <th>Tahun Pelajaran</th>
+     <th>ACTION</th>
+
+        </thead>
+        <tbody>
+    <?php 
+          $no = 1;
+          $query = mysqli_query($koneksi, "select * from tb_siswa  ");
+          while ($data = mysqli_fetch_array($query)) {
+            echo "<tr>";
+            echo "<td>".$no++."</td>";
+  
+            echo "<td>".$data['nis']."</td>";
+            echo "<td>".$data['nisn']."</td>";
+            echo "<td>".$data['nama']."</td>";          
+            echo "<td>".$data['kelas'].' '.$data['jurusan'].' '.$data['pemkelas']."</td>";
+            echo "<td>".$data['ttl']."</td>";
+            echo "<td>".$data['kelamin']."</td>";
+            echo "<td>".$data['agama']."</td>";
+            echo "<td>".$data['status']."</td>";
+            echo "<td>".$data['anak_ke']."</td>";
+            echo "<td>".$data['alamat_siswa']."</td>";
+            echo "<td>".$data['hp_siswa']."</td>";
+            echo "<td>".$data['asal_sekolah']."</td>";
+            echo "<td>".$data['tgl_terima']."</td>";
+            echo "<td>".$data['ayah']."</td>";
+            echo "<td>".$data['ibu']."</td>";
+            echo "<td>".$data['alamat_ortu']."</td>";
+            echo "<td>".$data['hp_ortu']."</td>";
+            echo "<td>".$data['kerja_ayah']."</td>";
+            echo "<td>".$data['kerja_ibu']."</td>";
+            echo "<td>".$data['nama_wali']."</td>";
+            echo "<td>".$data['alamat_wali']."</td>";
+            echo "<td>".$data['hp_wali']."</td>";
+            echo "<td>".$data['kerja_wali']."</td>";
+            echo "<td>".$data['th_pelajaran']."</td>";
+            echo "<td>".$data['semester']."</td>";
+
+
+      
+
+            ?>
+            <td><a href="?view=update_siswa&id=<?= $data['id'] ?>" class='btn btn-primary' ><i class='fas fa-edit'></i></a>  ||  <a href="pdf/cover.php?id=<?= $data['id'] ?>" class='btn btn-primary'><i class='fas fa-print'></i></a>  ||  <a href="view/operator/del/delete_users_siswa.php?nis=<?= $data['nis'] ?>" class='btn btn-danger' onclick="return confirm('Apakah anda yakin ingin menghapus nama <?= $data['nama'] ?> ini?')"><i class='fas fa-trash'></i></a>  </td> 
+            <?php
+            echo "</tr>";
+          }
+          ?>
+
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
 </div>
