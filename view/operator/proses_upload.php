@@ -67,20 +67,18 @@ if (empty($nis)){
      //echo "<script>window.alert('Jangan ada nilai kosong !')</script>";
     echo "<script>window.location='".$_SERVER['HTTP_REFERER']."'</script>";
      
-}
-elseif ($cari > 0){
+}else if($cari > 0){
    
         // $query=mysqli_query($koneksi,"UPDATE tb_siswa SET  nis='$nis', nisn='$nisn',nama='$nama', kelas='$kelas',jurusan='$jurusan',pemkelas='$pemkelas',th_pelajaran='$th_pelajaran',ttl='$ttl', kelamin='$kelamin',agama='$agama', status='$status', anak_ke='$anak_ke', alamat_siswa='$alamat_siswa', hp_siswa='$hp_siswa', asal_sekolah='$asal_sekolah',tgl_terima='$tgl_terima', ayah='$ayah',ibu='$ibu',alamat_ortu='$alamat_ortu',hp_ortu='$hp_ortu',kerja_ayah='$kerja_ayah',kerja_ibu='$kerja_ibu', nama_wali='$nama_wali',alamat_wali='$alamat_wali',hp_wali='$hp_wali',kerja_wali='$kerja_wali' WHERE nis='$nis'");  
         //  $update=mysqli_query($koneksi,"UPDATE tb_leger SET  nis='$nis',nama='$nama', kelas='$kelas',jurusan='$jurusan',pemkelas='$pemkelas',th_pelajaran='$th_pelajaran', WHERE nis='$nis'");  
 
-     $update= "UPDATE tb_siswa SET  nis='$nis', nisn='$nisn',nama='$nama', kelas='$kelas',jurusan='$jurusan',pemkelas='$pemkelas',ttl='$ttl', kelamin='$kelamin',agama='$agama', status='$status', anak_ke='$anak_ke', alamat_siswa='$alamat_siswa', hp_siswa='$hp_siswa', asal_sekolah='$asal_sekolah',tgl_terima='$tgl_terima', ayah='$ayah',ibu='$ibu',alamat_ortu='$alamat_ortu',hp_ortu='$hp_ortu',kerja_ayah='$kerja_ayah',kerja_ibu='$kerja_ibu', nama_wali='$nama_wali',alamat_wali='$alamat_wali',hp_wali='$hp_wali',kerja_wali='$kerja_wali' WHERE nis='$nis'";
+     $update= "UPDATE tb_siswa SET  nis='$nis', nisn='$nisn',nama='$nama', kelas='$kelas',jurusan='$jurusan',pemkelas='$pemkelas', th_pelajaran = '$th_pelajaran',ttl='$ttl', kelamin='$kelamin',agama='$agama', status='$status', anak_ke='$anak_ke', alamat_siswa='$alamat_siswa', hp_siswa='$hp_siswa', asal_sekolah='$asal_sekolah',tgl_terima='$tgl_terima', ayah='$ayah',ibu='$ibu',alamat_ortu='$alamat_ortu',hp_ortu='$hp_ortu',kerja_ayah='$kerja_ayah',kerja_ibu='$kerja_ibu', nama_wali='$nama_wali',alamat_wali='$alamat_wali',hp_wali='$hp_wali',kerja_wali='$kerja_wali' WHERE nis='$nis'";
   mysqli_query($koneksi, $update);
  $leger= "UPDATE tb_leger SET  nis='$nis',nama='$nama', kelas='$kelas',jurusan='$jurusan',pemkelas='$pemkelas'  WHERE nis='$nis'";
  mysqli_query($koneksi, $leger);
 
 
- }
- else{
+ }else{
         //input data ke database (table datasiswa)
         $query=mysqli_query($koneksi,"INSERT into tb_siswa (nis,nisn,nama,kelas,jurusan,pemkelas,th_pelajaran,ttl,kelamin,agama,status,anak_ke,alamat_siswa,hp_siswa,asal_sekolah,tgl_terima,ayah,ibu,alamat_ortu,hp_ortu,kerja_ayah,kerja_ibu,nama_wali,alamat_wali,hp_wali,kerja_wali)  values('$nis','$nisn','$nama','$kelas','$jurusan','$pemkelas','$th_pelajaran','$ttl','$kelamin','$agama','$status','$anak_ke','$alamat_siswa','$hp_siswa','$asal_sekolah','$tgl_terima','$ayah','$ibu','$alamat_ortu','$hp_ortu','$kerja_ayah','$kerja_ibu','$nama_wali','$alamat_wali','$hp_wali','$kerja_wali')");
     
@@ -99,6 +97,6 @@ unlink($_FILES['filedata']['name']);
  
 // // alihkan halaman ke index.php
 echo "<script>window.alert('sukses import $berhasil data!')</script>";
-echo "<script>window.location='siswa.php'</script>";
+echo "<script>window.location='../../admin?view=siswa'</script>";
 
 ?>

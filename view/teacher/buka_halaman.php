@@ -5,8 +5,9 @@ if (isset($_POST['semester'])) {
   $kelas = $_POST['kelas'];
   $komp_keahlian = $_POST['komp_keahlian'];
   $pkelas = $_POST['pkelas'];
-  $penilaian = $_POST['penilaian'];
+  $penilaian = $_POST['jenis_penilaian'];
   $nama_mapel = $_POST['nama_mapel'];
+  $kode_mapel = $_POST['kode_mapel'];
   if ($semester) {
     $_SESSION['th_pelajaran'] = $th_pelajaran;
   	$_SESSION['semester'] = $semester;
@@ -15,6 +16,7 @@ if (isset($_POST['semester'])) {
     $_SESSION['komp_keahlian'] = $komp_keahlian;
     $_SESSION['pkelas'] = $pkelas;
     $_SESSION['nama_mapel'] = $nama_mapel;
+    $_SESSION['kode_mapel'] = $kode_mapel;
   }
 }
 
@@ -30,7 +32,7 @@ $class = $_SESSION['kelas']. " " .$_SESSION['komp_keahlian']." ".$_SESSION['pkel
       </li>
 	    <li class="active">
         <i class="fas fa-angle-right"></i> 
-        <span><?= $_SESSION['semester']; ?></span> 
+        <span>Semester : <?= $_SESSION['semester']; ?></span> 
       </li>
       <li>
         <i class="fas fa-angle-right"></i> 
@@ -74,6 +76,7 @@ $class = $_SESSION['kelas']. " " .$_SESSION['komp_keahlian']." ".$_SESSION['pkel
       <input type="text" id="komp_keahlian" value="<?= $_SESSION['komp_keahlian']; ?>">
       <input type="text" id="pkelas" value="<?= $_SESSION['pkelas']; ?>">
       <input type="text" id="nama_mapel" value="<?= $nama_mapel; ?>">
+      <input type="text" id="kode_mapel" value="<?= $kode_mapel; ?>">
     </div>
   </div>
 </div>

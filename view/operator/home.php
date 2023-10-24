@@ -28,15 +28,19 @@
 	$sel = mysqli_fetch_array($sql);
 	$array = array('X' => 'X', 'XI' => 'XI', 'XII' => 'XII' );
 	foreach ($array as $key => $value) { 
-		$query = mysqli_query($koneksi, "select th_pelajaran, concat_ws(' ', kelas, komp_keahlian, pkelas) as class, kelas, nama_lengkap from tb_walikelas x inner join tb_users y on y.nipy = x.nipy where kelas = '$value' and th_pelajaran = '".$sel['select_tahunpel']."' group by id_walikelas"); ?>
+		$query = mysqli_query($koneksi, "select th_pelajaran, concat_ws(' ', kelas, komp_keahlian, pkelas) as class, kelas, komp_keahlian, pkelas,nama_lengkap from tb_walikelas x inner join tb_users y on y.nipy = x.nipy where kelas = '$value' and th_pelajaran = '".$sel['select_tahunpel']."' group by id_walikelas"); ?>
 		<div class="col-sm-4">
 			<div class="card">
 				<div class="card-header bg-danger">
 					<h3 class="card-title">KELAS <?= $value; ?></h3>
 				</div>
 				<div class="card-body bg-secondary">
-					<?php while ($row = mysqli_fetch_array($query)) {
-						if ($row['kelas'] == $value) { ?>
+					<?php while ($row = mysqli_fetch_array($query)){
+						if ($row['kelas'] == $value) { 
+$sql = mysqli_query($koneksi, "select count(id) as id from tb_siswa where kelas = '".$row['kelas']."' and jurusan = '".$row['komp_keahlian']."' and pemkelas = '".$row['pkelas']."' and th_pelajaran = '".$row['th_pelajaran']."'");
+					$dsql = mysqli_fetch_array($sql);
+							?>
+							<a href="admin?view=data_kelas&kelas=<?php echo $row['kelas']."&jurusan=".$row['komp_keahlian']."&pkelas=".$row['pkelas']."&thpel=".$row['th_pelajaran'];?>">
 							<div class="info-box bg-dark">
 					      <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
 
@@ -45,10 +49,11 @@
 					        <span class="info-box-number">
 					          <?= $row['class']; ?>
 					        </span>
-					        <span class="info-box-number">42 Siswa</span>
+					        <span class="info-box-number"><?= $dsql['id']; ?> Siswa</span>
 					      </div>
 					      <!-- /.info-box-content -->
 					    </div>
+					  	</a>
 						<?php }
 					}
 					?>

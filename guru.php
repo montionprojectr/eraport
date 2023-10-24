@@ -291,10 +291,11 @@ $guru = mysqli_fetch_array($cek_guru);
     var komp_keahlian = $("#komp_keahlian").val();
     var pkelas = $("#pkelas").val();
     var nama_mapel = $('#nama_mapel').val();
+    var kode_mapel = $('#kode_mapel').val();
       $.ajax({
         type: 'POST',
           url: "view/teacher/view_penilaian.php",
-          data: {type_test: type_test, th_pelajaran: th_pelajaran, semester: semester,kelas: kelas, komp_keahlian: komp_keahlian, pkelas: pkelas, nama_mapel: nama_mapel},
+          data: {type_test: type_test, th_pelajaran: th_pelajaran, semester: semester,kelas: kelas, komp_keahlian: komp_keahlian, pkelas: pkelas, nama_mapel: nama_mapel, kode_mapel:kode_mapel},
           cache: false,
           success: function(msg){
             $("#view_penilaian").html(msg);

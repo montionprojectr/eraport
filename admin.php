@@ -283,6 +283,9 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
             case 'update_pembagian':
               require_once('view/operator/update/update_tgl_bagiraport.php');
               break;
+            case 'data_kelas':
+              require_once('view/operator/home_kelas.php');
+              break;
             
             default:
               require_once('view/error_404.php');

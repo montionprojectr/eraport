@@ -7,6 +7,7 @@
   </div><!-- /.col -->
  
 </div><!-- /.row -->
+
 <div class="card collapsed-card">
 	<div class="card-header bg-danger">
 		<h4 class="card-title">INPUT DATA GURU MATA PELAJARAN</h4>

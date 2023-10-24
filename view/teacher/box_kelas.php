@@ -35,17 +35,18 @@ include "../../koneksi.php";
             <input type="text" name="komp_keahlian" value="<?= $dkelas['komp_keahlian'] ?>">
             <input type="text" name="pkelas" value="<?= $dkelas['pkelas'] ?>">
             <input type="text" name="nama_mapel" value="<?= $data['nama_mapel'] ?>">
+            <input type="text" name="kode_mapel" value="<?= $data['kode_mapel'] ?>">
           </div>
           <div class="form-group">
             <label>Pilih Semester</label>
             <select class="form-control-sm select2" style="width: 100%;" name="semester">
-              <option value="Semester 1">Semester 1</option>
-              <option value="Semester 2">Semester 2</option>
+              <option value="Gasal">Semester 1</option>
+              <option value="Ganjil">Semester 2</option>
             </select>
           </div>
           <div class="form-group">
             <label>Pilih Penilaian</label>
-            <select class="form-control-sm select2" style="width: 100%;" name="penilaian">
+            <select class="form-control-sm select2" style="width: 100%;" name="jenis_penilaian">
               <option value="Formatif">Formatif</option>
               <option value="Sumatif">Sumatif</option>
               <option value="Sumatif_Akhir">Sumatif Akhir</option>
