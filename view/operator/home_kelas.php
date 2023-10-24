@@ -22,7 +22,7 @@ if (isset($_GET['kelas']) && isset($_GET['jurusan']) && isset($_GET['pkelas']) &
 				<h3 class="card-title">Kelas <?= $kelas." ".$jurusan." ".$pkelas; ?>. Th. Pelajaran : <?= $th_pelajaran; ?></h3>
 			</div>
 			<div class="card-body">
-				<table class="table table-sm table-bordered table-striped">
+				<table id="example1" class="table table-sm table-bordered table-striped">
 					<thead>
 						<tr>
 							<th>NO</th>
