@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2023 at 10:11 AM
+-- Generation Time: Oct 24, 2023 at 05:16 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -140,23 +140,6 @@ CREATE TABLE `tb_leger` (
   `tgl_bagi` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tb_leger`
---
-
-INSERT INTO `tb_leger` (`id`, `nis`, `nama`, `kelas`, `jurusan`, `pemkelas`, `semester`, `th_pelajaran`, `pabp`, `pkn`, `b_indo`, `penjas`, `sejarah`, `seni`, `b_jawa`, `mtk`, `b_ing`, `informatika`, `projek`, `dasar`, `b_arab`, `mapel_pilihan`, `total`, `rerata`, `sakit`, `ijin`, `alpa`, `rangking`, `eks1`, `eks2`, `eks3`, `eks4`, `eks5`, `eks6`, `eks7`, `tgl_bagi`) VALUES
-(1, 1111, 'ADNAN ARDHANA ARROHMAN', 'X', 'PPLG', 1, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
-(2, 1112, 'AFITA DEWI ARYANA', 'X', 'PPLG', 1, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
-(3, 1113, 'ALI WARDANA', 'X', 'PPLG', 1, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
-(4, 1114, 'ALIYA AYU DIAH NINGRUM', 'X', 'PPLG', 1, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
-(5, 1115, 'Bayu Setiaji', 'X', 'PPLG', 2, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
-(6, 1116, 'Amirul', 'X', 'TE', 2, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
-(7, 1117, 'AhmadAkbar', 'X', 'TE', 2, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
-(8, 1118, 'Zaenal', 'X', 'TE', 2, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
-(9, 1119, 'Yandi', 'XI', 'PPLG', 2, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
-(10, 1234, 'Muhammad Dendi', 'X', 'TMI', 4, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
-(11, 100372, 'Contoh', 'X', 'PPLG', 2, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '');
-
 -- --------------------------------------------------------
 
 --
@@ -227,6 +210,27 @@ INSERT INTO `tb_mapel` (`id_mapel`, `kode_mapel`, `nama_mapel`, `kelas`, `katego
 (52, 'kons_pplg', 'Konsentrasi Keahlian Rekayasa Perangkat Lunak', 'XI', 'kejuruan'),
 (53, 'pkk', 'Projek Kreatif dan Kewirausahaan', 'XI', 'kejuruan'),
 (54, 'mpp', 'Mata Pelajaran Pilihan', 'XI', 'kejuruan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_penilaian`
+--
+
+CREATE TABLE `tb_penilaian` (
+  `id_nilai` int(10) NOT NULL,
+  `th_pelajaran` varchar(10) NOT NULL,
+  `nis` varchar(10) NOT NULL,
+  `kelas` varchar(3) NOT NULL,
+  `komp_keahlian` varchar(10) NOT NULL,
+  `pkelas` varchar(5) NOT NULL,
+  `kode_mapel` varchar(15) NOT NULL,
+  `jenis_penilaian` varchar(15) NOT NULL,
+  `semester` varchar(7) NOT NULL,
+  `nilai` int(2) NOT NULL,
+  `cpm` varchar(255) NOT NULL,
+  `cpp` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -383,7 +387,6 @@ CREATE TABLE `tb_siswa` (
   `nis` int(10) NOT NULL,
   `nisn` int(20) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `kel` varchar(10) NOT NULL,
   `kelas` varchar(3) NOT NULL,
   `jurusan` varchar(5) NOT NULL,
   `pemkelas` varchar(1) NOT NULL,
@@ -410,23 +413,6 @@ CREATE TABLE `tb_siswa` (
   `semester` enum('Ganjil','Genap','','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tb_siswa`
---
-
-INSERT INTO `tb_siswa` (`id`, `nis`, `nisn`, `nama`, `kel`, `kelas`, `jurusan`, `pemkelas`, `th_pelajaran`, `ttl`, `kelamin`, `agama`, `status`, `anak_ke`, `alamat_siswa`, `hp_siswa`, `asal_sekolah`, `tgl_terima`, `ayah`, `ibu`, `alamat_ortu`, `hp_ortu`, `kerja_ayah`, `kerja_ibu`, `nama_wali`, `alamat_wali`, `hp_wali`, `kerja_wali`, `semester`) VALUES
-(1, 1111, 400372, 'ADNAN ARDHANA ARROHMAN S.Kom', '', 'X', 'PPLG', '1', '2023/2024', 'Pemalang, 18 April 2000', 'P', 'ISLAM', 'Anak kandung', 1, 'Jalan wira wiri kesana kemari', '-', 'SMP Negeri 4 Petarukan', '12 Juli 2023', 'aku', 'kamu', 'Jalan wira wiri kesana kemari', '-', 'wiraswasta', 'ibu rumah tangga', '-', '-', '-', '-', 'Ganjil'),
-(2, 1112, 400373, 'AFITA DEWI ARYANA', '', 'X', 'PPLG', '1', '2023/2024', 'Pemalang, 18 April 2001', 'L', 'KRISTEN', 'Anak kandung', 2, 'Jalan wira wiri kesana kemari', '-', 'SMP Negeri 4 Petarukan', '12 Juli 2023', 'aku', 'kamu', 'Jalan wira wiri kesana kemari', '-', 'wiraswasta', 'ibu rumah tangga', '-', '-', '-', '-', 'Ganjil'),
-(3, 1113, 400374, 'ALI WARDANA', '', 'X', 'PPLG', '1', '2023/2024', 'Pemalang, 18 April 2002', 'P', 'ISLAM', 'Anak kandung', 3, 'Jalan wira wiri kesana kemari', '-', 'SMP Negeri 4 Petarukan', '12 Juli 2023', 'aku', 'kamu', 'Jalan wira wiri kesana kemari', '-', 'wiraswasta', 'ibu rumah tangga', '-', '-', '-', '-', 'Ganjil'),
-(4, 1114, 400375, 'ALIYA AYU DIAH NINGRUM', '', 'X', 'PPLG', '1', '2023/2024', 'Pemalang, 18 April 2003', 'P', 'ISLAM', 'Anak kandung', 4, 'Jalan wira wiri kesana kemari', '-', 'SMP Negeri 4 Petarukan', '12 Juli 2023', 'aku', 'kamu', 'Jalan wira wiri kesana kemari', '-', 'wiraswasta', 'ibu rumah tangga', '-', '-', '-', '-', 'Ganjil'),
-(5, 1115, 400376, 'Bayu Setiaji', '', 'X', 'PPLG', '2', '2023/2024', 'Pemalang, 18 April 2004', 'L', 'KRISTEN', 'Anak kandung', 5, 'Jalan wira wiri kesana kemari', '-', 'SMP Negeri 4 Petarukan', '12 Juli 2023', 'aku', 'kamu', 'Jalan wira wiri kesana kemari', '-', 'wiraswasta', 'ibu rumah tangga', '-', '-', '-', '-', 'Ganjil'),
-(6, 1116, 400377, 'Amirul', '', 'X', 'TE', '2', '2023/2024', 'Pemalang, 18 April 2005', 'L', 'ISLAM', 'Anak kandung', 6, 'Jalan wira wiri kesana kemari', '-', 'SMP Negeri 4 Petarukan', '12 Juli 2023', 'aku', 'kamu', 'Jalan wira wiri kesana kemari', '-', 'wiraswasta', 'ibu rumah tangga', '-', '-', '-', '-', 'Ganjil'),
-(7, 1117, 400378, 'AhmadAkbar', '', 'X', 'TE', '2', '2023/2024', 'Pemalang, 18 April 2006', 'P', 'ISLAM', 'Anak kandung', 7, 'Jalan wira wiri kesana kemari', '-', 'SMP Negeri 4 Petarukan', '12 Juli 2023', 'aku', 'kamu', 'Jalan wira wiri kesana kemari', '-', 'wiraswasta', 'ibu rumah tangga', '-', '-', '-', '-', 'Ganjil'),
-(8, 1118, 400379, 'Zaenal', '', 'X', 'TE', '2', '2023/2024', 'Pemalang, 18 April 2007', 'L', 'ISLAM', 'Anak kandung', 8, 'Jalan wira wiri kesana kemari', '-', 'SMP Negeri 4 Petarukan', '12 Juli 2023', 'aku', 'kamu', 'Jalan wira wiri kesana kemari', '-', 'wiraswasta', 'ibu rumah tangga', '-', '-', '-', '-', 'Ganjil'),
-(9, 1119, 45353, 'Yandi', '', 'XI', 'PPLG', '2', '2023/2024', 'Pemalang, 18 April 2008', 'L', 'ISLAM', 'Anak kandung', 7, '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Ganjil'),
-(13, 1234, 12345, 'Muhammad Dendi', 'X TMI 4', 'X', 'TMI', '4', '2023/2024', '', 'L', '-', '-', 0, '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'Ganjil'),
-(14, 100372, 400372, 'Contoh', '', 'X', 'PPLG', '4', '2023/2024', 'Pemalang, 18 April 2000', 'P', 'ISLAM', 'Anak kandung', 1, 'Jalan wira wiri kesana kemari', '-', 'SMP Negeri 4 Petarukan', '12 Juli 2023', 'aku', 'kamu', 'Jalan wira wiri kesana kemari', '-', 'wiraswasta', 'ibu rumah tangga', '-', '-', '-', '-', 'Ganjil');
-
 -- --------------------------------------------------------
 
 --
@@ -445,7 +431,7 @@ CREATE TABLE `tb_thpelajaran` (
 --
 
 INSERT INTO `tb_thpelajaran` (`id`, `tahun_pelajaran`, `semester`, `tgl_bagi`) VALUES
-(1, '2023/2024', 'Ganjil', ''),
+(1, '2023/2024', 'Ganjil', 'Pemalang, 03 November 2023'),
 (2, '2023/2024', 'Genap', ''),
 (3, '2024/2025', 'Ganjil', ''),
 (4, '2024/2025', 'Genap', ''),
@@ -660,6 +646,12 @@ ALTER TABLE `tb_mapel`
   ADD PRIMARY KEY (`id_mapel`);
 
 --
+-- Indexes for table `tb_penilaian`
+--
+ALTER TABLE `tb_penilaian`
+  ADD PRIMARY KEY (`id_nilai`);
+
+--
 -- Indexes for table `tb_rolsusers`
 --
 ALTER TABLE `tb_rolsusers`
@@ -727,7 +719,7 @@ ALTER TABLE `tb_kelas`
 -- AUTO_INCREMENT for table `tb_leger`
 --
 ALTER TABLE `tb_leger`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_levelusers`
@@ -740,6 +732,12 @@ ALTER TABLE `tb_levelusers`
 --
 ALTER TABLE `tb_mapel`
   MODIFY `id_mapel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT for table `tb_penilaian`
+--
+ALTER TABLE `tb_penilaian`
+  MODIFY `id_nilai` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT for table `tb_rolsusers`
@@ -763,7 +761,7 @@ ALTER TABLE `tb_select_tahunpel`
 -- AUTO_INCREMENT for table `tb_siswa`
 --
 ALTER TABLE `tb_siswa`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_thpelajaran`
