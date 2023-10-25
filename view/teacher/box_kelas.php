@@ -29,6 +29,10 @@ include "../../koneksi.php";
           <div class="form-group">
             <h3><?= $dkelas['kel']." ".$dkelas['pkelas']; ?></h3><b>MAPEL: <?= $data['nama_mapel'] ?></b>  
           </div>
+          <div class="form-group">
+            <label>Import Penilaian</label>
+            <a href="?page=import_penilaian&th=<?= $th_pelajaran."&kelas=".$dkelas['kelas']."&jrs=".$dkelas['komp_keahlian']."&pkelas=".$dkelas['pkelas']."&kodmapel=".$data['kode_mapel']; ?>" class="btn btn-primary">Import Penilaian</a>
+          </div>
           <div class="form-group" hidden>
             <input type="text" name="th_pelajaran" value="<?= $th_pelajaran; ?>">
             <input type="text" name="kelas" value="<?= $dkelas['kelas'] ?>">
@@ -38,15 +42,15 @@ include "../../koneksi.php";
             <input type="text" name="kode_mapel" value="<?= $data['kode_mapel'] ?>">
           </div>
           <div class="form-group">
-            <label>Pilih Semester</label>
-            <select class="form-control-sm select2" style="width: 100%;" name="semester">
+            <label class="text-16">Pilih Semester</label>
+            <select class="form-control form-control-sm select2" style="width: 100%;" name="semester">
               <option value="Ganjil">Semester 1</option>
               <option value="Genap">Semester 2</option>
             </select>
           </div>
           <div class="form-group">
             <label>Pilih Penilaian</label>
-            <select class="form-control-sm select2" style="width: 100%;" name="jenis_penilaian">
+            <select class="form-control form-control-sm select2" style="width: 100%;" name="jenis_penilaian">
               <option value="Formatif">Formatif</option>
               <option value="Sumatif">Sumatif</option>
               <option value="Sumatif_Akhir">Sumatif Akhir</option>

@@ -31,8 +31,8 @@ require_once("koneksi.php");
     }
 </style>
 </head>
-<body class="hold-transition login-page bg-image" style="background-image: url('dist/img/gerbangsapra2.jpeg'); background-repeat: no-repeat; background-attachment: fixed;  
-      background-size: cover;
+<body class="hold-transition login-page bg-image shadow-1-strong" style="background-image: url('dist/img/gerbangsapra2.jpeg'); background-repeat: no-repeat; background-attachment: fixed;  
+      background-size: cover ; background-color: rgba(0, 0, 0, 0.6);
 ">
 <div class="login-box">
   <!-- <img src="dist/img/logo_sapra2.png" alt="AdminLTE Logo" class="brand-image"

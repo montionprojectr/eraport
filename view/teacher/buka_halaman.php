@@ -58,13 +58,10 @@ $class = $_SESSION['kelas']. " " .$_SESSION['komp_keahlian']." ".$_SESSION['pkel
         if ($_SESSION['penilaian'] == 'Formatif') { ?>
           <option value="formatif">Formatif</option>
         <?php }else if($_SESSION['penilaian'] == 'Sumatif'){ ?>
-          <option value="sumatif_1">Sumatif 1</option>
-          <option value="sumatif_2">Sumatif 2</option>
-          <option value="sumatif_3">Sumatif 3</option>
-          <option value="sumatif_4">Sumatif 4</option>
+          <option value="sumatif">Sumatif</option>
         <?php }else if($_SESSION['penilaian'] == 'Sumatif_Akhir'){ ?>
-          <option value="asas_nontest">Sumatif Akhir Semester (Non Test)</option>
-          <option value="asas_test">Sumatif Akhir Semester (Test)</option>
+          <option value="asts">Sumatif Tengah Semester</option>
+          <option value="asas">Sumatif Akhir Semester</option>
         <?php }
         ?>
       </select>

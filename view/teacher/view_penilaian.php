@@ -47,10 +47,10 @@ if (isset($_POST['type_test'])) {
           <table class="table table-striped">
             <thead class="bg-primary">
               <tr>
-                <th style="width: 10px">No</th>
-                <th>NIS</th>
-                <th>Nama</th>
-                <th style="width: 40px">Nilai</th>
+                <th width="10px">No</th>
+                <th width="80px">NIS</th>
+                <th width="300px">Nama</th>
+                <th width="150px">Nilai</th>
               </tr>
             </thead>
             <tbody>
@@ -58,23 +58,23 @@ if (isset($_POST['type_test'])) {
               $no =1;
               $sql = mysqli_query($koneksi, "select * from tb_siswa where kelas = '$kelas' and jurusan = '$komp_keahlian' and pemkelas = '$pkelas' and th_pelajaran = '$th_pelajaran'");
               while ($data = mysqli_fetch_array($sql)) {
-                $array[] = array(
-                  'nis' => $data['nis'],
-                  'nama' => $data['nama']
-                );
-              }
-              foreach ($array as $key) { ?>
+                ?>
                 <tr>
-                  <td><?= $no++; ?></td>
-                  <td><input type="text" name="nis[]" class="form-control" value="<?= $key['nis']; ?>"></td>
-                  <td><input type="text" name="nama[]" class="form-control" value="<?= $key['nama']; ?>"></td>
+                  <td class="bg-dark"><?= $no++; ?></td>
+                  <td class="bg-dark">
+                    <input type="text" name="nis[]" class="form-control" value="<?= $data['nis']; ?>" readonly>
+                  </td>
+                  <td class="bg-dark">
+                    <input type="text" name="nama[]" class="form-control" value="<?= $data['nama']; ?>" readonly>
+                  </td>
                   <td>
                     <div class="form-group">
-                      <input type="number" name="nilai[]" class="form-control-md">    
+                      <input type="number" name="nilai[]" class="form-control form-control-sm">    
                     </div>
                   </td>
                 </tr>
-              <?php }
+              <?php
+              }
               ?>
             </tbody>
           </table>
@@ -85,7 +85,7 @@ if (isset($_POST['type_test'])) {
   </form>
   </div>
 </div>
-<?php }else if($type_test == 'sumatif_1'){ ?>
+<?php }else if($type_test == 'sumatif'){ ?>
     <!-- Penilaian Sumatif_1 -->
 <div class="card">
   <div class="card-header bg-warning">
@@ -101,20 +101,8 @@ if (isset($_POST['type_test'])) {
           <input type="text" name="komp_keahlian" value="<?= $komp_keahlian; ?>">
           <input type="text" name="pkelas" value="<?= $pkelas; ?>">
           <input type="text" name="kode_mapel" value="<?= $kode_mapel ?>">
-          <input type="text" name="jenis_penilaian" value="Sumatif_1">
+          <input type="text" name="jenis_penilaian" value="Sumatif_1 Sumatif_2 Sumatif_3 Sumatif_4">
           <input type="text" name="semester" value="<?= $semester ?>">
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Capaian Kompetensi Menunjukan penguasaan yang baik dalam :</label>
-          <textarea class="form-control" name="cpm"></textarea>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Capaian Kompetensi Perlu ditingkatkan dalam :</label>
-          <textarea class="form-control" name="cpp"></textarea>
         </div>
       </div>
       <div class="col-sm-12">
@@ -122,30 +110,42 @@ if (isset($_POST['type_test'])) {
           <table class="table table-striped">
             <thead class="bg-primary">
               <tr>
-                <th style="width: 10px">No</th>
-                <th>NIS</th>
-                <th>Nama</th>
-                <th style="width: 40px">Nilai</th>
+                <th width="10px">No</th>
+                <th width="100px">NIS</th>
+                <th width="250px">Nama</th>
+                <th width="80px">Nilai Suma1</th>
+                <th width="80px">Nilai Suma2</th>
+                <th width="80px">Nilai Suma3</th>
+                <th width="80px">Nilai Suma4</th>
               </tr>
             </thead>
             <tbody>
               <?php 
               $no =1;
               $sql = mysqli_query($koneksi, "select * from tb_siswa where kelas = '$kelas' and jurusan = '$komp_keahlian' and pemkelas = '$pkelas' and th_pelajaran = '$th_pelajaran'");
-              while ($data = mysqli_fetch_array($sql)) {
-                $array[] = array(
-                  'nis' => $data['nis'],
-                  'nama' => $data['nama']
-                );
-              }
-              foreach ($array as $key) { ?>
+              while ($data = mysqli_fetch_array($sql)) { ?>
                 <tr>
-                  <td><?= $no++; ?></td>
-                  <td><input type="text" name="nis[]" class="form-control" value="<?= $key['nis']; ?>"></td>
-                  <td><input type="text" name="nama[]" class="form-control" value="<?= $key['nama']; ?>"></td>
+                  <td class="bg-dark"><?= $no++; ?></td>
+                  <td class="bg-dark"><input type="text" name="nis[]" class="form-control form-control-sm" value="<?= $data['nis']; ?>" readonly></td>
+                  <td class="bg-dark"><input type="text" name="nama[]" class="form-control form-control-sm w-100" value="<?= $data['nama']; ?>" readonly></td>
+                  <td class="table-info">
+                    <div class="form-group">
+                      <input type="number" name="nilai_suma1[]" class="form-control form-control-sm">    
+                    </div>
+                  </td>
                   <td>
                     <div class="form-group">
-                      <input type="number" name="nilai[]" class="form-control-md">    
+                      <input type="number" name="nilai_suma2[]" class="form-control form-control-sm">    
+                    </div>
+                  </td>
+                  <td class="table-info">
+                    <div class="form-group">
+                      <input type="number" name="nilai_suma3[]" class="form-control form-control-sm">    
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input type="number" name="nilai_suma4[]" class="form-control form-control-sm">    
                     </div>
                   </td>
                 </tr>
@@ -160,232 +160,7 @@ if (isset($_POST['type_test'])) {
   </form>
   </div>
 </div>
-  <?php }else if($type_test == 'sumatif_2'){ ?>
-    <!-- Penilaian Sumatif_2 -->
-<div class="card">
-  <div class="card-header bg-warning">
-    <h3 class="card-title"><b>PENILAIAN KELAS ( <?= $kelas." ".$komp_keahlian." ".$pkelas; ?> ). Mata Pelajaran : <?= "(".$kode_mapel.") ".$nama_mapel; ?></b></h3>
-  </div>
-  <div class="card-body">
-  <form action="view/teacher/proses/proses_input_nilai.php" method="post">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="form-group">
-          <input type="text" name="th_pelajaran" value="<?= $th_pelajaran; ?>">
-          <input type="text" name="kelas" value="<?= $kelas; ?>">
-          <input type="text" name="komp_keahlian" value="<?= $komp_keahlian; ?>">
-          <input type="text" name="pkelas" value="<?= $pkelas; ?>">
-          <input type="text" name="kode_mapel" value="<?= $kode_mapel ?>">
-          <input type="text" name="jenis_penilaian" value="Sumatif_2">
-          <input type="text" name="semester" value="<?= $semester ?>">
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Capaian Kompetensi Menunjukan penguasaan yang baik dalam :</label>
-          <textarea class="form-control" name="cpm"></textarea>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Capaian Kompetensi Perlu ditingkatkan dalam :</label>
-          <textarea class="form-control" name="cpp"></textarea>
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <div class="card card-body p-0">
-          <table class="table table-striped">
-            <thead class="bg-primary">
-              <tr>
-                <th style="width: 10px">No</th>
-                <th>NIS</th>
-                <th>Nama</th>
-                <th style="width: 40px">Nilai</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php 
-              $no =1;
-              $sql = mysqli_query($koneksi, "select * from tb_siswa where kelas = '$kelas' and jurusan = '$komp_keahlian' and pemkelas = '$pkelas' and th_pelajaran = '$th_pelajaran'");
-              while ($data = mysqli_fetch_array($sql)) {
-                $array[] = array(
-                  'nis' => $data['nis'],
-                  'nama' => $data['nama']
-                );
-              }
-              foreach ($array as $key) { ?>
-                <tr>
-                  <td><?= $no++; ?></td>
-                  <td><input type="text" name="nis[]" class="form-control" value="<?= $key['nis']; ?>"></td>
-                  <td><input type="text" name="nama[]" class="form-control" value="<?= $key['nama']; ?>"></td>
-                  <td>
-                    <div class="form-group">
-                      <input type="number" name="nilai[]" class="form-control-md">    
-                    </div>
-                  </td>
-                </tr>
-              <?php }
-              ?>
-            </tbody>
-          </table>
-          <input type="submit" class="btn btn-primary" name="simpan_nilai" name="SIMPAN NILAI FORMATIF">
-        </div>
-      </div>
-    </div>
-  </form>
-  </div>
-</div>
-  <?php }else if($type_test == 'sumatif_3'){ ?>
-    <!-- Penilaian Sumatif_3 -->
-<div class="card">
-  <div class="card-header bg-warning">
-    <h3 class="card-title"><b>PENILAIAN KELAS ( <?= $kelas." ".$komp_keahlian." ".$pkelas; ?> ). Mata Pelajaran : <?= "(".$kode_mapel.") ".$nama_mapel; ?></b></h3>
-  </div>
-  <div class="card-body">
-  <form action="view/teacher/proses/proses_input_nilai.php" method="post">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="form-group">
-          <input type="text" name="th_pelajaran" value="<?= $th_pelajaran; ?>">
-          <input type="text" name="kelas" value="<?= $kelas; ?>">
-          <input type="text" name="komp_keahlian" value="<?= $komp_keahlian; ?>">
-          <input type="text" name="pkelas" value="<?= $pkelas; ?>">
-          <input type="text" name="kode_mapel" value="<?= $kode_mapel ?>">
-          <input type="text" name="jenis_penilaian" value="Sumatif_3">
-          <input type="text" name="semester" value="<?= $semester ?>">
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Capaian Kompetensi Menunjukan penguasaan yang baik dalam :</label>
-          <textarea class="form-control" name="cpm"></textarea>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Capaian Kompetensi Perlu ditingkatkan dalam :</label>
-          <textarea class="form-control" name="cpp"></textarea>
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <div class="card card-body p-0">
-          <table class="table table-striped">
-            <thead class="bg-primary">
-              <tr>
-                <th style="width: 10px">No</th>
-                <th>NIS</th>
-                <th>Nama</th>
-                <th style="width: 40px">Nilai</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php 
-              $no =1;
-              $sql = mysqli_query($koneksi, "select * from tb_siswa where kelas = '$kelas' and jurusan = '$komp_keahlian' and pemkelas = '$pkelas' and th_pelajaran = '$th_pelajaran'");
-              while ($data = mysqli_fetch_array($sql)) {
-                $array[] = array(
-                  'nis' => $data['nis'],
-                  'nama' => $data['nama']
-                );
-              }
-              foreach ($array as $key) { ?>
-                <tr>
-                  <td><?= $no++; ?></td>
-                  <td><input type="text" name="nis[]" class="form-control" value="<?= $key['nis']; ?>"></td>
-                  <td><input type="text" name="nama[]" class="form-control" value="<?= $key['nama']; ?>"></td>
-                  <td>
-                    <div class="form-group">
-                      <input type="number" name="nilai[]" class="form-control-md">    
-                    </div>
-                  </td>
-                </tr>
-              <?php }
-              ?>
-            </tbody>
-          </table>
-          <input type="submit" class="btn btn-primary" name="simpan_nilai" name="SIMPAN NILAI FORMATIF">
-        </div>
-      </div>
-    </div>
-  </form>
-  </div>
-</div>
-  <?php }else if($type_test == 'sumatif_4'){ ?>
-    <!-- Penilaian Sumatif_4 -->
-<div class="card">
-  <div class="card-header bg-warning">
-    <h3 class="card-title"><b>PENILAIAN KELAS ( <?= $kelas." ".$komp_keahlian." ".$pkelas; ?> ). Mata Pelajaran : <?= "(".$kode_mapel.") ".$nama_mapel; ?></b></h3>
-  </div>
-  <div class="card-body">
-  <form action="view/teacher/proses/proses_input_nilai.php" method="post">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="form-group">
-          <input type="text" name="th_pelajaran" value="<?= $th_pelajaran; ?>">
-          <input type="text" name="kelas" value="<?= $kelas; ?>">
-          <input type="text" name="komp_keahlian" value="<?= $komp_keahlian; ?>">
-          <input type="text" name="pkelas" value="<?= $pkelas; ?>">
-          <input type="text" name="kode_mapel" value="<?= $kode_mapel ?>">
-          <input type="text" name="jenis_penilaian" value="Sumatif_4">
-          <input type="text" name="semester" value="<?= $semester ?>">
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Capaian Kompetensi Menunjukan penguasaan yang baik dalam :</label>
-          <textarea class="form-control" name="cpm"></textarea>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Capaian Kompetensi Perlu ditingkatkan dalam :</label>
-          <textarea class="form-control" name="cpp"></textarea>
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <div class="card card-body p-0">
-          <table class="table table-striped">
-            <thead class="bg-primary">
-              <tr>
-                <th style="width: 10px">No</th>
-                <th>NIS</th>
-                <th>Nama</th>
-                <th style="width: 40px">Nilai</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php 
-              $no =1;
-              $sql = mysqli_query($koneksi, "select * from tb_siswa where kelas = '$kelas' and jurusan = '$komp_keahlian' and pemkelas = '$pkelas' and th_pelajaran = '$th_pelajaran'");
-              while ($data = mysqli_fetch_array($sql)) {
-                $array[] = array(
-                  'nis' => $data['nis'],
-                  'nama' => $data['nama']
-                );
-              }
-              foreach ($array as $key) { ?>
-                <tr>
-                  <td><?= $no++; ?></td>
-                  <td><input type="text" name="nis[]" class="form-control" value="<?= $key['nis']; ?>"></td>
-                  <td><input type="text" name="nama[]" class="form-control" value="<?= $key['nama']; ?>"></td>
-                  <td>
-                    <div class="form-group">
-                      <input type="number" name="nilai[]" class="form-control-md">    
-                    </div>
-                  </td>
-                </tr>
-              <?php }
-              ?>
-            </tbody>
-          </table>
-          <input type="submit" class="btn btn-primary" name="simpan_nilai" name="SIMPAN NILAI FORMATIF">
-        </div>
-      </div>
-    </div>
-  </form>
-  </div>
-</div>
-  <?php }else if($type_test == 'asas_nontest'){ ?>
+  <?php }else if($type_test == 'asts'){ ?>
     <!-- Penilaian ASAS_nontest -->
 <div class="card">
   <div class="card-header bg-warning">
@@ -401,20 +176,8 @@ if (isset($_POST['type_test'])) {
           <input type="text" name="komp_keahlian" value="<?= $komp_keahlian; ?>">
           <input type="text" name="pkelas" value="<?= $pkelas; ?>">
           <input type="text" name="kode_mapel" value="<?= $kode_mapel ?>">
-          <input type="text" name="jenis_penilaian" value="ASAS_nontest">
+          <input type="text" name="jenis_penilaian" value="ASTS">
           <input type="text" name="semester" value="<?= $semester ?>">
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Capaian Kompetensi Menunjukan penguasaan yang baik dalam :</label>
-          <textarea class="form-control" name="cpm"></textarea>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Capaian Kompetensi Perlu ditingkatkan dalam :</label>
-          <textarea class="form-control" name="cpp"></textarea>
         </div>
       </div>
       <div class="col-sm-12">
@@ -422,30 +185,24 @@ if (isset($_POST['type_test'])) {
           <table class="table table-striped">
             <thead class="bg-primary">
               <tr>
-                <th style="width: 10px">No</th>
-                <th>NIS</th>
-                <th>Nama</th>
-                <th style="width: 40px">Nilai</th>
+                <th width="10px">No</th>
+                <th width="80px">NIS</th>
+                <th width="200px">Nama</th>
+                <th width="100px">Nilai</th>
               </tr>
             </thead>
             <tbody>
               <?php 
               $no =1;
               $sql = mysqli_query($koneksi, "select * from tb_siswa where kelas = '$kelas' and jurusan = '$komp_keahlian' and pemkelas = '$pkelas' and th_pelajaran = '$th_pelajaran'");
-              while ($data = mysqli_fetch_array($sql)) {
-                $array[] = array(
-                  'nis' => $data['nis'],
-                  'nama' => $data['nama']
-                );
-              }
-              foreach ($array as $key) { ?>
+              while ($data = mysqli_fetch_array($sql)) { ?>
                 <tr>
-                  <td><?= $no++; ?></td>
-                  <td><input type="text" name="nis[]" class="form-control" value="<?= $key['nis']; ?>"></td>
-                  <td><input type="text" name="nama[]" class="form-control" value="<?= $key['nama']; ?>"></td>
+                  <td class="bg-dark"><?= $no++; ?></td>
+                  <td class="bg-dark"><input type="text" name="nis[]" class="form-control" value="<?= $data['nis']; ?>"></td>
+                  <td class="bg-dark"><input type="text" name="nama[]" class="form-control" value="<?= $data['nama']; ?>"></td>
                   <td>
                     <div class="form-group">
-                      <input type="number" name="nilai[]" class="form-control-md">    
+                      <input type="number" name="nilai[]" class="form-control form-control-sm">    
                     </div>
                   </td>
                 </tr>
@@ -460,7 +217,7 @@ if (isset($_POST['type_test'])) {
   </form>
   </div>
 </div>
-  <?php }else if($type_test == 'asas_test'){ ?>
+  <?php }else if($type_test == 'asas'){ ?>
     <!-- Penilaian ASAS_test -->
 <div class="card">
   <div class="card-header bg-warning">
@@ -476,20 +233,8 @@ if (isset($_POST['type_test'])) {
           <input type="text" name="komp_keahlian" value="<?= $komp_keahlian; ?>">
           <input type="text" name="pkelas" value="<?= $pkelas; ?>">
           <input type="text" name="kode_mapel" value="<?= $kode_mapel ?>">
-          <input type="text" name="jenis_penilaian" value="ASAS_test">
+          <input type="text" name="jenis_penilaian" value="ASAS">
           <input type="text" name="semester" value="<?= $semester ?>">
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Capaian Kompetensi Menunjukan penguasaan yang baik dalam :</label>
-          <textarea class="form-control" name="cpm"></textarea>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Capaian Kompetensi Perlu ditingkatkan dalam :</label>
-          <textarea class="form-control" name="cpp"></textarea>
         </div>
       </div>
       <div class="col-sm-12">
@@ -497,30 +242,24 @@ if (isset($_POST['type_test'])) {
           <table class="table table-striped">
             <thead class="bg-primary">
               <tr>
-                <th style="width: 10px">No</th>
-                <th>NIS</th>
-                <th>Nama</th>
-                <th style="width: 40px">Nilai</th>
+                <th width="10px">No</th>
+                <th width="80px">NIS</th>
+                <th width="200px">Nama</th>
+                <th width="100px">Nilai</th>
               </tr>
             </thead>
             <tbody>
               <?php 
               $no =1;
               $sql = mysqli_query($koneksi, "select * from tb_siswa where kelas = '$kelas' and jurusan = '$komp_keahlian' and pemkelas = '$pkelas' and th_pelajaran = '$th_pelajaran'");
-              while ($data = mysqli_fetch_array($sql)) {
-                $array[] = array(
-                  'nis' => $data['nis'],
-                  'nama' => $data['nama']
-                );
-              }
-              foreach ($array as $key) { ?>
+              while ($data = mysqli_fetch_array($sql)) { ?>
                 <tr>
-                  <td><?= $no++; ?></td>
-                  <td><input type="text" name="nis[]" class="form-control" value="<?= $key['nis']; ?>"></td>
-                  <td><input type="text" name="nama[]" class="form-control" value="<?= $key['nama']; ?>"></td>
+                  <td class="bg-dark"><?= $no++; ?></td>
+                  <td class="bg-dark"><input type="text" name="nis[]" class="form-control" value="<?= $data['nis']; ?>"></td>
+                  <td class="bg-dark"><input type="text" name="nama[]" class="form-control" value="<?= $data['nama']; ?>"></td>
                   <td>
                     <div class="form-group">
-                      <input type="number" name="nilai[]" class="form-control-md">    
+                      <input type="number" name="nilai[]" class="form-control form-control-sm">    
                     </div>
                   </td>
                 </tr>

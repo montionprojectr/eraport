@@ -7,7 +7,7 @@ session_destroy();
 
 echo "<script>
 	alert('Anda Berhasil Logout');
-	document.location.href = 'https://eraport.smksatyapraja2.id/';
+	document.location.href = 'index';
 </script>";
 // header("location: https://eraport.smksatyapraja2.id/");
 ?>

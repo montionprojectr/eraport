@@ -116,9 +116,9 @@ $guru = mysqli_fetch_array($cek_guru);
           ?>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-print"></i>
+              <i class="nav-icon fas fa-table"></i>
               <p>
-                Print
+                Master Nilai
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -126,13 +126,13 @@ $guru = mysqli_fetch_array($cek_guru);
               <li class="nav-item">
                 <a href="?page=cover" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Cover</p>
+                  <p>Semester Ganjil</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="?page=raport" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Raport</p>
+                  <p>Semester Genap</p>
                 </a>
               </li>
             </ul>
@@ -186,6 +186,9 @@ $guru = mysqli_fetch_array($cek_guru);
               break;
             case 'raport':
               require_once('view/teacher/raport.php');
+              break;
+            case 'import_penilaian':
+              require_once('view/teacher/import_penilaian.php');
               break;
             
             default:
