@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2023 at 08:23 AM
+-- Generation Time: Oct 25, 2023 at 11:29 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -50,7 +50,9 @@ INSERT INTO `tb_guru_mapel` (`id_guru_mapel`, `th_pelajaran`, `nipy`, `kode_mape
 (87, '2023/2024', '32120080058', 'kons_tkr', 'XI', 'TKR'),
 (88, '2023/2024', '32120220202', 'dd_pplg', 'X', 'PPLG'),
 (89, '2023/2024', '32120220202', 'pkk', 'XI', 'PPLG'),
-(90, '2023/2024', '32120220202', 'pkk', 'XI', 'TE');
+(90, '2023/2024', '32120220202', 'pkk', 'XI', 'TE'),
+(93, '2023/2024', '32120090066', 'iftk', 'X', 'PPLG'),
+(94, '2023/2024', '32120090066', 'iftk', 'X', 'TE');
 
 -- --------------------------------------------------------
 
@@ -60,21 +62,22 @@ INSERT INTO `tb_guru_mapel` (`id_guru_mapel`, `th_pelajaran`, `nipy`, `kode_mape
 
 CREATE TABLE `tb_jenispenilaian` (
   `id_type` int(10) NOT NULL,
-  `namepenilaian` varchar(20) NOT NULL
+  `namepenilaian` varchar(20) NOT NULL,
+  `keterangan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_jenispenilaian`
 --
 
-INSERT INTO `tb_jenispenilaian` (`id_type`, `namepenilaian`) VALUES
-(1, 'Formatif'),
-(2, 'Sumatif_1'),
-(3, 'Sumatif_2'),
-(4, 'Sumatif_3'),
-(5, 'Sumatif_4'),
-(6, 'ASAS_nontest'),
-(7, 'ASAS_test');
+INSERT INTO `tb_jenispenilaian` (`id_type`, `namepenilaian`, `keterangan`) VALUES
+(1, 'Formatif', 'Formatif'),
+(2, 'Sumatif_1', 'Sumatif 1'),
+(3, 'Sumatif_2', 'Sumatif 2'),
+(4, 'Sumatif_3', 'Sumatif 3'),
+(5, 'Sumatif_4', 'Sumatif 4'),
+(6, 'ASTS', 'Assesmen Sumatif Ten'),
+(7, 'ASAS', 'Assesmen Sumatif Akh');
 
 -- --------------------------------------------------------
 
@@ -94,7 +97,7 @@ CREATE TABLE `tb_jurusan` (
 
 INSERT INTO `tb_jurusan` (`id_jurusan`, `nama_Sjurusan`, `nama_Ljurusan`) VALUES
 (1, 'TE', 'TEKNIK ELEKTRONIKA'),
-(2, 'PPLG', 'PENGEMBANGAN PERANGKAT LUNAK'),
+(2, 'PPLG', 'PENGEMBANGAN PERANGKAT LUNAK DAN GIM'),
 (3, 'TSM', 'TEKNIK SEPEDA MOTOR'),
 (4, 'TKR', 'TEKNIK KENDARAAN RINGAN'),
 (5, 'TMI', 'TEKNIK MESIN INDUSTRI');
@@ -250,7 +253,6 @@ INSERT INTO `tb_leger` (`id`, `nis`, `nama`, `kelas`, `jurusan`, `pemkelas`, `se
 (79, 400524, 'SHILFI BUNGA VANIA', 'X', 'PPLG', 2, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
 (80, 400525, 'WIDIYANA APRILLIYANI', 'X', 'PPLG', 2, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
 (81, 400526, 'WIHANI LUTFI HIDAYAH', 'X', 'PPLG', 2, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
-(82, 400527, 'WILDAN AUFA RIZQI', 'X', 'PPLG', 2, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
 (83, 400528, 'WINARA FALIA PATI MUHID', 'X', 'PPLG', 2, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', ''),
 (84, 400529, 'YENI KUSUMA WARDANI', 'X', 'PPLG', 2, 'Ganjil', '2023/2024', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '');
 
@@ -272,7 +274,9 @@ CREATE TABLE `tb_levelusers` (
 INSERT INTO `tb_levelusers` (`id_levelusers`, `level`) VALUES
 (1, 'operator'),
 (2, 'guru'),
-(3, 'siswa');
+(3, 'siswa'),
+(4, 'BK'),
+(5, 'Pembina');
 
 -- --------------------------------------------------------
 
@@ -318,12 +322,35 @@ INSERT INTO `tb_mapel` (`id_mapel`, `kode_mapel`, `nama_mapel`, `kelas`, `katego
 (46, 'mtk', 'Matematika', 'XI', 'kejuruan'),
 (47, 'b_ing', 'Bahasa Inggris', 'XI', 'kejuruan'),
 (48, 'kons_tmi', 'Konsentrasi Keahlian Teknik Mekanik Industri', 'XI', 'kejuruan'),
-(49, 'kons_tsm', 'Konsentrasi Teknik Sepeda Motor', 'XI', 'kejuruan'),
+(49, 'kons_tsm', 'Konsentrasi Keahlian Teknik Sepeda Motor', 'XI', 'kejuruan'),
 (50, 'kons_tkr', 'Konsentrasi Keahlian Teknik Kendaraan Ringan', 'XI', 'kejuruan'),
 (51, 'kons_te', 'Konsentrasi Keahlian Teknik Audio Video', 'XI', 'kejuruan'),
 (52, 'kons_pplg', 'Konsentrasi Keahlian Rekayasa Perangkat Lunak', 'XI', 'kejuruan'),
 (53, 'pkk', 'Projek Kreatif dan Kewirausahaan', 'XI', 'kejuruan'),
 (54, 'mpp', 'Mata Pelajaran Pilihan', 'XI', 'kejuruan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_mapelsub`
+--
+
+CREATE TABLE `tb_mapelsub` (
+  `id_mappilihan` int(10) NOT NULL,
+  `kode_mapel` varchar(15) NOT NULL,
+  `nama_pilihan` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_mapelsub`
+--
+
+INSERT INTO `tb_mapelsub` (`id_mappilihan`, `kode_mapel`, `nama_pilihan`) VALUES
+(1, 'mpp', 'Pengembangan Pe'),
+(2, 'mpp', 'Teknik Elektron'),
+(3, 'mpp', 'Teknik Sepeda M'),
+(4, 'mpp', 'Teknik Kendaraa'),
+(5, 'mpp', 'Teknik Mekanik ');
 
 -- --------------------------------------------------------
 
@@ -339,228 +366,17 @@ CREATE TABLE `tb_penilaian` (
   `komp_keahlian` varchar(10) NOT NULL,
   `pkelas` varchar(5) NOT NULL,
   `kode_mapel` varchar(15) NOT NULL,
-  `jenis_penilaian` varchar(15) NOT NULL,
   `semester` varchar(7) NOT NULL,
-  `nilai` int(2) NOT NULL,
+  `Formatif` int(3) NOT NULL,
+  `Sumatif_1` int(3) NOT NULL,
+  `Sumatif_2` int(3) NOT NULL,
+  `Sumatif_3` int(3) NOT NULL,
+  `Sumatif_4` int(3) NOT NULL,
+  `ASTS` int(3) NOT NULL,
+  `ASAS` int(3) NOT NULL,
   `cpm` varchar(255) NOT NULL,
   `cpp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_penilaian`
---
-
-INSERT INTO `tb_penilaian` (`id_nilai`, `th_pelajaran`, `nis`, `kelas`, `komp_keahlian`, `pkelas`, `kode_mapel`, `jenis_penilaian`, `semester`, `nilai`, `cpm`, `cpp`) VALUES
-(215, '2023/2024', '400526', 'X', 'PPLG', '2', 'pabp', 'Formatif', 'Ganjil', 0, '', ''),
-(216, '2023/2024', '400527', 'X', 'PPLG', '2', 'pabp', 'Formatif', 'Ganjil', 0, '', ''),
-(217, '2023/2024', '400526', 'X', 'PPLG', '2', 'pabp', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(218, '2023/2024', '400527', 'X', 'PPLG', '2', 'pabp', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(219, '2023/2024', '400526', 'X', 'PPLG', '2', 'pabp', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(220, '2023/2024', '400527', 'X', 'PPLG', '2', 'pabp', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(221, '2023/2024', '400526', 'X', 'PPLG', '2', 'pabp', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(222, '2023/2024', '400527', 'X', 'PPLG', '2', 'pabp', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(223, '2023/2024', '400526', 'X', 'PPLG', '2', 'pabp', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(224, '2023/2024', '400527', 'X', 'PPLG', '2', 'pabp', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(225, '2023/2024', '400526', 'X', 'PPLG', '2', 'pabp', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(226, '2023/2024', '400527', 'X', 'PPLG', '2', 'pabp', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(227, '2023/2024', '400526', 'X', 'PPLG', '2', 'pabp', 'ASAS_test', 'Ganjil', 0, '', ''),
-(228, '2023/2024', '400527', 'X', 'PPLG', '2', 'pabp', 'ASAS_test', 'Ganjil', 0, '', ''),
-(229, '2023/2024', '400526', 'X', 'PPLG', '2', 'pkn', 'Formatif', 'Ganjil', 0, '', ''),
-(230, '2023/2024', '400527', 'X', 'PPLG', '2', 'pkn', 'Formatif', 'Ganjil', 0, '', ''),
-(231, '2023/2024', '400526', 'X', 'PPLG', '2', 'pkn', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(232, '2023/2024', '400527', 'X', 'PPLG', '2', 'pkn', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(233, '2023/2024', '400526', 'X', 'PPLG', '2', 'pkn', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(234, '2023/2024', '400527', 'X', 'PPLG', '2', 'pkn', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(235, '2023/2024', '400526', 'X', 'PPLG', '2', 'pkn', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(236, '2023/2024', '400527', 'X', 'PPLG', '2', 'pkn', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(237, '2023/2024', '400526', 'X', 'PPLG', '2', 'pkn', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(238, '2023/2024', '400527', 'X', 'PPLG', '2', 'pkn', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(239, '2023/2024', '400526', 'X', 'PPLG', '2', 'pkn', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(240, '2023/2024', '400527', 'X', 'PPLG', '2', 'pkn', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(241, '2023/2024', '400526', 'X', 'PPLG', '2', 'pkn', 'ASAS_test', 'Ganjil', 0, '', ''),
-(242, '2023/2024', '400527', 'X', 'PPLG', '2', 'pkn', 'ASAS_test', 'Ganjil', 0, '', ''),
-(243, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_indo', 'Formatif', 'Ganjil', 0, '', ''),
-(244, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_indo', 'Formatif', 'Ganjil', 0, '', ''),
-(245, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_indo', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(246, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_indo', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(247, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_indo', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(248, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_indo', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(249, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_indo', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(250, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_indo', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(251, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_indo', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(252, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_indo', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(253, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_indo', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(254, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_indo', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(255, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_indo', 'ASAS_test', 'Ganjil', 0, '', ''),
-(256, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_indo', 'ASAS_test', 'Ganjil', 0, '', ''),
-(257, '2023/2024', '400526', 'X', 'PPLG', '2', 'pjok', 'Formatif', 'Ganjil', 0, '', ''),
-(258, '2023/2024', '400527', 'X', 'PPLG', '2', 'pjok', 'Formatif', 'Ganjil', 0, '', ''),
-(259, '2023/2024', '400526', 'X', 'PPLG', '2', 'pjok', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(260, '2023/2024', '400527', 'X', 'PPLG', '2', 'pjok', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(261, '2023/2024', '400526', 'X', 'PPLG', '2', 'pjok', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(262, '2023/2024', '400527', 'X', 'PPLG', '2', 'pjok', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(263, '2023/2024', '400526', 'X', 'PPLG', '2', 'pjok', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(264, '2023/2024', '400527', 'X', 'PPLG', '2', 'pjok', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(265, '2023/2024', '400526', 'X', 'PPLG', '2', 'pjok', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(266, '2023/2024', '400527', 'X', 'PPLG', '2', 'pjok', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(267, '2023/2024', '400526', 'X', 'PPLG', '2', 'pjok', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(268, '2023/2024', '400527', 'X', 'PPLG', '2', 'pjok', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(269, '2023/2024', '400526', 'X', 'PPLG', '2', 'pjok', 'ASAS_test', 'Ganjil', 0, '', ''),
-(270, '2023/2024', '400527', 'X', 'PPLG', '2', 'pjok', 'ASAS_test', 'Ganjil', 0, '', ''),
-(271, '2023/2024', '400526', 'X', 'PPLG', '2', 'sejarah', 'Formatif', 'Ganjil', 0, '', ''),
-(272, '2023/2024', '400527', 'X', 'PPLG', '2', 'sejarah', 'Formatif', 'Ganjil', 0, '', ''),
-(273, '2023/2024', '400526', 'X', 'PPLG', '2', 'sejarah', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(274, '2023/2024', '400527', 'X', 'PPLG', '2', 'sejarah', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(275, '2023/2024', '400526', 'X', 'PPLG', '2', 'sejarah', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(276, '2023/2024', '400527', 'X', 'PPLG', '2', 'sejarah', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(277, '2023/2024', '400526', 'X', 'PPLG', '2', 'sejarah', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(278, '2023/2024', '400527', 'X', 'PPLG', '2', 'sejarah', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(279, '2023/2024', '400526', 'X', 'PPLG', '2', 'sejarah', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(280, '2023/2024', '400527', 'X', 'PPLG', '2', 'sejarah', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(281, '2023/2024', '400526', 'X', 'PPLG', '2', 'sejarah', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(282, '2023/2024', '400527', 'X', 'PPLG', '2', 'sejarah', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(283, '2023/2024', '400526', 'X', 'PPLG', '2', 'sejarah', 'ASAS_test', 'Ganjil', 0, '', ''),
-(284, '2023/2024', '400527', 'X', 'PPLG', '2', 'sejarah', 'ASAS_test', 'Ganjil', 0, '', ''),
-(285, '2023/2024', '400526', 'X', 'PPLG', '2', 'seni', 'Formatif', 'Ganjil', 0, '', ''),
-(286, '2023/2024', '400527', 'X', 'PPLG', '2', 'seni', 'Formatif', 'Ganjil', 0, '', ''),
-(287, '2023/2024', '400526', 'X', 'PPLG', '2', 'seni', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(288, '2023/2024', '400527', 'X', 'PPLG', '2', 'seni', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(289, '2023/2024', '400526', 'X', 'PPLG', '2', 'seni', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(290, '2023/2024', '400527', 'X', 'PPLG', '2', 'seni', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(291, '2023/2024', '400526', 'X', 'PPLG', '2', 'seni', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(292, '2023/2024', '400527', 'X', 'PPLG', '2', 'seni', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(293, '2023/2024', '400526', 'X', 'PPLG', '2', 'seni', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(294, '2023/2024', '400527', 'X', 'PPLG', '2', 'seni', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(295, '2023/2024', '400526', 'X', 'PPLG', '2', 'seni', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(296, '2023/2024', '400527', 'X', 'PPLG', '2', 'seni', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(297, '2023/2024', '400526', 'X', 'PPLG', '2', 'seni', 'ASAS_test', 'Ganjil', 0, '', ''),
-(298, '2023/2024', '400527', 'X', 'PPLG', '2', 'seni', 'ASAS_test', 'Ganjil', 0, '', ''),
-(299, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_jawa', 'Formatif', 'Ganjil', 0, '', ''),
-(300, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_jawa', 'Formatif', 'Ganjil', 0, '', ''),
-(301, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_jawa', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(302, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_jawa', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(303, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_jawa', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(304, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_jawa', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(305, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_jawa', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(306, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_jawa', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(307, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_jawa', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(308, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_jawa', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(309, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_jawa', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(310, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_jawa', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(311, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_jawa', 'ASAS_test', 'Ganjil', 0, '', ''),
-(312, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_jawa', 'ASAS_test', 'Ganjil', 0, '', ''),
-(313, '2023/2024', '400526', 'X', 'PPLG', '2', 'mtk', 'Formatif', 'Ganjil', 0, '', ''),
-(314, '2023/2024', '400527', 'X', 'PPLG', '2', 'mtk', 'Formatif', 'Ganjil', 0, '', ''),
-(315, '2023/2024', '400526', 'X', 'PPLG', '2', 'mtk', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(316, '2023/2024', '400527', 'X', 'PPLG', '2', 'mtk', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(317, '2023/2024', '400526', 'X', 'PPLG', '2', 'mtk', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(318, '2023/2024', '400527', 'X', 'PPLG', '2', 'mtk', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(319, '2023/2024', '400526', 'X', 'PPLG', '2', 'mtk', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(320, '2023/2024', '400527', 'X', 'PPLG', '2', 'mtk', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(321, '2023/2024', '400526', 'X', 'PPLG', '2', 'mtk', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(322, '2023/2024', '400527', 'X', 'PPLG', '2', 'mtk', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(323, '2023/2024', '400526', 'X', 'PPLG', '2', 'mtk', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(324, '2023/2024', '400527', 'X', 'PPLG', '2', 'mtk', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(325, '2023/2024', '400526', 'X', 'PPLG', '2', 'mtk', 'ASAS_test', 'Ganjil', 0, '', ''),
-(326, '2023/2024', '400527', 'X', 'PPLG', '2', 'mtk', 'ASAS_test', 'Ganjil', 0, '', ''),
-(327, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_ing', 'Formatif', 'Ganjil', 0, '', ''),
-(328, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_ing', 'Formatif', 'Ganjil', 0, '', ''),
-(329, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_ing', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(330, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_ing', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(331, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_ing', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(332, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_ing', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(333, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_ing', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(334, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_ing', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(335, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_ing', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(336, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_ing', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(337, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_ing', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(338, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_ing', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(339, '2023/2024', '400526', 'X', 'PPLG', '2', 'b_ing', 'ASAS_test', 'Ganjil', 0, '', ''),
-(340, '2023/2024', '400527', 'X', 'PPLG', '2', 'b_ing', 'ASAS_test', 'Ganjil', 0, '', ''),
-(341, '2023/2024', '400526', 'X', 'PPLG', '2', 'iftk', 'Formatif', 'Ganjil', 0, '', ''),
-(342, '2023/2024', '400527', 'X', 'PPLG', '2', 'iftk', 'Formatif', 'Ganjil', 0, '', ''),
-(343, '2023/2024', '400526', 'X', 'PPLG', '2', 'iftk', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(344, '2023/2024', '400527', 'X', 'PPLG', '2', 'iftk', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(345, '2023/2024', '400526', 'X', 'PPLG', '2', 'iftk', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(346, '2023/2024', '400527', 'X', 'PPLG', '2', 'iftk', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(347, '2023/2024', '400526', 'X', 'PPLG', '2', 'iftk', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(348, '2023/2024', '400527', 'X', 'PPLG', '2', 'iftk', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(349, '2023/2024', '400526', 'X', 'PPLG', '2', 'iftk', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(350, '2023/2024', '400527', 'X', 'PPLG', '2', 'iftk', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(351, '2023/2024', '400526', 'X', 'PPLG', '2', 'iftk', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(352, '2023/2024', '400527', 'X', 'PPLG', '2', 'iftk', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(353, '2023/2024', '400526', 'X', 'PPLG', '2', 'iftk', 'ASAS_test', 'Ganjil', 0, '', ''),
-(354, '2023/2024', '400527', 'X', 'PPLG', '2', 'iftk', 'ASAS_test', 'Ganjil', 0, '', ''),
-(355, '2023/2024', '400526', 'X', 'PPLG', '2', 'ipas', 'Formatif', 'Ganjil', 0, '', ''),
-(356, '2023/2024', '400527', 'X', 'PPLG', '2', 'ipas', 'Formatif', 'Ganjil', 0, '', ''),
-(357, '2023/2024', '400526', 'X', 'PPLG', '2', 'ipas', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(358, '2023/2024', '400527', 'X', 'PPLG', '2', 'ipas', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(359, '2023/2024', '400526', 'X', 'PPLG', '2', 'ipas', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(360, '2023/2024', '400527', 'X', 'PPLG', '2', 'ipas', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(361, '2023/2024', '400526', 'X', 'PPLG', '2', 'ipas', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(362, '2023/2024', '400527', 'X', 'PPLG', '2', 'ipas', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(363, '2023/2024', '400526', 'X', 'PPLG', '2', 'ipas', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(364, '2023/2024', '400527', 'X', 'PPLG', '2', 'ipas', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(365, '2023/2024', '400526', 'X', 'PPLG', '2', 'ipas', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(366, '2023/2024', '400527', 'X', 'PPLG', '2', 'ipas', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(367, '2023/2024', '400526', 'X', 'PPLG', '2', 'ipas', 'ASAS_test', 'Ganjil', 0, '', ''),
-(368, '2023/2024', '400527', 'X', 'PPLG', '2', 'ipas', 'ASAS_test', 'Ganjil', 0, '', ''),
-(369, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_tmi', 'Formatif', 'Ganjil', 0, '', ''),
-(370, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_tmi', 'Formatif', 'Ganjil', 0, '', ''),
-(371, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_tmi', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(372, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_tmi', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(373, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_tmi', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(374, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_tmi', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(375, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_tmi', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(376, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_tmi', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(377, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_tmi', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(378, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_tmi', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(379, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_tmi', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(380, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_tmi', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(381, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_tmi', 'ASAS_test', 'Ganjil', 0, '', ''),
-(382, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_tmi', 'ASAS_test', 'Ganjil', 0, '', ''),
-(383, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_oto', 'Formatif', 'Ganjil', 0, '', ''),
-(384, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_oto', 'Formatif', 'Ganjil', 0, '', ''),
-(385, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_oto', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(386, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_oto', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(387, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_oto', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(388, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_oto', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(389, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_oto', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(390, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_oto', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(391, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_oto', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(392, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_oto', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(393, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_oto', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(394, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_oto', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(395, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_oto', 'ASAS_test', 'Ganjil', 0, '', ''),
-(396, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_oto', 'ASAS_test', 'Ganjil', 0, '', ''),
-(397, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_te', 'Formatif', 'Ganjil', 0, '', ''),
-(398, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_te', 'Formatif', 'Ganjil', 0, '', ''),
-(399, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_te', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(400, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_te', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(401, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_te', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(402, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_te', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(403, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_te', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(404, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_te', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(405, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_te', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(406, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_te', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(407, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_te', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(408, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_te', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(409, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_te', 'ASAS_test', 'Ganjil', 0, '', ''),
-(410, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_te', 'ASAS_test', 'Ganjil', 0, '', ''),
-(411, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_pplg', 'Formatif', 'Ganjil', 0, '', ''),
-(412, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_pplg', 'Formatif', 'Ganjil', 0, '', ''),
-(413, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_pplg', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(414, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_pplg', 'Sumatif_1', 'Ganjil', 0, '', ''),
-(415, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_pplg', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(416, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_pplg', 'Sumatif_2', 'Ganjil', 0, '', ''),
-(417, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_pplg', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(418, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_pplg', 'Sumatif_3', 'Ganjil', 0, '', ''),
-(419, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_pplg', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(420, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_pplg', 'Sumatif_4', 'Ganjil', 0, '', ''),
-(421, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_pplg', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(422, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_pplg', 'ASAS_nontest', 'Ganjil', 0, '', ''),
-(423, '2023/2024', '400526', 'X', 'PPLG', '2', 'dd_pplg', 'ASAS_test', 'Ganjil', 0, '', ''),
-(424, '2023/2024', '400527', 'X', 'PPLG', '2', 'dd_pplg', 'ASAS_test', 'Ganjil', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -686,7 +502,7 @@ CREATE TABLE `tb_sekolah` (
 --
 
 INSERT INTO `tb_sekolah` (`id_sekolah`, `nama_sekolah`, `npsn`, `nss`, `alamat`, `kel`, `kec`, `kab`, `prov`, `web`, `email`, `nama_ks`, `nipy`) VALUES
-(1, 'SMK SATYA PRAJA 2 PETARUKAN', '32120090066', '3212009006612', 'Jalan Raya ISer Petarukan Pemalang ', 'Iser', 'Petarukan 123456', 'Pemalang', 'Jawa Tengah', 'http://www.smksatyapraja2.id/', 'smksapra2@gmail.com', 'Purwo Setyowitanto, ST', '32120090066');
+(1, 'SMK SATYA PRAJA 2 PETARUKAN', '32120090066', '3212009006612', 'Jalan Raya ISer Petarukan Pemalang ', 'Iser', 'Petarukan 123456', 'Pemalang', 'Jawa Tengah', 'www.smksatyapraja2.id', 'smksapra2@gmail.com', 'Purwo Setyowitanto, ST', '32120090066');
 
 -- --------------------------------------------------------
 
@@ -829,7 +645,6 @@ INSERT INTO `tb_siswa` (`id`, `nis`, `nisn`, `nama`, `kelas`, `jurusan`, `pemkel
 (79, 400524, 0, 'SHILFI BUNGA VANIA', 'X', 'PPLG', '2', '2023/2024', '-', '', '-', '-', 0, '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'Ganjil'),
 (80, 400525, 0, 'WIDIYANA APRILLIYANI', 'X', 'PPLG', '2', '2023/2024', '-', '', '-', '-', 0, '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'Ganjil'),
 (81, 400526, 0, 'WIHANI LUTFI HIDAYAH', 'X', 'PPLG', '2', '2023/2024', '-', '', '-', '-', 0, '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'Ganjil'),
-(82, 400527, 0, 'WILDAN AUFA RIZQI', 'X', 'PPLG', '2', '2023/2024', '-', '', '-', '-', 0, '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'Ganjil'),
 (83, 400528, 0, 'WINARA FALIA PATI MUHID', 'X', 'PPLG', '2', '2023/2024', '-', '', '-', '-', 0, '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'Ganjil'),
 (84, 400529, 0, 'YENI KUSUMA WARDANI', 'X', 'PPLG', '2', '2023/2024', '-', '', '-', '-', 0, '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'Ganjil');
 
@@ -1072,6 +887,12 @@ ALTER TABLE `tb_mapel`
   ADD PRIMARY KEY (`id_mapel`);
 
 --
+-- Indexes for table `tb_mapelsub`
+--
+ALTER TABLE `tb_mapelsub`
+  ADD PRIMARY KEY (`id_mappilihan`);
+
+--
 -- Indexes for table `tb_penilaian`
 --
 ALTER TABLE `tb_penilaian`
@@ -1127,7 +948,7 @@ ALTER TABLE `tb_walikelas`
 -- AUTO_INCREMENT for table `tb_guru_mapel`
 --
 ALTER TABLE `tb_guru_mapel`
-  MODIFY `id_guru_mapel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id_guru_mapel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `tb_jenispenilaian`
@@ -1157,7 +978,7 @@ ALTER TABLE `tb_leger`
 -- AUTO_INCREMENT for table `tb_levelusers`
 --
 ALTER TABLE `tb_levelusers`
-  MODIFY `id_levelusers` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_levelusers` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_mapel`
@@ -1166,10 +987,16 @@ ALTER TABLE `tb_mapel`
   MODIFY `id_mapel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
+-- AUTO_INCREMENT for table `tb_mapelsub`
+--
+ALTER TABLE `tb_mapelsub`
+  MODIFY `id_mappilihan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `tb_penilaian`
 --
 ALTER TABLE `tb_penilaian`
-  MODIFY `id_nilai` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=425;
+  MODIFY `id_nilai` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550;
 
 --
 -- AUTO_INCREMENT for table `tb_rolsusers`
@@ -1193,7 +1020,7 @@ ALTER TABLE `tb_select_tahunpel`
 -- AUTO_INCREMENT for table `tb_siswa`
 --
 ALTER TABLE `tb_siswa`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `tb_thpelajaran`
