@@ -40,8 +40,8 @@ include "../../koneksi.php";
           <div class="form-group">
             <label>Pilih Semester</label>
             <select class="form-control-sm select2" style="width: 100%;" name="semester">
-              <option value="Gasal">Semester 1</option>
-              <option value="Ganjil">Semester 2</option>
+              <option value="Ganjil">Semester 1</option>
+              <option value="Genap">Semester 2</option>
             </select>
           </div>
           <div class="form-group">

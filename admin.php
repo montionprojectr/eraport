@@ -114,7 +114,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
@@ -135,13 +135,25 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
                   <p>Operator </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="admin?view=bk" class="nav-link <?= $_GET['view'] == 'bk' ? 'active' : ''; ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>BK </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin?view=pembina" class="nav-link <?= $_GET['view'] == 'pembina' ? 'active' : ''; ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pembina </p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item menu-open">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-sitemap"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
-                WALIKELAS & GURU
+                WALIKELAS
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -152,12 +164,6 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
                   <p>Walikelas</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="admin?view=guru_mapel" class="nav-link <?= $_GET['view'] == 'guru_mapel' ? 'active' : ''; ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Guru Pelajaran</p>
-                </a>
-              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -165,6 +171,14 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
               <i class="nav-icon fas  fa-book"></i>
               <p>
                 MATA PELAJARAN
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="admin?view=guru_mapel" class="nav-link <?= $_GET['view'] == 'guru_mapel' ? 'active' : ''; ?>">
+              <i class="nav-icon fas  fa-sitemap"></i>
+              <p>
+                Guru Mapel
               </p>
             </a>
           </li>
@@ -416,6 +430,28 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
           }
       });
     });
+
+    $.ajax({
+        type: 'POST',
+        url: "view/operator/input_ajax_gurumapel.php",
+        cache: false, 
+        success: function(msg){
+          $("#kode_mapel").html(msg);
+        }
+    });
+
+    $("#kode_mapel").change(function(){
+      var kode_mapel = $("#kode_mapel").val();
+        $.ajax({
+          type: 'POST',
+            url: "view/operator/input_get_gurumapel.php",
+            data: {kode_mapel: kode_mapel},
+            cache: false,
+            success: function(msg){
+              $("#kelas_dan_komp").html(msg);
+            }
+        });
+      });
 
   });
 </script>

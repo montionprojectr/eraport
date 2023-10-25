@@ -24,22 +24,24 @@ require_once("koneksi.php");
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <style>
     body {
-      background-image: url('dist/img');
+      background-image: url('dist/img/gerbangsapra2.jpeg');
       background-repeat: no-repeat;
       background-attachment: fixed;  
       background-size: cover;
     }
 </style>
 </head>
-<body class="hold-transition login-page bg-image">
-<div class="login-box bg-primary elevation-1 card">
-  <img src="dist/img/logo_sapra2.png" alt="AdminLTE Logo" class="brand-image"
-           style="opacity: .8" height="270px">
+<body class="hold-transition login-page bg-image" style="background-image: url('dist/img/gerbangsapra2.jpeg'); background-repeat: no-repeat; background-attachment: fixed;  
+      background-size: cover;
+">
+<div class="login-box">
+  <!-- <img src="dist/img/logo_sapra2.png" alt="AdminLTE Logo" class="brand-image"
+           style="opacity: .8" height="380px"> -->
   <div class="login-logo">
-    <a href="index2.html"><b>E-Raport SAPRA2</b></a>
+    <a href="index2.html" class="text-primary"><b>E-Raport SAPRA2</b></a>
   </div>
   <!-- /.login-logo -->
-  <div class="card">
+  <div class="card elevation-4">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Masukan akun anda untuk mulai sesi</p>
 
