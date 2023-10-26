@@ -175,6 +175,14 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
             </a>
           </li>
           <li class="nav-item">
+            <a href="admin?view=mapel_pilihan" class="nav-link <?= $_GET['view'] == 'mapel_pilihan' ? 'active' : ''; ?>">
+              <i class="nav-icon fas  fa-book"></i>
+              <p>
+                MAPEL PILIHAN
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="admin?view=guru_mapel" class="nav-link <?= $_GET['view'] == 'guru_mapel' ? 'active' : ''; ?>">
               <i class="nav-icon fas  fa-sitemap"></i>
               <p>
@@ -267,6 +275,9 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
             case 'mapel_page':
               require_once('view/operator/mapel_page.php');
               break;
+            case 'mapel_pilihan':
+              require_once('view/operator/mapel_pilihan.php');
+              break;
             case 'up_walikelas':
               require_once('view/operator/update/up_walikelas.php');
               break;
@@ -331,6 +342,32 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
   </footer>
 </div>
 <!-- ./wrapper -->
+
+<!-- Dynamic_form -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="plugins/jquery.replicate.js"></script>
+
+<script>
+    const selector = '[data-x-wrapper]';
+    let options = {
+        disableNaming: '[data-disable-naming]',
+        wrapper: selector,
+        group: '[data-x-group]',
+        addBtn: '[data-add-btn]',
+        removeBtn: '[data-remove-btn]'
+    };
+
+    $(selector).replicate(options);
+
+    const form = $('#formID');
+
+    $(form).on('submit', (e) => {
+        e.preventDefault();
+
+        console.log($(e.target).serializeArray())
+    })
+
+</script>
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
@@ -456,4 +493,24 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
   });
 </script>
 </body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1VDDWMRSTH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1VDDWMRSTH');
+</script><script>
+try {
+  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
+    return true;
+  }).catch(function(e) {
+    var carbonScript = document.createElement("script");
+    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+    carbonScript.id = "_carbonads_js";
+    document.getElementById("carbon-block").appendChild(carbonScript);
+  });
+} catch (error) {
+  console.log(error);
+}
+</script>
 </html>

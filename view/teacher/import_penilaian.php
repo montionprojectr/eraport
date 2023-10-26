@@ -7,14 +7,20 @@
 	  </ol>
   </div><!-- /.col -->
 </div><!-- /.row -->
-
+<?php 
+$query = mysqli_query($koneksi, "select * from tb_mapel where kode_mapel = '".$_GET['kodmapel']."' ");
+$data = mysqli_fetch_array($query);
+?>
 <div class="card">
 	<div class="card-header bg-warning">
-		<h3 class="card-title">IMPORT PENILAIAN</h3>
+		<h3 class="card-title">IMPORT PENILAIAN Mata Pelajaran : <b><u><?= $data['nama_mapel']; ?></ul></b></h3>
 	</div>
 	<div class="card-body">
 		<div class="row">
-			<div class="col-sm-6 bg-info card elevation-3">
+			<div class="col-sm-6 bg-dark card elevation-3 p-3">
+				<div class="form-group">
+					<a href="view/operator/file/export_penilaian.php?th=<?= $_GET['th']."&kelas=".$_GET['kelas']."&jrs=".$_GET['jrs']."&pkelas=".$_GET['pkelas']; ?>" target="_blank">Download Template Nilai</a>
+				</div>
 				<form action="" method="post">
 					<div class="form-group">
 						<label>Pilih Semester</label>
@@ -29,6 +35,7 @@
 						<input type="file" name="filenilai" class="form-control">
 					</div>
 					<div class="form-group">
+						<a href="?page=home" class="btn btn-primary"><i class="fas fa-angle-left"></i> Kembali</a>
 						<input type="submit" name="simpan_ganjil" class="btn btn-primary" value="Mulai Import">
 					</div>
 				</form>
