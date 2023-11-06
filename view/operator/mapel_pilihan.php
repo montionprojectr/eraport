@@ -7,49 +7,71 @@
   </div><!-- /.col -->
 </div><!-- /.row -->
 
-<div class="card">
-	<div class="card-header">
-		<h3 class="card-title">MATA PELAJARAN PILIHAN</h3>
-	</div>	
-	<div class="card-body">
-		<div class="row">
-			<div class="col-sm-6">
-				<form action="" method="post" id="formID">
-					<div class="form-group jumbotron mt-1" data-x-wrapper="employees">
-						<label>Kelas Baru</label>
-						<div class="d-flex my-1" data-x-group>
-							<input type="text" name="emp_name" placeholder="Nama kelas" class="form-control-sm ml-2">
-							<div class="form-group ml-2">
-								<button type="button" class="btn btn-danger" data-remove-btn>-</button>
-		            <button type="button" class="btn btn-primary" data-add-btn>+</button>
+<div class="row">
+	<div class="col-sm-12">
+		<div class="card">
+			<div class="card-header bg-danger">
+				<h3 class="card-title">MATA PELAJARAN PILIHAN</h3>
+			</div>	
+			<div class="card-body">
+				<div class="row">
+					<div class="col-sm-8">
+						<table class="table table-sm table-striped">
+							<thead>
+								<tr>
+									<th>No</th>
+									<th>Kode Mapel</th>
+									<th>Nama Mapel Pilihan</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php 
+								$no = 1;
+								$query = mysqli_query($koneksi, "select * from tb_mapelsub where kode_mapel = 'mpp'");
+								while ($data = mysqli_fetch_array($query)) { ?>
+									<tr>
+										<td><?= $no++; ?></td>
+										<td><?= $data['kode_mapelsub']; ?></td>
+										<td><?= $data['nama_submapel']; ?></td>
+										<td>
+											<a href="?view=kelas_mapelpilihan&kode_mapelsub=<?= $data['kode_mapelsub']; ?>" class="btn btn-primary"><i class="fas fa-folder-plus"></i> New Kelas</a>
+										</td>
+									</tr>
+								<?php }
+								?>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-sm-4">
+						<div class="card">
+							<div class="card-header bg-danger">
+								<h7>Tampilkan Daftar Kelas</h7>
 							</div>
+							<div class="card-body bg-cyan">
+								<div class="form-group">
+										<select class="form-control-sm select2" style="width:100%;" id="th_pelajaran">
+											<option value="">-- Pilih Th. Pelajaran --</option>
+											<option value="2023/2024">2023/2024</option>
+											<option value="2024/2025">2024/2025</option>
+											<option value="2025/2026">2025/2026</option>
+										</select>		
+								</div>
+								<div class="form-group">
+									<select class="form-control-sm select2" style="width:100%;" id="semester">
+											<option value="">-- Pilih Semester --</option>
+											<option value="ganjil">Ganjil</option>
+											<option value="genap">Genap</option>
+										</select>	
+								</div>
+							</div>		
 						</div>
 					</div>
-					
-					<div class="action-buttons">
-			        <button type="submit" class="btn btn-primary">Submit</button>
-			        <button type="button" class="btn btn-outline-danger">Cancel</button>
-			    </div>
-				</form>			
+				</div>
 			</div>
-		</div>
+		</div>	
+	</div>
+	<div class="col-sm-12" id="show-tablekelas-pil">
+		<!-- view/operator/get_table_kelaspil.php -->
 	</div>
 </div>
-<!-- <form action="" method="post" id="formID">
-    <div class="jumbotron mt-1" data-x-wrapper="employees">
-        <div class="d-flex my-1" data-x-group>
-            <input type="text" name="emp_name" placeholder="Employee name" class="ml-2">
-            <input type="text" name="emp_code" placeholder="Employee code" class="ml-2">
-            <input type="text" name="emp_position" placeholder="Employee placeholder" class="ml-2">
-
-            <div class="ml-2">
-                <button type="button" class="btn btn-danger" data-remove-btn>-</button>
-                <button type="button" class="btn btn-primary" data-add-btn>+</button>
-            </div>
-        </div>
-    </div>
-    <div class="action-buttons">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="button" class="btn btn-outline-danger">Cancel</button>
-    </div>
-</form> -->

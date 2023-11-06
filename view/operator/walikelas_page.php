@@ -11,7 +11,7 @@
 	<form action="" method="post">
 		<div class="card collapsed-card">
 			<div class="card-header bg-danger">
-				<h4 class="card-title">INPUT DATA GURU WALIKELAS</h4>
+				<h4 class="card-title">INPUT DATA KELAS & WALIKELAS BARU</h4>
 				<div class="card-tools">
 		      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
 		      </button>
@@ -22,7 +22,8 @@
 					<div class="col-sm-5">
 						<div class="form-group">
 				      <label>Th. Pelajaran</label>
-				      <select class="form-control-sm select2" style="width: 100%;" name="th_pelajaran">
+				      <select class="form-control-sm select2" style="width: 100%;" name="th_pelajaran" required>
+				        <option value="">--Pilih Th. Pelajaran</option>
 				        <option value="2023/2024">2023/2024</option>
 				        <option value="2024/2025">2024/2025</option>
 				        <option value="2025/2026">2025/2026</option>
@@ -30,7 +31,8 @@
 				    </div>
 						<div class="form-group">
 				      <label>Pilih Nama Guru</label>
-				      <select class="form-control-sm select2" style="width: 100%;" name="nipy">
+				      <select class="form-control-sm select2" style="width: 100%;" name="nipy" required>
+				      	<option>--Pilih Guru--</option>
 				      	<?php 
 				      	$queryu = mysqli_query($koneksi, "select * from tb_users group by nipy asc");
 				      	while ($du = mysqli_fetch_array($queryu)) {
@@ -43,7 +45,7 @@
 					<div class="col-sm-5">
 						<div class="form-group">
 				      <label>Pilih Kelas</label>
-				      <select class="form-control-sm select2" style="width: 100%;" name="kelas">
+				      <select class="form-control-sm select2" style="width: 100%;" name="kelas" required>
 				      	<?php 
 				      	$queryk = mysqli_query($koneksi, "select * from tb_kelas");
 				      	while ($dk = mysqli_fetch_array($queryk)) {
@@ -54,7 +56,7 @@
 				    </div>
 				    <div class="form-group">
 				      <label>Pilih Kompetensi Keahlian</label>
-				      <select class="form-control-sm select2" style="width: 100%;" name="komp_keahlian">
+				      <select class="form-control-sm select2" style="width: 100%;" name="komp_keahlian" required>
 				      	<?php 
 				      	$queryj = mysqli_query($koneksi, "select * from tb_jurusan");
 				      	while ($dj = mysqli_fetch_array($queryj)) {
@@ -105,25 +107,35 @@ if (isset($_POST['save_walikelas'])) {
 	$komp_keahlian = $_POST['komp_keahlian'];
 	$pkelas = $_POST['pkelas'];
 
-	$query = mysqli_query($koneksi, "insert into tb_walikelas (id_walikelas, th_pelajaran, nipy, kelas, komp_keahlian, pkelas) values('','$th_pelajaran', '$nipy','$kelas','$komp_keahlian','$pkelas')");
+	if ($pkelas) {
 
-	if ($query) {
-		echo "<script>
-		alert('DATA BERHASIL DISIMPAN');
-		document.location.href = 'admin?view=walikelas';
-		</script>";
+		$query = mysqli_query($koneksi, "insert into tb_walikelas (id_walikelas, th_pelajaran, nipy, kelas, komp_keahlian, pkelas) values('','$th_pelajaran', '$nipy','$kelas','$komp_keahlian','$pkelas')");
+
+			if ($query) {
+				echo "<script>
+				alert('DATA BERHASIL DISIMPAN');
+				document.location.href = 'admin?view=walikelas';
+				</script>";
+			}else{
+				echo "<script>
+				alert('DATA GAGAL DISIMPAN');
+				document.location.href = 'admin?view=walikelas';
+				</script>";
+			}
+
 	}else{
-		echo "<script>
-		alert('DATA GAGAL DISIMPAN');
-		document.location.href = 'admin?view=walikelas';
-		</script>";
+				echo "<script>
+				alert('PEMBAGIAN KELAS HARUS DIISI');
+				document.location.href = 'admin?view=walikelas';
+				</script>";
 	}
+	
 }
 ?>
 <!-- Table Walikelas -->
 <div class="card">
 	<div class="card-header bg-danger">
-		<h3 class="card-title">TABLE WALIKELAS</h3>
+		<h3 class="card-title">DAFTAR KELAS & WALIKELAS</h3>
 		<div class="form-group float-right">
 			<select class="form-control-sm select2" style="width:100%" id="th_pelajaran1">
 				<option value="">Pilih Th. Pelajaran</option>

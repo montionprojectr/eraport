@@ -232,7 +232,7 @@ if(isset($_POST["simpan_perubahan"])){
  $th_pelajaran = $_POST["th_pelajaran"];
 
  
- $update= "UPDATE tb_siswa SET  nis='$nis', nisn='$nisn',nama='$nama', kelas='$kelas',jurusan='$jurusan',pemkelas='$pemkelas',ttl='$ttl', kelamin='$kelamin',agama='$agama', status='$status', anak_ke='$anak_ke', alamat_siswa='$alamat_siswa', hp_siswa='$hp_siswa', asal_sekolah='$asal_sekolah',tgl_terima='$tgl_terima', ayah='$ayah',ibu='$ibu',alamat_ortu='$alamat_ortu',hp_ortu='$hp_ortu',kerja_ayah='$kerja_ayah',kerja_ibu='$kerja_ibu', nama_wali='$nama_wali',alamat_wali='$alamat_wali',hp_wali='$hp_wali',kerja_wali='$kerja_wali', semester='$semester', th_pelajaran='$th_pelajaran' WHERE id='$id'";
+ $update= "UPDATE tb_siswa SET  nis='$nis', nisn='$nisn',nama='$nama',ttl='$ttl', kelamin='$kelamin',agama='$agama', status='$status', anak_ke='$anak_ke', alamat_siswa='$alamat_siswa', hp_siswa='$hp_siswa', asal_sekolah='$asal_sekolah',tgl_terima='$tgl_terima', ayah='$ayah',ibu='$ibu',alamat_ortu='$alamat_ortu',hp_ortu='$hp_ortu',kerja_ayah='$kerja_ayah',kerja_ibu='$kerja_ibu', nama_wali='$nama_wali',alamat_wali='$alamat_wali',hp_wali='$hp_wali',kerja_wali='$kerja_wali', semester='$semester', th_pelajaran='$th_pelajaran' WHERE id='$id'";
   mysqli_query($koneksi, $update);
  $leger= "UPDATE tb_leger SET  nis='$nis',nama='$nama', kelas='$kelas',jurusan='$jurusan',pemkelas='$pemkelas',semester='$semester', th_pelajaran='$th_pelajaran'  WHERE id='$id'";
  mysqli_query($koneksi, $leger);

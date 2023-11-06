@@ -37,8 +37,9 @@
 				<div class="card-body bg-secondary">
 					<?php while ($row = mysqli_fetch_array($query)){
 						if ($row['kelas'] == $value) { 
-$sql = mysqli_query($koneksi, "select count(id) as id from tb_siswa where kelas = '".$row['kelas']."' and jurusan = '".$row['komp_keahlian']."' and pemkelas = '".$row['pkelas']."' and th_pelajaran = '".$row['th_pelajaran']."'");
-					$dsql = mysqli_fetch_array($sql);
+							$sql1 = mysqli_query($koneksi, "select count(x.id) as id FROM tb_siswa_kelas X INNER JOIN tb_siswa Y ON y.nis = x.nis where x.kelas = '".$value."' and x.jurusan = '".$row['komp_keahlian']."' and x.pemkelas = '".$row['pkelas']."' and x.th_pelajaran = '".$row['th_pelajaran']."'");
+// $sql = mysqli_query($koneksi, "select count(id) as id from tb_siswa where kelas = '".$value."' and jurusan = '".$row['komp_keahlian']."' and pemkelas = '".$row['pkelas']."' and th_pelajaran = '".$row['th_pelajaran']."'");
+					$dsql = mysqli_fetch_array($sql1);
 							?>
 							<a href="admin?view=data_kelas&kelas=<?php echo $row['kelas']."&jurusan=".$row['komp_keahlian']."&pkelas=".$row['pkelas']."&thpel=".$row['th_pelajaran'];?>">
 							<div class="info-box bg-dark">

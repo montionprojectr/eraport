@@ -153,7 +153,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-                WALIKELAS
+                KELAS & WALIKELAS
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -311,6 +311,12 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
             case 'data_kelas':
               require_once('view/operator/home_kelas.php');
               break;
+            case 'kelas_mapelpilihan':
+              require_once('view/operator/kelas_mapelpilihan.php');
+              break;
+            case 'data_siswa_pilihan':
+              require_once('view/operator/data_siswa_pilihan.php');
+              break;
             
             default:
               require_once('view/error_404.php');
@@ -344,30 +350,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 <!-- ./wrapper -->
 
 <!-- Dynamic_form -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script src="plugins/jquery.replicate.js"></script>
-
-<script>
-    const selector = '[data-x-wrapper]';
-    let options = {
-        disableNaming: '[data-disable-naming]',
-        wrapper: selector,
-        group: '[data-x-group]',
-        addBtn: '[data-add-btn]',
-        removeBtn: '[data-remove-btn]'
-    };
-
-    $(selector).replicate(options);
-
-    const form = $('#formID');
-
-    $(form).on('submit', (e) => {
-        e.preventDefault();
-
-        console.log($(e.target).serializeArray())
-    })
-
-</script>
+<!-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> -->
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
@@ -477,40 +460,63 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
         }
     });
 
-    $("#kode_mapel").change(function(){
+    $("#kode_mapel, #th_pelajaran1").change(function(){
       var kode_mapel = $("#kode_mapel").val();
+      var th_pelajaran1 = $("#th_pelajaran1").val();
         $.ajax({
           type: 'POST',
             url: "view/operator/input_get_gurumapel.php",
-            data: {kode_mapel: kode_mapel},
+            data: {kode_mapel: kode_mapel, th_pelajaran1: th_pelajaran1},
             cache: false,
             success: function(msg){
-              $("#kelas_dan_komp").html(msg);
+              $("#kelaskomp").html(msg);
             }
         });
       });
 
+    $("#semester, #th_pelajarana, #kode_mapelsub").change(function(){
+      var semester = $("#semester").val();
+      var th_pelajarana = $("#th_pelajarana").val();
+      var kode_mapelsub = $("#kode_mapelsub").val();
+        $.ajax({
+          type: 'POST',
+            url: "view/operator/input_guru_mapelpil.php",
+            data: {semester: semester, th_pelajarana: th_pelajarana, kode_mapelsub: kode_mapelsub},
+            cache: false,
+            success: function(msg){
+              $("#nama_kelaspil").html(msg);
+            }
+        });
+      });
+
+    
+    $("#semester, #th_pelajaran").change(function(){
+      var th_pelajaran = $("#th_pelajaran").val();
+      var semester = $("#semester").val();
+        $.ajax({
+          type: 'POST',
+            url: "view/operator/get_table_kelaspil.php",
+            data: {th_pelajaran: th_pelajaran, semester: semester},
+            cache: false,
+            success: function(msg){
+              $("#show-tablekelas-pil").html(msg);
+            }
+        });
+      });
+
+
   });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      $(".add-more").click(function(){ 
+          var html = $(".copy").html();
+          $(".after-add-more").after(html);
+      });
+      $("body").on("click",".remove",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+    });
 </script>
 </body>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1VDDWMRSTH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1VDDWMRSTH');
-</script><script>
-try {
-  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
-    return true;
-  }).catch(function(e) {
-    var carbonScript = document.createElement("script");
-    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
-    carbonScript.id = "_carbonads_js";
-    document.getElementById("carbon-block").appendChild(carbonScript);
-  });
-} catch (error) {
-  console.log(error);
-}
-</script>
 </html>

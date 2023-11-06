@@ -7,6 +7,7 @@
 			<th>Nama Guru</th>
 			<th>Mapel</th>
 			<th>Kelas</th>
+			<th>Delete</th>
 		</tr>		
 	</thead>
 	<tbody>	
@@ -45,6 +46,9 @@
 						</td>
 						<td>
 							<?php echo $v->kelas . " " . $v->komp; ?>
+						</td>
+						<td>
+							<a href="" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
 						</td>
 				</tr>
 				<?php }

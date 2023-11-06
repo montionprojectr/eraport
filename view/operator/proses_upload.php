@@ -59,7 +59,7 @@ for ($i=2; $i<=$jumlah_baris; $i++){
  
  
 //mengecek jika kolom data pada template excel ada yang kosong
-$cari = mysqli_num_rows(mysqli_query($koneksi,"SELECT nis FROM tb_siswa WHERE nis='$nis'"));
+$cari = mysqli_num_rows(mysqli_query($koneksi,"select nis from tb_siswa where nis='$nis'"));
 
  
 if (empty($nis)){
@@ -79,13 +79,114 @@ if (empty($nis)){
 
 
  }else{
+        $class = $kelas." ".$jurusan." ".$pemkelas;
         //input data ke database (table datasiswa)
-        $query=mysqli_query($koneksi,"INSERT into tb_siswa (nis,nisn,nama,kelas,jurusan,pemkelas,th_pelajaran,ttl,kelamin,agama,status,anak_ke,alamat_siswa,hp_siswa,asal_sekolah,tgl_terima,ayah,ibu,alamat_ortu,hp_ortu,kerja_ayah,kerja_ibu,nama_wali,alamat_wali,hp_wali,kerja_wali)  values('$nis','$nisn','$nama','$kelas','$jurusan','$pemkelas','$th_pelajaran','$ttl','$kelamin','$agama','$status','$anak_ke','$alamat_siswa','$hp_siswa','$asal_sekolah','$tgl_terima','$ayah','$ibu','$alamat_ortu','$hp_ortu','$kerja_ayah','$kerja_ibu','$nama_wali','$alamat_wali','$hp_wali','$kerja_wali')");
+        $query=mysqli_query($koneksi,"INSERT into tb_siswa (nis,nisn,nama,kel,kelas,jurusan,pemkelas,th_pelajaran,ttl,kelamin,agama,status,anak_ke,alamat_siswa,hp_siswa,asal_sekolah,tgl_terima,ayah,ibu,alamat_ortu,hp_ortu,kerja_ayah,kerja_ibu,nama_wali,alamat_wali,hp_wali,kerja_wali)  values('$nis','$nisn','$nama','$class','$kelas','$jurusan','$pemkelas','$th_pelajaran','$ttl','$kelamin','$agama','$status','$anak_ke','$alamat_siswa','$hp_siswa','$asal_sekolah','$tgl_terima','$ayah','$ibu','$alamat_ortu','$hp_ortu','$kerja_ayah','$kerja_ibu','$nama_wali','$alamat_wali','$hp_wali','$kerja_wali')");
     
        $query=mysqli_query($koneksi,"INSERT into tb_leger (nis,nama,kelas,jurusan,pemkelas,th_pelajaran)  values('$nis','$nama','$kelas','$jurusan',$pemkelas,'$th_pelajaran')");
- }
 
-     
+       if ($query) {
+
+            $insertkelas = mysqli_query($koneksi, "insert tb_siswa_kelas(nis, kelas, jurusan, pemkelas, th_pelajaran) values('$nis','$kelas','$jurusan','$pemkelas','$th_pelajaran')");
+
+            if ($kelas == 'X') {
+                
+               $sqla = mysqli_query($koneksi, "select kelas, kode_mapel, semester from tb_mapel inner join tb_semester where kelas = 'X' and kode_mapel not like '%dd%' group by kode_mapel, semester");
+               $da = mysqli_num_rows($sqla);
+               while ($dt = mysqli_fetch_array($sqla)) {
+                    $insert = mysqli_query($koneksi, "insert into tb_penilaian(th_pelajaran, nis, kelas, komp_keahlian, pkelas, kode_mapel, semester) values('$th_pelajaran','$nis', '$kelas','$jurusan','$pemkelas','".$dt['kode_mapel']."','".$dt['semester']."')");
+               }
+
+               //1. kondisi jika jurusan PPLG
+               if ($jurusan == 'PPLG') {
+                    $sqla = mysqli_query($koneksi, "select kelas, kode_mapel, semester from tb_mapel inner join tb_semester where kelas = 'X' and kode_mapel = 'dd_pplg' group by semester");
+                       $da = mysqli_num_rows($sqla);
+                       while ($dt = mysqli_fetch_array($sqla)) {
+                            $insert = mysqli_query($koneksi, "insert into tb_penilaian(th_pelajaran, nis, kelas, komp_keahlian, pkelas, kode_mapel, semester) values('$th_pelajaran','$nis', '$kelas','$jurusan','$pemkelas','".$dt['kode_mapel']."','".$dt['semester']."')");
+                       }
+                          
+                //2. kondisi jika jurusan TE
+               }else if ($jurusan == 'TE') {
+                    $sqla = mysqli_query($koneksi, "select kelas, kode_mapel, semester from tb_mapel inner join tb_semester where kelas = 'X' and kode_mapel = 'dd_te' group by semester");
+                       $da = mysqli_num_rows($sqla);
+                       while ($dt = mysqli_fetch_array($sqla)) {
+                            $insert = mysqli_query($koneksi, "insert into tb_penilaian(th_pelajaran, nis, kelas, komp_keahlian, pkelas, kode_mapel, semester) values('$th_pelajaran','$nis', '$kelas','$jurusan','$pemkelas','".$dt['kode_mapel']."','".$dt['semester']."')");
+
+                       }
+    
+                //3. kondisi jika jurusan TSM
+               }else if ($jurusan == 'TSM') {
+                    $sqla = mysqli_query($koneksi, "select kelas, kode_mapel, semester from tb_mapel inner join tb_semester where kelas = 'X' and kode_mapel = 'dd_oto' group by semester");
+                       $da = mysqli_num_rows($sqla);
+                       while ($dt = mysqli_fetch_array($sqla)) {
+                           $insert = mysqli_query($koneksi, "insert into tb_penilaian(th_pelajaran, nis, kelas, komp_keahlian, pkelas, kode_mapel, semester) values('$th_pelajaran','$nis', '$kelas','$jurusan','$pemkelas','".$dt['kode_mapel']."','".$dt['semester']."')");
+                       }
+   
+                //4. kondisi jika jurusan TKR
+               }else if ($jurusan == 'TKR') {
+                    $sqla = mysqli_query($koneksi, "select kelas, kode_mapel, semester from tb_mapel inner join tb_semester where kelas = 'X' and kode_mapel = 'dd_oto' group by semester");
+                       $da = mysqli_num_rows($sqla);
+                       while ($dt = mysqli_fetch_array($sqla)) {
+                           $insert = mysqli_query($koneksi, "insert into tb_penilaian(th_pelajaran, nis, kelas, komp_keahlian, pkelas, kode_mapel, semester) values('$th_pelajaran','$nis', '$kelas','$jurusan','$pemkelas','".$dt['kode_mapel']."','".$dt['semester']."')");
+                       }
+   
+                //5. kondisi jika jurusan TMI
+               }else if ($jurusan == 'TMI') {
+                    $sqla = mysqli_query($koneksi, "select kelas, kode_mapel, semester from tb_mapel inner join tb_semester where kelas = 'X' and kode_mapel = 'dd_tmi' group by semester");
+                       $da = mysqli_num_rows($sqla);
+                       while ($dt = mysqli_fetch_array($sqla)) {
+                           $insert = mysqli_query($koneksi, "insert into tb_penilaian(th_pelajaran, nis, kelas, komp_keahlian, pkelas, kode_mapel, semester) values('$th_pelajaran','$nis', '$kelas','$jurusan','$pemkelas','".$dt['kode_mapel']."','".$dt['semester']."')");
+                       }
+   
+               }/*tutup kondisi $jurusan*/
+            
+            /*Tutup if($kelas == 'X')*/
+            }else if($kelas == 'XI'){
+                $sqla = mysqli_query($koneksi, "select kelas, kode_mapel, semester from tb_mapel inner join tb_semester where kelas = 'XI' and kode_mapel not like '%kons%' and kode_mapel not like 'mpp' group by kode_mapel, semester");
+                $da = mysqli_num_rows($sqla);
+                   while ($dt = mysqli_fetch_array($sqla)) {
+                        $insert = mysqli_query($koneksi, "insert into tb_penilaian(th_pelajaran, nis, kelas, komp_keahlian, pkelas, kode_mapel, semester) values('$th_pelajaran','$nis', '$kelas','$jurusan','$pemkelas','".$dt['kode_mapel']."','".$dt['semester']."')");
+                   }
+
+                /*membuat kondisi jika $jurusan == PPLG */
+                if ($jurusan == 'PPLG') {
+                    $sqla = mysqli_query($koneksi, "select kelas, kode_mapel, semester from tb_mapel inner join tb_semester where kelas = 'XI' and kode_mapel = 'kons_pplg' group by semester");
+                       $da = mysqli_num_rows($sqla);
+                       while ($dt = mysqli_fetch_array($sqla)) {
+                            $insert = mysqli_query($koneksi, "insert into tb_penilaian(th_pelajaran, nis, kelas, komp_keahlian, pkelas, kode_mapel, semester) values('$th_pelajaran','$nis', '$kelas','$jurusan','$pemkelas','".$dt['kode_mapel']."','".$dt['semester']."')");
+                       }
+                    
+                }else if($jurusan == 'TE'){
+                    $sqla = mysqli_query($koneksi, "select kelas, kode_mapel, semester from tb_mapel inner join tb_semester where kelas = 'XI' and kode_mapel = 'kons_te' group by semester");
+                       $da = mysqli_num_rows($sqla);
+                       while ($dt = mysqli_fetch_array($sqla)) {
+                            $insert = mysqli_query($koneksi, "insert into tb_penilaian(th_pelajaran, nis, kelas, komp_keahlian, pkelas, kode_mapel, semester) values('$th_pelajaran','$nis', '$kelas','$jurusan','$pemkelas','".$dt['kode_mapel']."','".$dt['semester']."')");
+                       }
+                }else if($jurusan == 'TSM'){
+                    $sqla = mysqli_query($koneksi, "select kelas, kode_mapel, semester from tb_mapel inner join tb_semester where kelas = 'XI' and kode_mapel = 'kons_tsm' group by semester");
+                       $da = mysqli_num_rows($sqla);
+                       while ($dt = mysqli_fetch_array($sqla)) {
+                            $insert = mysqli_query($koneksi, "insert into tb_penilaian(th_pelajaran, nis, kelas, komp_keahlian, pkelas, kode_mapel, semester) values('$th_pelajaran','$nis', '$kelas','$jurusan','$pemkelas','".$dt['kode_mapel']."','".$dt['semester']."')");
+                       }
+                }else if($jurusan == 'TKR'){
+                    $sqla = mysqli_query($koneksi, "select kelas, kode_mapel, semester from tb_mapel inner join tb_semester where kelas = 'XI' and kode_mapel = 'kons_tkr' group by semester");
+                       $da = mysqli_num_rows($sqla);
+                       while ($dt = mysqli_fetch_array($sqla)) {
+                            $insert = mysqli_query($koneksi, "insert into tb_penilaian(th_pelajaran, nis, kelas, komp_keahlian, pkelas, kode_mapel, semester) values('$th_pelajaran','$nis', '$kelas','$jurusan','$pemkelas','".$dt['kode_mapel']."','".$dt['semester']."')");
+                       }
+                }else if($jurusan == 'TMI'){
+                    $sqla = mysqli_query($koneksi, "select kelas, kode_mapel, semester from tb_mapel inner join tb_semester where kelas = 'XI' and kode_mapel = 'kons_tmi' group by semester");
+                       $da = mysqli_num_rows($sqla);
+                       while ($dt = mysqli_fetch_array($sqla)) {
+                            $insert = mysqli_query($koneksi, "insert into tb_penilaian(th_pelajaran, nis, kelas, komp_keahlian, pkelas, kode_mapel, semester) values('$th_pelajaran','$nis', '$kelas','$jurusan','$pemkelas','".$dt['kode_mapel']."','".$dt['semester']."')");
+                       }
+                }
+
+            }/*Tutup else if($kelas == 'XI')*/
+
+        } /*Tutup if ($query)*/
+
+ }
                                            
 $berhasil++;
    

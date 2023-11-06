@@ -4,7 +4,8 @@ include "../../koneksi.php";
   $nipy = $_POST['nipy'];
 
   $query = mysqli_query($koneksi, "select * from tb_guru_mapel x inner join tb_mapel y on y.kode_mapel = x.kode_mapel where nipy = '$nipy' and th_pelajaran = '$th_pelajaran' group by id_guru_mapel");
-  while ($data = mysqli_fetch_array($query)) { 
+  while ($data = mysqli_fetch_array($query)) {
+    
     // where before = CONCAT_WS(' ', kelas, komp_keahlian) = '".$data['kelas_dan_komp']."'
     $kelas = mysqli_query($koneksi, "select kelas, komp_keahlian, concat_ws(' ', kelas, komp_keahlian) as kel, pkelas from tb_walikelas where kelas = '".$data['kelas']."' and komp_keahlian = '".$data['komp']."'");
       
@@ -65,8 +66,54 @@ include "../../koneksi.php";
     </form>
     </div>
     <?php
-      
-    }
+      }
      
   }
+
+   // where before = CONCAT_WS(' ', kelas, komp_keahlian) = '".$data['kelas_dan_komp']."'
+    $klspil = mysqli_query($koneksi, "select * from tb_guru_mapel x inner join tb_mapelsub y on y.kode_mapelsub = x.kode_mapelsub where th_pelajaran = '$th_pelajaran' and nipy = '$nipy' group by nipy asc");
+    while ($dkelas = mysqli_fetch_array($klspil)) {
+      // if ($dkelas['komp_keahlian'] == 'PPLG') {
+      //   $bg = 'bg-warning';
+      // }else if ($dkelas['komp_keahlian'] == 'TE') {
+      //   $bg = 'bg-danger';
+      // }else if ($dkelas['komp_keahlian'] == 'TSM') {
+      //   $bg = 'bg-success';
+      // }else if ($dkelas['komp_keahlian'] == 'TKR') {
+      //   $bg = 'bg-primary';
+      // }else if ($dkelas['komp_keahlian'] == 'TMI') {
+      //   $bg = 'bg-info';
+      // }
+      ?>
+      <div class="col-lg-3 col-6">
+        <form action="?page=buka_halaman_kelaspil" method="post">
+      <!-- small box -->
+      <div class="small-box bg-secondary">
+        <div class="inner">
+          <div class="form-group">
+            <b>MAPEL: <?= $dkelas['nama_submapel'] ?></b>  
+          </div>
+          <div class="form-group">
+            <input type="text" name="nipy" value="<?= $dkelas['nipy']; ?>">
+            <input type="text" name="th_pelajaran" value="<?= $dkelas['th_pelajaran']; ?>">
+            <input type="text" name="kode_mapel" value="<?= $dkelas['kode_mapel']; ?>">
+            <input type="text" name="kode_mapelsub" value="<?= $dkelas['kode_mapelsub']; ?>">
+          </div>
+          <div class="form-group">
+            <label class="text-16">Pilih Semester</label>
+            <select class="form-control form-control-sm select2" style="width: 100%;" name="semester">
+              <option value="Ganjil">Semester 1</option>
+              <option value="Genap">Semester 2</option>
+            </select>
+          </div>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+        <a href="#" class="small-box-footer" onclick="$(this).closest('form').submit()" type="submit"  name="buka">Buka halaman <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </form>
+    </div>
+    <?php
+}
   ?>

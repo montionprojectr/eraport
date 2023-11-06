@@ -1,5 +1,6 @@
 <?php 
 require_once("../../koneksi.php");
+echo "<option value=''>Pilih Data</option>";
 $no=1;
 $querym = mysqli_query($koneksi, "select * from tb_mapel");
 while ($dm = mysqli_fetch_array($querym)) {
