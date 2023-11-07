@@ -287,9 +287,6 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
             case 'update_guru':
               require_once('view/operator/update/update_guru.php');
               break;
-            case 'update_guru_mapel':
-              require_once('view/operator/update/update_guru_mapel_page.php');
-              break;
             case 'leger':
               require_once('view/operator/leger.php');
               break;

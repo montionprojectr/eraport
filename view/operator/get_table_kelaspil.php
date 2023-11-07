@@ -42,7 +42,7 @@
 				<td><?= $v->nama_kelaspil ?></td>
 				<td>
 					<a href="?view=data_siswa_pilihan&id=<?= $v->id_kelasmappil ?>" class="btn btn-primary"><i class="fas fa-user"></i> Data Siswa</a>
-					<a href="view/operator/del/delete_kelasmappil.php?id=<?= $v->nama_kelaspil; ?>" onclick="return confirm('Yakin Hapus Kelas <?= $v->nama_kelaspil; ?>?')" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+					<a href="view/operator/del/delete_kelasmappil.php?id=<?= $v->id_kelasmappil; ?>" onclick="return confirm('Yakin Hapus Kelas <?= $v->nama_kelaspil; ?>?')" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
 				</td>
 				</tr>			
 				<?php }

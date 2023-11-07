@@ -17,71 +17,71 @@ $row = mysqli_fetch_array($query);
 	<div class="card-header bg-danger">
 		<h3 class="card-title">PROFIL SEKOLAH</h3>
 	</div>
-	<div class="card-body bg-dark">
+	<div class="card-body light">
 		<form action="" method="post">
 			<div class="row">
 				<div class="col-sm-6">
 					<!-- form-group -->
 					<div class="form-group">
 						<label>Nama Sekolah :</label>
-						<input type="text" name="nama_sekolah" value="<?= $row['nama_sekolah'] ?>" class="form-control bg-info">
+						<input type="text" name="nama_sekolah" value="<?= $row['nama_sekolah'] ?>" class="form-control bg-gray">
 					</div>
 					<!-- form-group -->
 					<div class="form-group">
 						<label>NPSN :</label>
-						<input type="text" name="npsn" value="<?= $row['npsn'] ?>" class="form-control bg-info">
+						<input type="text" name="npsn" value="<?= $row['npsn'] ?>" class="form-control bg-gray">
 					</div>
 					<!-- form-group -->
 					<div class="form-group">
 						<label>NSS :</label>
-						<input type="text" name="nss" value="<?= $row['nss'] ?>" class="form-control bg-info">
+						<input type="text" name="nss" value="<?= $row['nss'] ?>" class="form-control bg-gray">
 					</div>
 					<!-- form-group -->
 					<div class="form-group">
 						<label>Alamat :</label>
-						<input type="text" name="alamat" value="<?= $row['alamat'] ?>" class="form-control bg-info">
+						<input type="text" name="alamat" value="<?= $row['alamat'] ?>" class="form-control bg-gray">
 					</div>
 					<!-- form-group -->
 					<div class="form-group">
 						<label>Kelurahan :</label>
-						<input type="text" name="kelurahan" value="<?= $row['kel'] ?>" class="form-control bg-info">
+						<input type="text" name="kelurahan" value="<?= $row['kel'] ?>" class="form-control bg-gray">
 					</div>
 					<!-- form-group -->
 					<div class="form-group">
 						<label>Kecamatan :</label>
-						<input type="text" name="kecamatan" value="<?= $row['kec'] ?>" class="form-control bg-info">
+						<input type="text" name="kecamatan" value="<?= $row['kec'] ?>" class="form-control bg-gray">
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<!-- form-group -->
 					<div class="form-group">
 						<label>Kabupaten :</label>
-						<input type="text" name="kabupaten" value="<?= $row['kab'] ?>" class="form-control bg-info">
+						<input type="text" name="kabupaten" value="<?= $row['kab'] ?>" class="form-control bg-gray">
 					</div>
 					<!-- form-group -->
 					<div class="form-group">
 						<label>Provinsi :</label>
-						<input type="text" name="provinsi" value="<?= $row['prov'] ?>" class="form-control bg-info">
+						<input type="text" name="provinsi" value="<?= $row['prov'] ?>" class="form-control bg-gray">
 					</div>
 					<!-- form-group -->
 					<div class="form-group">
 						<label>Web Site :</label>
-						<input type="text" name="website" value="<?= $row['web'] ?>" class="form-control bg-info">
+						<input type="text" name="website" value="<?= $row['web'] ?>" class="form-control bg-gray">
 					</div>
 					<!-- form-group -->
 					<div class="form-group">
 						<label>Email :</label>
-						<input type="text" name="email" value="<?= $row['email'] ?>" class="form-control bg-info">
+						<input type="text" name="email" value="<?= $row['email'] ?>" class="form-control bg-gray">
 					</div>
 					<!-- form-group -->
 					<div class="form-group">
 						<label>Nama Kepala Sekolah :</label>
-						<input type="text" name="nama_ks" value="<?= $row['nama_ks'] ?>" class="form-control bg-info">
+						<input type="text" name="nama_ks" value="<?= $row['nama_ks'] ?>" class="form-control bg-gray">
 					</div>
 					<!-- form-group -->
 					<div class="form-group">
 						<label>NIPY :</label>
-						<input type="text" name="nipy" value="<?= $row['nipy'] ?>" class="form-control bg-info">
+						<input type="text" name="nipy" value="<?= $row['nipy'] ?>" class="form-control bg-gray">
 					</div>	
 				</div>
 				<div class="col-sm-2">

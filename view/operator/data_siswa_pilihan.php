@@ -42,12 +42,14 @@ $d = mysqli_fetch_array($query);
 									$no=1;
 									$sql = mysqli_query($koneksi, "select x.nis, nama, x.kelas from tb_siswa_kelas x inner join tb_siswa y on y.nis = x.nis where x.kelas = 'XI' group by x.nis asc");
 									while ($data = mysqli_fetch_array($sql)) { 
-										$cek = mysqli_query($koneksi, "select * from tb_ruangsiswa_mappil where th_pelajaran = '".$d['th_pelajaran']."' and semester = '".$d['semester']."' and kode_mapelsub = '".$d['kode_mapelsub']."'");
+										$cek = mysqli_query($koneksi, "select * from tb_ruangsiswa_mappil where th_pelajaran = '".$d['th_pelajaran']."' and semester = '".$d['semester']."' and kode_mapelsub = '".$d['kode_mapelsub']."' and nis = '".$data['nis']."'");
 										$dcek = mysqli_fetch_array($cek);
-											if ($data['nis'] != $dcek['nis']) {
+											if ($dcek['nis'] != $data['nis']) {
 												?>
 										<option value="<?= $data['nis']." ".$data['kelas']; ?>"><?= $no++."). ".$data['nis']." :: ".$data['nama']; ?></option>
 									<?php
+											}else if($data['nis'] != $dcek['nis']){
+
 											}
 										 }
 									?>

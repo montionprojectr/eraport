@@ -1,11 +1,12 @@
 <table id="examp" class="table table-sm table-bordered table-striped">
 	<thead>
 		<tr>
-			<th>Action</th>
+			<th>No.</th>
 			<th>Th. Pelajaran</th>
 			<th>NIPY</th>
 			<th>Nama Guru</th>
 			<th>Mapel</th>
+			<th>No.</th>
 			<th>Kelas</th>
 			<th>Delete</th>
 		</tr>		
@@ -22,14 +23,14 @@
 		while ($row = mysqli_fetch_object($query)) { 
 			$arr[$row->nama_lengkap][] = $row;
 		}
-
+		$no = 1; $nom=1;
 		foreach ($arr as $key => $val) {
 			foreach ($val as $k => $v) { ?>
 				<tr>
 					<?php 
 					if ( $k == 0) { ?>
 						<td rowspan="<?= count($val); ?>">
-							<a href="?view=update_guru_mapel&id=<?= $v->nipy; ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+							<?= $no++;  ?>
 						</td>
 						<td rowspan="<?= count($val); ?>">
 							<?php echo $v->th_pelajaran; ?>
@@ -44,11 +45,12 @@
 						<td>
 							<?php echo $v->nama_matapelajaran; ?>
 						</td>
+						<td><?= $nom++; ?></td>
 						<td>
 							<?php echo $v->kelas . " " . $v->komp; ?>
 						</td>
 						<td>
-							<a href="" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+							<a href="view/operator/del/delete_guru_mapel.php?idgrmpl=<?= $v->id_guru_mapel; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data mapel <?= $v->nama_matapelajaran." Kelas: ".$v->kelas." ".$v->komp." Milik Bpk/Ibu: ".$v->nama_lengkap; ?>')"><i class="fas fa-trash"></i> Delete</a>
 						</td>
 				</tr>
 				<?php }

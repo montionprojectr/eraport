@@ -104,7 +104,7 @@ if (isset($_POST['view_simpan_import'])) {
 						<h3 class="card-title">PRIVIEW BEFORE IMPOT EXCEL</h3>
 					</div>
 					<div class="card-body">
-						<div class="form-group">
+						<div class="form-group" hidden>
 							<input type="text" name="th_pelajaran" value="<?= $th_pelajaran; ?>">
 							<input type="text" name="kelas" value="<?= $kelas; ?>">
 							<input type="text" name="komp_keahlian" value="<?= $komp_keahlian; ?>">
@@ -112,7 +112,7 @@ if (isset($_POST['view_simpan_import'])) {
 							<input type="text" name="kode_mapel" value="<?= $kode_mapel; ?>">
 							<input type="text" name="semester" value="<?= $semester; ?>">
 						</div>
-						<div class="form-group">
+						<div class="form-group" hidden>
 				<!-- Disini kita buat input type hidden yg isinya adalah nama file excel yg diupload
         ini tujuannya agar ketika import, kita memilih file yang tepat (sesuai yg diupload) -->
         		<input type='text' name='namafile' class="form-control" value='<?= $nama_file_new ?>'>
@@ -250,6 +250,7 @@ if (isset($_POST['view_simpan_import'])) {
 	$asas = $_POST['asas'];
 	$cpm = $_POST['cpm'];
 	$cpp = $_POST['cpp'];
+	$namafile = $_POST['namafile'];
 
 	$count = count($nis);
 	for ($i=0; $i < $count ; $i++) { 
