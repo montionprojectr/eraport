@@ -6,7 +6,7 @@
 	  </ol>
   </div><!-- /.col -->
 </div><!-- /.row -->
-<div class="card collapsed-card">
+<!-- <div class="card collapsed-card">
 	<div class="card-header  bg-danger">
 		<h4 class="card-title">INPUT DATA MATA PELAJARAN</h4>
 		<div class="card-tools">
@@ -17,11 +17,11 @@
 	<div class="card-body">
 		
 	</div>
-</div>
+</div> -->
 <!-- Table Mata Pelajaran -->
 <div class="card">
-	<div class="card-header bg-danger">
-		<h3 class="card-title">Data Mata Pelajaran</h3>
+	<div class="card-header bg-primary">
+		<h3 class="card-title">DAFTAR MATA PELAJARAN</h3>
 		<div class="form-group-sm float-right">
 			<form action="" method="post">
       <select class="form-control-sm select2" style="width: 100%;" name="kelas" id="mapel">

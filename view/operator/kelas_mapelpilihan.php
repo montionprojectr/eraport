@@ -13,14 +13,14 @@ $data = mysqli_fetch_array($query);
 <div class="row">
 	<div class="col-sm-12">
 		<div class="card">
-			<div class="card-header">
-				<h3 class="card-title">KELAS <a href=""><?= $data['nama_submapel'] ?></a></h3>
+			<div class="card-header bg-warning">
+				<h3 class="card-title">KELAS <?= $data['nama_submapel'] ?></h3>
 			</div>
 			<div class="card-body">
 			<div class="row">
 				<div class="col-sm-6">
-					<a href="?view=mapel_pilihan" class="btn btn-outline-danger">Kembali</a>
-					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+					<a href="?view=mapel_pilihan" class="btn btn-outline-primary">Kembali</a>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
             Buat kelas baru
           </button>
         </div>

@@ -82,7 +82,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-light bg elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-1">
     <!-- Brand Logo -->
     <a href="admin" class="brand-link">
       <img src="dist/img/lrapor.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -136,13 +136,13 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin?view=bk" class="nav-link <?= $_GET['view'] == 'bk' ? 'active' : ''; ?>">
+                <a href="admin?view=bk_page" class="nav-link <?= $_GET['view'] == 'bk_page' ? 'active' : ''; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>BK </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin?view=pembina" class="nav-link <?= $_GET['view'] == 'pembina' ? 'active' : ''; ?>">
+                <a href="admin?view=pembina_page" class="nav-link <?= $_GET['view'] == 'pembina_page' ? 'active' : ''; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pembina </p>
                 </a>
@@ -313,6 +313,15 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
               break;
             case 'data_siswa_pilihan':
               require_once('view/operator/data_siswa_pilihan.php');
+              break;
+            case 'preview_kelaspil':
+              require_once('view/operator/update/preview_kelaspil.php');
+              break;
+            case 'bk_page':
+              require_once('view/operator/bk_page.php');
+              break;
+            case 'pembina_page':
+              require_once('view/operator/pembina_page.php');
               break;
             
             default:

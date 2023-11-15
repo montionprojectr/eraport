@@ -81,7 +81,7 @@ if (isset($_POST['view_simpan_import'])) {
 	//mengambil waktu sekarang
 	$tgl_new = date('Ymd');
 	//membuat nama_file xlsx
-	$nama_file_new = 'data_guru' . $tgl_new . 'xls';
+	$nama_file_new = 'data_penilaian' . $tgl_new . 'xls';
 
 	//cek apakah nama file tersebut ada? jika ada di hapus atau unlink path
 	if (is_file('view/operator/file/' . $nama_file_new)) 
@@ -130,8 +130,6 @@ if (isset($_POST['view_simpan_import'])) {
 									<th width="50px">Sumatif_4</th>
 									<th width="70px">ASTS</th>
 									<th width="70px">ASAS</th>
-									<th width="70px">CPM</th>
-									<th width="70px">CPP</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -149,9 +147,7 @@ if (isset($_POST['view_simpan_import'])) {
 			        	$sumatif_4 = $row['H'];
 			        	$asts = $row['I'];
 			        	$asas = $row['J'];
-			        	$cpm = $row['K'];
-			        	$cpp = $row['L'];
-			        	if($nis == '' && $nama == '' && $kelas == '' && $formatif == '' && $sumatif_1 == '' && $sumatif_2 == '' && $sumatif_3 == '' && $sumatif_4 == '' && $asts == '' && $asas == '' && $cpm == '' && $cpp == '') continue;
+			        	if($nis == '' && $nama == '' && $kelas == '' && $formatif == '' && $sumatif_1 == '' && $sumatif_2 == '' && $sumatif_3 == '' && $sumatif_4 == '' && $asts == '' && $asas == '') continue;
 
 			        	if ($numrow > 1) {
 			        		$nis_n = (!empty($nis))? "" : " style='background: #E07171;'";
@@ -164,10 +160,8 @@ if (isset($_POST['view_simpan_import'])) {
 			        		$sumatif4_n = (!empty($sumatif_4))? "" : " style='background: #E07171;'";
 			        		$asts_n = (!empty($asts))? "" : " style='background: #E07171;'";
 			        		$asas_n = (!empty($asas))? "" : " style='background: #E07171;'";
-			        		$cpm_n = (!empty($cpm))? "" : " style='background: #E07171;'";
-			        		$cpp_n = (!empty($cpp))? "" : " style='background: #E07171;'";
 			        		// Jika salah satu data ada yang kosong
-			                if ($nis == '' or $nama == '' or $kelas == '' or $formatif == '' or $sumatif_1 == '' or $sumatif_2 == '' or $sumatif_3 == '' or $sumatif_4 == '' or $asts == '' or $asas == '' or $cpm == '' or $cpp == '') {
+			                if ($nis == '' or $nama == '' or $kelas == '' or $formatif == '' or $sumatif_1 == '' or $sumatif_2 == '' or $sumatif_3 == '' or $sumatif_4 == '' or $asts == '' or $asas == '') {
 			                    $kosong++; // Tambah 1 variabel $kosong
 			                } ?>
 			                	<tr>
@@ -201,13 +195,6 @@ if (isset($_POST['view_simpan_import'])) {
 			                		<td <?= $asas_n; ?>>
 			                			<input type="number" name="asas[]" class="form-control form-control-sm" value="<?= $asas; ?>">
 			                		</td>
-			                		<td <?= $cpm_n; ?>>
-			                			<textarea type="text" name="cpm[]" class="form-control form-control-sm" ><?= $cpm; ?></textarea>
-			                		</td>
-			                		<td <?= $cpp_n; ?>>
-			                			<textarea type="text" name="cpp[]" class="form-control form-control-sm"><?= $cpp; ?></textarea>
-			                		</td>
-
 			                	</tr>
 			   <?php }
 			   				$numrow++; // Tambah 1 setiap kali looping
@@ -248,14 +235,12 @@ if (isset($_POST['view_simpan_import'])) {
 	$sumatif_4 = $_POST['sumatif_4'];
 	$asts = $_POST['asts'];
 	$asas = $_POST['asas'];
-	$cpm = $_POST['cpm'];
-	$cpp = $_POST['cpp'];
 	$namafile = $_POST['namafile'];
 
 	$count = count($nis);
 	for ($i=0; $i < $count ; $i++) { 
 
-		$query = mysqli_query($koneksi, "update tb_penilaian set Formatif = '$formatif[$i]', Sumatif_1 = '$sumatif_1[$i]', Sumatif_2 = '$sumatif_1[$i]', Sumatif_3 = '$sumatif_3[$i]', Sumatif_4 = '$sumatif_4[$i]', ASTS = '$asts[$i]', ASAS = '$asas[$i]', cpm = '$cpm[$i]', cpp = '$cpp[$i]' where nis = '$nis[$i]'and th_pelajaran = '$th_pelajaran' and kelas = '$kelas' and komp_keahlian = '$komp_keahlian' and pkelas = '$pkelas' and kode_mapel = '$kode_mapel' and semester = '$semester'");	
+		$query = mysqli_query($koneksi, "update tb_penilaian set Formatif = '$formatif[$i]', Sumatif_1 = '$sumatif_1[$i]', Sumatif_2 = '$sumatif_1[$i]', Sumatif_3 = '$sumatif_3[$i]', Sumatif_4 = '$sumatif_4[$i]', ASTS = '$asts[$i]', ASAS = '$asas[$i]' where nis = '$nis[$i]'and th_pelajaran = '$th_pelajaran' and kelas = '$kelas' and komp_keahlian = '$komp_keahlian' and pkelas = '$pkelas' and kode_mapel = '$kode_mapel' and semester = '$semester'");	
 	}
 
 	if ($query) {

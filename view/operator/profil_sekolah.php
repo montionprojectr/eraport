@@ -14,10 +14,10 @@ $row = mysqli_fetch_array($query);
 ?>
 
 <div class="card">
-	<div class="card-header bg-danger">
+	<div class="card-header bg-primary">
 		<h3 class="card-title">PROFIL SEKOLAH</h3>
 	</div>
-	<div class="card-body light">
+	<div class="card-body bg-light">
 		<form action="" method="post">
 			<div class="row">
 				<div class="col-sm-6">

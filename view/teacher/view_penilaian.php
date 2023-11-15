@@ -29,18 +29,30 @@ if (isset($_POST['type_test'])) {
           <input type="text" name="semester" value="<?= $semester ?>">
         </div>
       </div>
+      <?php 
+      $cp = mysqli_query($koneksi, "SELECT x.th_pelajaran, x.nis, nama, x.kelas, komp_keahlian, pkelas, kode_mapel, x.semester, cpp, cpm FROM tb_penilaian X 
+INNER JOIN tb_siswa Y ON y.nis = x.nis 
+WHERE x.th_pelajaran = '$th_pelajaran' 
+AND x.kelas = '$kelas' 
+AND komp_keahlian = '$komp_keahlian' 
+AND pkelas = '$pkelas' 
+AND kode_mapel = '$kode_mapel' 
+AND x.semester = '$semester' GROUP BY kelas, komp_keahlian, pkelas");
+      while ($cpi = mysqli_fetch_array($cp)) { ?>
       <div class="col-sm-6">
         <div class="form-group">
           <label>Capaian Kompetensi Menunjukan penguasaan yang baik dalam :</label>
-          <textarea class="form-control" name="cpm"></textarea>
+          <textarea class="form-control" name="cpm" value="<?= $cpi['cpm']; ?>"><?= $cpi['cpm']; ?></textarea>
         </div>
       </div>
       <div class="col-sm-6">
         <div class="form-group">
           <label>Capaian Kompetensi Perlu ditingkatkan dalam :</label>
-          <textarea class="form-control" name="cpp"></textarea>
+          <textarea class="form-control" name="cpp" value="<?= $cpi['cpp']; ?>"><?= $cpi['cpp']; ?></textarea>
         </div>
-      </div>
+      </div>  
+      <?php }
+      ?>
       <div class="col-sm-12">
         <div class="card card-body p-0">
           <table class="table table-striped">

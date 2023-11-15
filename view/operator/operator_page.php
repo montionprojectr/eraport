@@ -8,22 +8,26 @@
 </div><!-- /.row -->
 
 <!-- card -->
-<div class="card">
-	<div class="card-header bg-danger">
+<div class="card collapsed-card">
+	<div class="card-header bg-success">
 		<h3 class="card-title">INPUT DATA OPERATOR</h3>
+		<div class="card-tools">
+	      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+	      </button>
+	    </div>
 	</div>
-	<div class="card-body">
+	<div class="card-body bg-teal">
 		<form action="" method="post">
 			<div class="form-group">
 				<label>Pilih User Guru</label>
 				<select class="form-control-sm select2" style="width:100%;" name="id_user">
 					<?php 
-					$query = mysqli_query($koneksi,"select * from tb_users");
+					$query = mysqli_query($koneksi,"select * from tb_users x inner join tb_rolsusers y on y.id_user = x.id_user where id_levelusers = '2'");
 					while ($data = mysqli_fetch_array($query)) {
-						$sql = mysqli_query($koneksi, "select * from tb_rolsusers where nipy = '".$data['nipy']."' and id_leveluser = '1'");
+						$sql = mysqli_query($koneksi, "select * from tb_rolsusers where nipy = '".$data['nipy']."' and id_levelusers = '1'");
 						$cek = mysqli_num_rows($sql);
 							if ($cek > 0) {
-								echo "";
+								echo "";	
 							}else{
 								echo "<option value='".$data['id_user']."'>".$data['nama_lengkap']."</option>";
 							}
@@ -70,7 +74,7 @@ if (isset($_POST['simpan'])) {
 <div class="row">
 	<div class="col-sm-12">
 		<div class="card">
-			<div class="card-header bg-danger"><h3 class="card-title">TABLE OPERATOR</h3></div>
+			<div class="card-header bg-primary"><h3 class="card-title">DAFTAR OPERATOR</h3></div>
 			<div class="card-body">
 				<table id="example1" class="table table-bordered table-striped">
 					<thead>
@@ -85,7 +89,7 @@ if (isset($_POST['simpan'])) {
 					</thead>
 					<tbody>
 						<?php 
-						$sql = mysqli_query($koneksi, "select * from tb_users x inner join tb_rolsusers y on y.id_user = x.id_user inner join tb_levelusers z on z.id_levelusers = y.id_leveluser where id_levelusers = '1'");
+						$sql = mysqli_query($koneksi, "select * from tb_users x inner join tb_rolsusers y on y.id_user = x.id_user inner join tb_levelusers z on z.id_levelusers = y.id_levelusers where y.id_levelusers = '1'");
 						while ($rest = mysqli_fetch_array($sql)) { ?>
 							<tr>
 							<td><?= $rest['id_rolsuser'] ?></td>

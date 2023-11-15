@@ -6,7 +6,7 @@
 		<th>Nama Mata Pelajaran</th>
 		<th>Kelas</th>
 		<th>Kategori</th>
-		<th>Edit</th>
+		<!-- <th>Edit</th> -->
 	</tr>		
 </thead>
 <tbody>
@@ -28,7 +28,7 @@
 		echo "<td>".$data['nama_mapel']."</td>";
 		echo "<td>".$data['kelas']."</td>";
 		echo "<td>".$data['kategori_mapel']."</td>";
-		echo "<td><a href='' class='btn btn-primary'><i class='fas fa-edit'></i></a></td>";
+		// echo "<td><a href='' class='btn btn-primary'><i class='fas fa-edit'></i></a></td>";
 		echo "</tr>";
 	}
 	?>

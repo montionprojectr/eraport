@@ -8,14 +8,14 @@
 </div><!-- /.row -->
 
 <div class="card collapsed-card">
-  <div class="card-header bg-danger">
+  <div class="card-header bg-success">
     <h4 class="card-title">INPUT DATA SISWA BARU</h4>
     <div class="card-tools">
       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
       </button>
     </div>
   </div>
-  <div class="card-body bg-dark">
+  <div class="card-body bg-teal">
     <div class="row">
     
       <div class="col-sm-6">
@@ -152,18 +152,18 @@
       </div>
     
       <div class="col-sm-6">
-       <div class="card card-danger">
-          <div class="card-header">
-            <h3 class="card-title">IMPORT DATA SISWA</h3>
+       <div class="card">
+          <div class="card-header bg-success">
+            <h3 class="card-title">IMPORT DATA SISWA BARU</h3>
           </div>
-          <div class="card-body">
+          <div class="card-body bg-light">
            <form method="post" enctype="multipart/form-data" action="view/operator/proses_upload.php">
               <div class="form-group text-dark">
                 <label>Pilih File</label> <a href="view/operator/file/data_siswa.xls">Download Template</a>
                 <input name="filedata" class="form-control" type="file" required="required">  
               </div> 
               <div class="form-group">
-                <button class="btn btn-primary" type="submit" name="upload" value="upload">IMPORT</button>
+                <button class="btn btn-primary" type="submit" name="upload" value="upload">MULAI IMPORT</button>
               </div>
             </form>     
           </div>
@@ -307,8 +307,8 @@ $insert_rols = mysqli_query($koneksi, "insert into tb_siswa(id, nis, nisn, nama,
 <div class="row">
   <div class="col-sm-12">
     <div class="card">
-      <div class="card-header bg-danger"><h3 class="card-title">DATA PESERTA DIDIK</h3></div>
-      <div class="card-body bg-coral">
+      <div class="card-header bg-primary"><h3 class="card-title">DAFTAR PESERTA DIDIK</h3></div>
+      <div class="card-body">
       <table id="example1" class="table table-bordered table-striped">
         <thead>
           <tr>

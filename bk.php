@@ -117,7 +117,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
           $row = mysqli_num_rows($query);
           if ($row > 0) { ?>
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="?page=walikelas" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                 Walikelas
@@ -125,12 +125,6 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
               </p>
             </a>
             <ul class="nav nav-treeview">
-             <li class="nav-item">
-                <a href="?page=walikelas" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Kelas</p>
-                </a>
-              </li>
              <li class="nav-item">
                 <a href="?page=ekskul_absen" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -183,13 +177,13 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
               </li>
             </ul>
           </li>
-        <!-- <li class="nav-header">PANDUAN</li>
+        <li class="nav-header">PANDUAN</li>
         <li class="nav-item">
             <a href="https://adminlte.io/docs/3.0" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>Documentation</p>
             </a>
-          </li> -->
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -215,47 +209,8 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
         if (isset($_GET['page'])) {
           $page = $_GET['page'];
           switch ($page) {
-            case 'profil_guru':
-              require_once('view/teacher/profil_guru_page.php');
-              break;
-            case 'buka_halaman':
-              require_once('view/teacher/buka_halaman.php');
-              break;
-            case 'home':
-              require_once('view/teacher/home.php');
-              break;
-            case 'walikelas':
-              require_once("view/teacher/walikelas.php");
-              break;
-            case 'cover':
-              require_once('view/teacher/cover.php');
-              break;
-            case 'raport':
-              require_once('view/teacher/raport.php');
-              break;
-            case 'import_penilaian':
-              require_once('view/teacher/import_penilaian.php');
-              break;
-            case 'buka_halaman_kelaspil':
-              require_once('view/teacher/buka_halaman_kelaspil.php');
-              break;
-            case 'import_penilaian_mappil':
-              require_once('view/teacher/import_penilaian_mappil.php');
-              break;
-            case 'status':
-              require_once('view/teacher/status.php');
-              break;
-            case 'leger':
-              require_once('view/teacher/leger.php');
-              break;
-            case 'naik':
-              require_once('view/teacher/naik.php');
-              break;
-            case 'ekskul_absen':
-              require_once('view/teacher/ekskul_absen.php');
-              break;
-            case 'input_ekskul_absen':
-              require_once('view/teacher/input_ekskul_absen.php');
+            case 'kehadiran':
+              require_once('view/bk_page/kehadiran.php');
               break;
             
             default:
@@ -344,54 +299,6 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
       theme: 'bootstrap4'
     })
   })
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $.ajax({
-        type: 'POST',
-        url: "view/teacher/th_pelajaran.php",
-        cache: false, 
-        success: function(msg){
-          $("#th_pelajaran").html(msg);
-        }
-    });
-
-    $("#th_pelajaran").change(function(){
-    var th_pelajaran = $("#th_pelajaran").val();
-    var nipy = $("#nipy").val();
-      $.ajax({
-        type: 'POST',
-          url: "view/teacher/box_kelas.php",
-          data: {th_pelajaran: th_pelajaran, nipy: nipy},
-          cache: false,
-          success: function(msg){
-            $("#box_kelas").html(msg);
-          }
-      });
-    });
-
-    $("#type_test").change(function(){
-    var type_test = $("#type_test").val();
-    var th_pelajaran = $("#th_pelajaran").val();
-    var semester = $("#semester").val();
-    var kelas = $("#kelas").val();
-    var komp_keahlian = $("#komp_keahlian").val();
-    var pkelas = $("#pkelas").val();
-    var nama_mapel = $('#nama_mapel').val();
-    var kode_mapel = $('#kode_mapel').val();
-      $.ajax({
-        type: 'POST',
-          url: "view/teacher/view_penilaian.php",
-          data: {type_test: type_test, th_pelajaran: th_pelajaran, semester: semester,kelas: kelas, komp_keahlian: komp_keahlian, pkelas: pkelas, nama_mapel: nama_mapel, kode_mapel:kode_mapel},
-          cache: false,
-          success: function(msg){
-            $("#view_penilaian").html(msg);
-          }
-      });
-    });
-
-  });
 </script>
 </body>
 </html>

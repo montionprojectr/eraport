@@ -8,14 +8,14 @@
 </div><!-- /.row -->
 
 <div class="card collapsed-card">
-	<div class="card-header bg-danger">
-		<h4 class="card-title">INPUT DATA GURU</h4>
+	<div class="card-header bg-success">
+		<h4 class="card-title">INPUT DATA GURU BARU</h4>
 		<div class="card-tools">
-      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-      </button>
-    </div>
+	      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+	      </button>
+	    </div>
 	</div>
-	<div class="card-body bg-dark">
+	<div class="card-body bg-teal">
 		<div class="row">
 		
 			<div class="col-sm-6">
@@ -67,14 +67,14 @@
 		  </div>
 		
 		  <div class="col-sm-6">
-		  	<div class="card card-danger">
-		  		<div class="card-header">
-		  			<h3 class="card-title">IMPORT DATA GURU</h3>
+		  	<div class="card">
+		  		<div class="card-header bg-success">
+		  			<h3 class="card-title">IMPORT DATA GURU BARU</h3>
 		  		</div>
-		  		<div class="card-body">
+		  		<div class="card-body bg-light">
 		  			<form method="post" enctype="multipart/form-data" action="?view=guru">
 							<div class="form-group text-dark">
-								<label>Pilih File</label> <a href="view/operator/file/tb_users.xlsx">Download Template</a>
+								<label>Pilih File</label> <a href="view/operator/file/tb_users.xlsx">Download Template Excel</a>
 								<input name="file" class="form-control" type="file" required="required"> 	
 							</div> 
 							<div class="form-group">
@@ -95,21 +95,31 @@ if (isset($_POST['simpan'])) {
 	$nama_lengkap = $_POST['nama_lengkap'];
 
 	require_once('view/operator/id_max.php');
-	$query = mysqli_query($koneksi, "insert into tb_users(id_user, username, password, nipy, nama_lengkap) values('$use','$username','$password','$nipy','$nama_lengkap')");
-
-	$insert_rols = mysqli_query($koneksi, "insert into tb_rolsusers values('','$use','$nipy','2')");
-
-	if ($query && $insert_rols) {
+	$sqlc = mysqli_query($koneksi, "select * from tb_users where username = '$username' and password = '$password' and nipy = '$nipy'");
+	$cek = mysqli_num_rows($sqlc);
+	if ($cek > 0) {
 		echo "<script>
-		alert('DATA BERHASIL DISIMPAN');
+		alert('DATA GAGAL DISIMPAN, KARENA DATA NIPY SUDAH ADA!');
 		document.location.href = '?view=guru';
 		</script>";
 	}else{
-		echo "<script>
-		alert('DATA GAGAL DISIMPAN');
-		document.location.href = '?view=guru';
-		</script>";
+		$query = mysqli_query($koneksi, "insert into tb_users(id_user, username, password, nipy, nama_lengkap) values('$use','$username','$password','$nipy','$nama_lengkap')");
+
+		$insert_rols = mysqli_query($koneksi, "insert into tb_rolsusers values('','$use','$nipy','2')");
+
+		if ($query && $insert_rols) {
+			echo "<script>
+			alert('DATA BERHASIL DISIMPAN');
+			document.location.href = '?view=guru';
+			</script>";
+		}else{
+			echo "<script>
+			alert('DATA GAGAL DISIMPAN');
+			document.location.href = '?view=guru';
+			</script>";
+		}
 	}
+
 }else if(isset($_POST['preview'])) {
 	//kaitkan file genered maximal baris
 	require_once('view/operator/id_max.php');
@@ -247,7 +257,7 @@ if (isset($_POST['simpan'])) {
 <div class="row">
 	<div class="col-sm-12">
 		<div class="card">
-			<div class="card-header bg-danger"><h3 class="card-title">TABLE GURU</h3></div>
+			<div class="card-header bg-primary"><h3 class="card-title">DAFTAR GURU</h3></div>
 			<div class="card-body bg-coral">
 			<table id="example1" class="table table-bordered table-striped">
 				<thead>
@@ -263,7 +273,7 @@ if (isset($_POST['simpan'])) {
 				<tbody>
 					<?php 
 					$no = 1;
-					$query = mysqli_query($koneksi, "select * from tb_users x inner join tb_rolsusers y on y.id_user = x.id_user inner join tb_levelusers z on z.id_levelusers = y.id_leveluser where id_levelusers = '2'");
+					$query = mysqli_query($koneksi, "select * from tb_users x inner join tb_rolsusers y on y.id_user = x.id_user inner join tb_levelusers z on z.id_levelusers = y.id_levelusers where y.id_levelusers = '2'");
 					while ($data = mysqli_fetch_array($query)) {
 						echo "<tr>";
 						echo "<td>".$no++."</td>";

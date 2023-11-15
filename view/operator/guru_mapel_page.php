@@ -10,22 +10,22 @@
 
 <div class="card">
 	<!-- collapsed-card -->
-	<div class="card-header bg-danger">
+	<div class="card-header bg-success">
 		<h4 class="card-title">INPUT DATA GURU MENGAJAR MATA PELAJARAN</h4>
 		<!-- <div class="card-tools">
       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
       </button>
     </div> -->
 	</div>
-	<div class="card-body bg-dark">
+	<div class="card-body bg-light">
 	<form action="" method="post">
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<a href="#" class="btn btn-default" data-toggle="modal" data-target="#modal-gurumapel">A. Input Guru Mapel</a>
-							<a href="" class="btn btn-default" data-toggle="modal" data-target="#modal-gurumapelpil">B. Input Guru Mapel Pilihan</a>
+							<a href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#modal-gurumapel">A. Input Guru Mapel</a>
+							<a href="" class="btn btn-outline-success" data-toggle="modal" data-target="#modal-gurumapelpil">B. Input Guru Mapel Pilihan</a>
 						</div>
 					</div>
 					<div class="col-sm-6" id="show_forminputgurumapel">
@@ -103,8 +103,8 @@ if (isset($_POST['simpan'])) {
 ?>
 <!-- Table Walikelas -->
 <div class="card">
-	<div class="card-header bg-danger">
-		<h3 class="card-title">TABLE GURU MATA PELAJARAN</h3>
+	<div class="card-header bg-primary">
+		<h3 class="card-title">DAFTAR GURU MENGAJAR MATA PELAJARAN</h3>
 		<div class="form-group float-right">
 			<select class="form-control-sm select2" style="width:100%" id="th_pelajaran2">
 				<option value="">Pilih Th. Pelajaran</option>

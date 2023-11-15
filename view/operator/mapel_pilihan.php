@@ -10,8 +10,8 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="card">
-			<div class="card-header bg-danger">
-				<h3 class="card-title">MATA PELAJARAN PILIHAN</h3>
+			<div class="card-header bg-primary">
+				<h3 class="card-title">DAFTAR MATA PELAJARAN PILIHAN</h3>
 			</div>	
 			<div class="card-body">
 				<div class="row">
@@ -35,7 +35,7 @@
 										<td><?= $data['kode_mapelsub']; ?></td>
 										<td><?= $data['nama_submapel']; ?></td>
 										<td>
-											<a href="?view=kelas_mapelpilihan&kode_mapelsub=<?= $data['kode_mapelsub']; ?>" class="btn btn-primary"><i class="fas fa-folder-plus"></i> New Kelas</a>
+											<a href="?view=kelas_mapelpilihan&kode_mapelsub=<?= $data['kode_mapelsub']; ?>" class="btn bg-warning"><i class="fas fa-folder-plus"></i> New Kelas</a>
 										</td>
 									</tr>
 								<?php }
@@ -45,10 +45,10 @@
 					</div>
 					<div class="col-sm-4">
 						<div class="card">
-							<div class="card-header bg-danger">
+							<div class="card-header bg-primary">
 								<h7>Tampilkan Daftar Kelas</h7>
 							</div>
-							<div class="card-body bg-cyan">
+							<div class="card-body bg-teal">
 								<div class="form-group">
 										<select class="form-control-sm select2" style="width:100%;" id="th_pelajaran">
 											<option value="">-- Pilih Th. Pelajaran --</option>

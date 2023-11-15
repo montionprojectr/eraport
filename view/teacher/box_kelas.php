@@ -32,7 +32,7 @@ include "../../koneksi.php";
           </div>
           <div class="form-group">
             <label>Import Penilaian</label>
-            <a href="?page=import_penilaian&th=<?= $th_pelajaran."&kelas=".$dkelas['kelas']."&jrs=".$dkelas['komp_keahlian']."&pkelas=".$dkelas['pkelas']."&kodmapel=".$data['kode_mapel']; ?>" class="btn btn-primary">Import Penilaian</a>
+            <a href="?page=import_penilaian&th=<?= $th_pelajaran."&kelas=".$dkelas['kelas']."&jrs=".$dkelas['komp_keahlian']."&pkelas=".$dkelas['pkelas']."&kodmapel=".$data['kode_mapel']; ?>" class="btn btn-outline-light btn-dark">Import Penilaian</a>
           </div>
           <div class="form-group" hidden>
             <input type="text" name="th_pelajaran" value="<?= $th_pelajaran; ?>">
@@ -93,7 +93,7 @@ include "../../koneksi.php";
           <div class="form-group">
             <b>MAPEL: <?= $dkelas['nama_submapel'] ?></b>  
           </div>
-          <div class="form-group">
+          <div class="form-group" hidden>
             <input type="text" name="nipy" value="<?= $dkelas['nipy']; ?>">
             <input type="text" name="th_pelajaran" value="<?= $dkelas['th_pelajaran']; ?>">
             <input type="text" name="kode_mapel" value="<?= $dkelas['kode_mapel']; ?>">

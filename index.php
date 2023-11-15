@@ -111,7 +111,7 @@ if (isset($_POST['login'])) {
   $user = htmlspecialchars($_POST['user']); 
   $pass = htmlspecialchars($_POST['pass']);
 
-$query = mysqli_query($koneksi, "select * from tb_users x inner join tb_rolsusers y on y.id_user = x.id_user inner join tb_levelusers z ON z.id_levelusers = y.id_leveluser where x.username = '$user' and x.password = '$pass'");
+$query = mysqli_query($koneksi, "select * from tb_users x inner join tb_rolsusers y on y.id_user = x.id_user inner join tb_levelusers z ON z.id_levelusers = y.id_levelusers where x.username = '$user' and x.password = '$pass'");
 
 $data = mysqli_num_rows($query);
 $users = mysqli_fetch_array($query);

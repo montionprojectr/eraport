@@ -42,7 +42,7 @@ $d = mysqli_fetch_array($query);
 									$no=1;
 									$sql = mysqli_query($koneksi, "select x.nis, nama, x.kelas from tb_siswa_kelas x inner join tb_siswa y on y.nis = x.nis where x.kelas = 'XI' group by x.nis asc");
 									while ($data = mysqli_fetch_array($sql)) { 
-										$cek = mysqli_query($koneksi, "select * from tb_ruangsiswa_mappil where th_pelajaran = '".$d['th_pelajaran']."' and semester = '".$d['semester']."' and kode_mapelsub = '".$d['kode_mapelsub']."' and nis = '".$data['nis']."'");
+										$cek = mysqli_query($koneksi, "select * from tb_ruangsiswa_mappil where th_pelajaran = '".$d['th_pelajaran']."' and semester = '".$d['semester']."' and nis = '".$data['nis']."'");
 										$dcek = mysqli_fetch_array($cek);
 											if ($dcek['nis'] != $data['nis']) {
 												?>
@@ -70,11 +70,18 @@ $d = mysqli_fetch_array($query);
 								<div class="form-group">
 									<a href="view/operator/file/template_daftar_siswa_pilihan.xlsx" target="_blank">Download Template untuk Kelas <?= $d['nama_kelaspil']; ?></a>
 								</div>
-								<form action="" method="post">
+								<form action="?view=preview_kelaspil" method="post" enctype="multipart/form-data">
+									<div class="form-group" hidden>
+										<input type="text" name="id_kelasmappil" value="<?= $d['id_kelasmappil']; ?>">
+										<input type="text" name="th_pelajaran" value="<?= $d['th_pelajaran']; ?>">
+										<input type="text" name="semester" value="<?= $d['semester']; ?>">
+										<input type="text" name="kode_mapel" value="<?= $d['kode_mapel']; ?>">
+										<input type="text" name="kode_mapelsub" value="<?= $d['kode_mapelsub']; ?>">
+									</div>
 									<div class="input-group">
-										<input type="file" name="filenilai" class="form-control">
+										<input type="file" name="file" class="form-control">
 										<div class="input-group-prepend">
-											<button type="submit" name="import-nilaimpp" class="btn btn-primary">Import</button>
+											<button type="submit" name="import-siswampp" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">Import</button>
 										</div>	
 									</div>
 								</form>			
@@ -89,16 +96,18 @@ $d = mysqli_fetch_array($query);
 										<tr>
 											<th>NIS</th>
 											<th>NAMA</th>
+											<th>ASAL KELAS</th>
 											<th>ACTION</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php 
-										$sqlsow = mysqli_query($koneksi, "select id_ruangsiswa_mappil,x.th_pelajaran, x.semester, kode_mapelsub, x.nis, nama from tb_ruangsiswa_mappil x inner join tb_siswa y on y.nis = x.nis where id_kelasmappil = '".$d['id_kelasmappil']."'");
+										$sqlsow = mysqli_query($koneksi, "select id_ruangsiswa_mappil,x.th_pelajaran, x.semester, kode_mapelsub, x.nis, nama, z.kelas, z.jurusan, z.pemkelas from tb_ruangsiswa_mappil x inner join tb_siswa y on y.nis = x.nis inner join tb_siswa_kelas z ON z.nis = y.nis where id_kelasmappil = '".$d['id_kelasmappil']."'");
 										while ($dt = mysqli_fetch_array($sqlsow)) { ?>
 											<tr>
 												<td><?= $dt['nis']; ?></td>
 												<td><?= $dt['nama']; ?></td>
+												<td><?= $dt['kelas']." ".$dt['jurusan']." ".$dt['pemkelas']; ?></td>
 												<td>
 													<a href="?view=data_siswa_pilihan&id=<?= $_GET['id']; ?>&id_siswapil=<?php echo $dt['id_ruangsiswa_mappil']; ?>" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
 												</td>

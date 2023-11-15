@@ -10,14 +10,14 @@
 	<div class="col-sm-12">
 	<form action="" method="post">
 		<div class="card collapsed-card">
-			<div class="card-header bg-danger">
-				<h4 class="card-title">INPUT DATA KELAS & WALIKELAS BARU</h4>
+			<div class="card-header bg-success">
+				<h4 class="card-title">INPUT DATA KELAS BARU & WALIKELAS</h4>
 				<div class="card-tools">
 		      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
 		      </button>
 		    </div>
 			</div>
-			<div class="card-body bg-dark">
+			<div class="card-body bg-teal">
 				<div class="row">
 					<div class="col-sm-5">
 						<div class="form-group">
@@ -67,9 +67,9 @@
 				    </div>
 				  </div>
 					<div class="col-sm-2">
-						<div class="card bg-primary">
-							<div class="card-header"><p class="card-title">Pembagian Kelas</p></div>
-							<div class="card-body">
+						<div class="card">
+							<div class="card-header bg-primary"><p class="card-title">Pembagian Kelas</p></div>
+							<div class="card-body bg-light">
 								<!-- radio -->
 		            <div class="form-group">
 		              <div class="form-check">
@@ -91,7 +91,7 @@
 		            </div>			
 							</div>
 						</div>
-						<button type="submit" class="btn btn-primary" name="save_walikelas" confirm="alert('Yakin ?')">Save</button>
+						<button type="submit" class="btn btn-primary" name="save_walikelas" confirm="alert('Yakin ?')">Buat Kelas</button>
 					</div>
 				</div>
 			</div>
@@ -134,7 +134,7 @@ if (isset($_POST['save_walikelas'])) {
 ?>
 <!-- Table Walikelas -->
 <div class="card">
-	<div class="card-header bg-danger">
+	<div class="card-header bg-primary">
 		<h3 class="card-title">DAFTAR KELAS & WALIKELAS</h3>
 		<div class="form-group float-right">
 			<select class="form-control-sm select2" style="width:100%" id="th_pelajaran1">

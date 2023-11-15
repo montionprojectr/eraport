@@ -50,7 +50,7 @@
 							<?php echo $v->kelas . " " . $v->komp; ?>
 						</td>
 						<td>
-							<a href="view/operator/del/delete_guru_mapel.php?idgrmpl=<?= $v->id_guru_mapel; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data mapel <?= $v->nama_matapelajaran." Kelas: ".$v->kelas." ".$v->komp." Milik Bpk/Ibu: ".$v->nama_lengkap; ?>')"><i class="fas fa-trash"></i> Delete</a>
+							<a href="view/operator/del/delete_guru_mapel.php?idgrmpl=<?= $v->id_guru_mapel; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data mapel <?= $v->nama_matapelajaran." Kelas: ".$v->kelas." ".$v->komp." Milik Bpk/Ibu: ".$v->nama_lengkap; ?>')"><i class="fas fa-trash"></i></a>
 						</td>
 				</tr>
 				<?php }
