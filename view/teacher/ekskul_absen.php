@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
     <ol class="breadcrumb <?= $bg_breadcrumb;  ?>">
-	    <li><a href="#" class="pr-1"><i class="fas fa-home"></i> Home</a></li>
+	    <li><a href="guru" class="pr-1"><i class="fas fa-home"></i> Home</a></li>
 	    <li class="active"> > <?= '' . $_GET['page'] ?: 'Dashboard'; ?></li>
 	  </ol>
   </div><!-- /.col -->
@@ -11,7 +11,7 @@
 include "koneksi.php";
  $cek_guru = mysqli_query($koneksi, "select * from tb_users where nipy = '".$_SESSION['nipy']."'");
 $guru = mysqli_fetch_array($cek_guru);
- $sql = "SELECT * FROM tb_walikelas WHERE nipy='".$_SESSION['nipy']."'";
+ $sql = "SELECT * FROM tb_walikelas WHERE id_walikelas = '".$_GET['id_walikelas']."'";
   $query = mysqli_query($koneksi, $sql);
   $rows = mysqli_fetch_array($query);
 ?>
@@ -28,7 +28,7 @@ $guru = mysqli_fetch_array($cek_guru);
 <input type="submit" name="submit" value="oke">
 </form>
 
-<form method="post" action="guru?page=input_ekskul_absen">            
+<form method="post" action="guru?page=input_ekskul_absen&id_walikelas=<?= $rows['id_walikelas'] ?>">            
 
 <div class="card-body">
 
@@ -96,7 +96,8 @@ $guru = mysqli_fetch_array($cek_guru);
           
           </tbody>
         </table>
-<br>
+        <br>
+        <a href="guru" class="btn btn-primary">Kembali</a>
         <input  class='btn btn-primary'  type='submit' name='simpan' value='INPUT' disabled="">
       </form>
 

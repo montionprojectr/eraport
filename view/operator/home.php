@@ -13,7 +13,7 @@
 	<form class="form-group" action="" method="post">
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-				<button class="btn btn-outline-primary bg-primary" type="submit" name="selectoption">Save</button>
+				<button class="btn btn-outline-primary bg-primary" type="submit" name="selectoption">Tampil</button>
 			</div>
 			<select class="custom-select" name="pilihan_tahunpel" id="inputGroupSelect03">
 				<option value="2023/2024">Th. Pelajaran 2023/2024</option>

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
     <ol class="breadcrumb <?= $bg_breadcrumb;  ?>">
-	    <li><a href="bk" class="pr-1"><i class="fas fa-home"></i> Home</a></li>
+	    <li><a href="pembina" class="pr-1"><i class="fas fa-home"></i> Home</a></li>
 	    <li class="active"> > <?= '' . $_GET['page'] ?: 'Dashboard'; ?></li>
 	  </ol>
   </div><!-- /.col -->
@@ -28,29 +28,26 @@ $guru = mysqli_fetch_array($cek_guru);
 <input type="submit" name="submit" value="oke">
 </form>
 
-<form method="post" action="bk?page=input_ekskul_absen&id_walikelas=<?= $rows['id_walikelas'] ?>">            
+<form method="post" action="pembina?page=input_ekskul&id_walikelas=<?= $rows['id_walikelas'] ?>">            
 
 <div class="card-body">
 
-        <table  class="table table-sm table-bordered table-striped" >
+        <table  class="table table-sm table-bordered table-striped">
           <thead>
             <tr>
               <th><center>NO</center></th>
   <!--            <th><center>KELAS</center></th> -->
               <th><center>NIS</center></th>
               <th width="200"><center>NAMA</center></th>
-              <th><center>SEMESTER</center></th>
+               <th><center>SEMESTER</center></th>
               <th><center><input type="checkbox"  onchange="checkAll(this)" name="id">PILIH</center></th>
-              <!-- <th width="80"><center>PRAMUKA</center></th>
+              <th width="80"><center>PRAMUKA</center></th>
               <th width="80"><center>PKS</center></th>
               <th width="80"><center>PMR</center></th>
               <th width="80"><center>Olahraga</center></th>
               <th width="80"><center>ROHIS</center></th>
               <th width="80"><center>Kesenian</center></th>
-              <th width="80"><center>E-Sport</center></th> -->
-              <th><center>Sakit</center></th>      
-              <th><center>Ijin</center></th>
-              <th><center>Alpa</center></th>
+              <th width="80"><center>E-Sport</center></th>
           
             </tr>
           </thead>
@@ -77,9 +74,13 @@ $guru = mysqli_fetch_array($cek_guru);
             echo "<td>".$data['nama']."</td>";
             echo "<td><center>".$data['semester']."</td></center>";
             echo "<td><center><input type='checkbox' oninput='validasi()' name='id[]' id='cek' value='$data[id]'></center></td>";
-            echo "<td><center>".$data['sakit']."</center></td>";
-            echo "<td><center>".$data['ijin']."</center></td>";
-            echo "<td><center>".$data['alpa']."</center></td>";
+            echo "<td><center>".$data['eks1']."</center></td>";
+            echo "<td><center>".$data['eks2']."</center></td>";
+            echo "<td><center>".$data['eks3']."</center></td>";
+            echo "<td><center>".$data['eks4']."</center></td>";
+            echo "<td><center>".$data['eks5']."</center></td>";
+            echo "<td><center>".$data['eks6']."</center></td>";
+            echo "<td><center>".$data['eks7']."</center></td>";
       
              $i++;
              echo "</tr>";

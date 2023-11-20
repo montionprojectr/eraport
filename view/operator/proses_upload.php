@@ -83,9 +83,18 @@ if (empty($nis)){
         //input data ke database (table datasiswa)
         $query=mysqli_query($koneksi,"INSERT into tb_siswa (nis,nisn,nama,kel,kelas,jurusan,pemkelas,th_pelajaran,ttl,kelamin,agama,status,anak_ke,alamat_siswa,hp_siswa,asal_sekolah,tgl_terima,ayah,ibu,alamat_ortu,hp_ortu,kerja_ayah,kerja_ibu,nama_wali,alamat_wali,hp_wali,kerja_wali)  values('$nis','$nisn','$nama','$class','$kelas','$jurusan','$pemkelas','$th_pelajaran','$ttl','$kelamin','$agama','$status','$anak_ke','$alamat_siswa','$hp_siswa','$asal_sekolah','$tgl_terima','$ayah','$ibu','$alamat_ortu','$hp_ortu','$kerja_ayah','$kerja_ibu','$nama_wali','$alamat_wali','$hp_wali','$kerja_wali')");
     
-       $query=mysqli_query($koneksi,"INSERT into tb_leger (nis,nama,kelas,jurusan,pemkelas,th_pelajaran)  values('$nis','$nama','$kelas','$jurusan',$pemkelas,'$th_pelajaran')");
+       // $query = mysqli_query($koneksi,"INSERT into tb_leger (nis,nama,kelas,jurusan,pemkelas,th_pelajaran)  values('$nis','$nama','$kelas','$jurusan','$pemkelas','$th_pelajaran')");
 
        if ($query) {
+
+        $sqlcp = mysqli_query($koneksi, "select * from tb_semester");
+        while ($dcp = mysqli_fetch_array($sqlcp)) {
+            //insert into tb_capaian berdasarkan semester ganjil dan genap
+            $ins = mysqli_query($koneksi, "insert into tb_capaian(nis, semester, th_pelajaran) values('$nis','".$dcp['semester']."','$th_pelajaran')");
+
+            //insert into tb_leger berdasarkan semester ganjil dan genap
+            $leg = mysqli_query($koneksi, "insert into tb_leger(nis, nama, kelas, jurusan, pemkelas, th_pelajaran, semester) values('$nis','$nama','$kelas','$jurusan','$pemkelas','$th_pelajaran','".$dcp['semester']."')");
+        }
 
             $insertkelas = mysqli_query($koneksi, "insert tb_siswa_kelas(nis, kelas, jurusan, pemkelas, th_pelajaran) values('$nis','$kelas','$jurusan','$pemkelas','$th_pelajaran')");
 

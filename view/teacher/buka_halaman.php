@@ -62,6 +62,8 @@ $class = $_SESSION['kelas']. " " .$_SESSION['komp_keahlian']." ".$_SESSION['pkel
         <?php }else if($_SESSION['penilaian'] == 'Sumatif_Akhir'){ ?>
           <option value="asts">Sumatif Tengah Semester</option>
           <option value="asas">Sumatif Akhir Semester</option>
+        <?php }else if ($_SESSION['penilaian'] == 'cetak') { ?>
+          <option value="cetak">Cetak Nilai Ke Raport</option>
         <?php }
         ?>
       </select>

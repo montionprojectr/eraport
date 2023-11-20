@@ -9,18 +9,65 @@
 </div><!-- /.row -->
 <?php
 include "koneksi.php";
- $cek_guru = mysqli_query($koneksi, "select * from tb_users where nipy = '".$_SESSION['nipy']."'");
+$cek_guru = mysqli_query($koneksi, "select * from tb_users where nipy = '".$_SESSION['nipy']."'");
 $guru = mysqli_fetch_array($cek_guru);
- $sql = "SELECT * FROM tb_walikelas WHERE nipy='".$_SESSION['nipy']."'";
-  $query = mysqli_query($koneksi, $sql);
-  $rows = mysqli_fetch_array($query);
+$sql = "SELECT * FROM tb_walikelas WHERE id_walikelas = '".$_GET['id_walikelas']."'";
+$query = mysqli_query($koneksi, $sql);
+$rows = mysqli_fetch_array($query);
 ?>
-       
-            <!-- <?=$rows['kelas'];?> <?=$rows['komp_keahlian'];?> <?=$rows['pkelas'];?> -->
+<div class="card">
+  <div class="card-header bg-primary">
+    <h3 class="card-title">KONTROL KENAIKAN SISWA KELAS : <?=$rows['kelas']." ".$rows['komp_keahlian']." ".$rows['pkelas'];?></h3>
+  </div>
+  <div class="card-body">
+    <form method="post" action="">            
+  <table  class="table table-sm table-bordered table-striped">
+    <thead>
+      <tr>
+        <th><center>NO</center></th>
+        <th><center>NIS</center></th>
+        <th><center>NAMA</center></th>
+        <th><center>STATUS KENAIKAN</center></th>
+      </tr>
+    </thead>
+    <tbody>
+        <?php
+        $no=1;
+        $id = $_POST['id'];
+        $jum = count($id); //menghitung jumlah ID yang dipilih
 
+        for ($i=0; $i<$jum; $i++) { // Proses Looping
+
+          $sql = mysqli_query($koneksi,"select * from tb_leger where id='$id[$i]'")
+          or die (mysqli_error($koneksi));
+    
+          while($data = mysqli_fetch_array($sql)){
+
+            echo "<td><center>".$no."</td></center>";
+            echo "<td><center>".$data['nis']."<input type='hidden' name='nis[]' value='$data[nis]' size='40'></td></center>";
+            echo "<td>".$data['nama']."<input type='hidden' name='nama[]' value='$data[nama]' size='40'></td>";
+            
+            if($rows['kelas']=="X"){
+            echo "<td><center><select name='status[]'> <option value='XI'>NAIK</option><option value='X' >TIDAK </option></select> <input type='hidden' name='id[]' value='$data[id]'></center></td>";
+            }
+            if($rows['kelas']=="XI"){
+            echo "<td><center><select name='status[]'> <option value='XII'>NAIK</option><option value='XI' >TIDAK </option></select> <input type='hidden' name='id[]' value='$data[id]'> </center></td>";
+            }       
+            
+            $no++; 
+            
+            echo "</tr>";
+          }
+        }
+        ?>
+    </tbody>
+  </table>
+  <a href="?page=status&id_walikelas=<?= $_GET['id_walikelas']; ?>" class="btn btn-primary">Kembali</a>
+  <input  class='btn btn-primary'  type='submit' name='proses' value='Simpan' ><input type="hidden" name="jum" value="<?php echo $jum; ?>"> <?php echo $jum; ?> SISWA
+</form>
+  </div>
+</div>
 <?php
-
-include "koneksi.php";
 if(isset($_POST["jum"])){
 $jum = $_POST['jum'];  
 $id = $_POST['id'];
@@ -28,84 +75,14 @@ $nis = $_POST['nis'];
 $nama = $_POST['nama'];
 $status = $_POST['status'];
 
-for ($i=0; $i<$jum; $i++)
-{
-    mysqli_query($koneksi,"update tb_leger set nis = '$nis[$i]', nama = '$nama[$i]' , status ='$status[$i]'    where id='$id[$i]'") 
-    or die(mysqli_error($koneksi));
-}
+    for ($i=0; $i<$jum; $i++){
+      mysqli_query($koneksi,"update tb_leger set nis = '$nis[$i]', nama = '$nama[$i]' , status ='$status[$i]'    where id='$id[$i]'") 
+      or die(mysqli_error($koneksi));
+    }
     echo "<script>
-   
-    document.location='guru?page=status'</script>";
+    document.location='guru?page=status&id_walikelas=".$_GET['id_walikelas']."'</script>";
  }
 ?>
-
-<form method="post" action="">            
-
-<div class="card-body">
-				<table  class="table table-sm table-bordered table-striped" >
-					<thead>
-						<tr>
-							<th><center>NO</center></th>
-							<th><center>NIS</center></th>
-							<th><center>NAMA</center></th>
-							<th><center>STATUS KENAIKAN</center></th>
-						</tr>
-						</tr>
-					</thead>
-					<tbody>
-
-						 <?php
-include "koneksi.php";
-$no=1;
-
-$id = $_POST['id'];
-$jum = count($id); //menghitung jumlah ID yang dipilih
-
-for ($i=0; $i<$jum; $i++) { // Proses Looping
-
-    $sql = mysqli_query($koneksi,"select * from tb_leger where id='$id[$i]'")
-    or die (mysqli_error($koneksi));
-    
-    while($data = mysqli_fetch_array($sql)){
-
-            
-
-     
-            echo "<td><center>".$no."</td></center>";
-         
-            echo "<td><center>".$data['nis']."<input type='hidden' name='nis[]' value='$data[nis]' size='40'></td></center>";
-            echo "<td>".$data['nama']."<input type='hidden' name='nama[]' value='$data[nama]' size='40'></td>";
-            ?>
-            <?php
-            if($rows['kelas']=="X"){
-            echo "<td><center><select name='status[]'> <option value='XI'>NAIK</option><option value='X' >TIDAK </option></select> <input type='hidden' name='id[]' value='$data[id]'></center></td>";  
-            }
-            if($rows['kelas']=="XI"){
-            echo "<td><center><select name='status[]'> <option value='XII'>NAIK</option><option value='XI' >TIDAK </option></select> <input type='hidden' name='id[]' value='$data[id]'> </center></td>";
-            }       
-                 
-           
-
-
-            $no++; 
-                   
-
-            
-            echo "</tr>";
-
-          }
-       }
-
-                    ?>
-
-          
-					</tbody>
-				</table>
-<br>
-				<input  class='btn btn-primary'  type='submit' name='proses' value='Simpan' ><input type="hidden" name="jum" value="<?php echo $jum; ?>"> <?php echo $jum; ?> SISWA
-			</form>
-			</div>
-<?php  ?>
 <script type="text/javascript">
  function checkAll(ele) {
       var checkboxes = document.getElementsByTagName('input');

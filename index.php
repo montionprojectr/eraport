@@ -136,7 +136,25 @@ if ($data > 0 ) {
     document.location.href = 'guru';
     </script>";
     // header("location: https://eraport.smksatyapraja2.id/guru");
-  }else if ($users['level'] == "siswa") {
+  }else if($users['level'] == 'bk'){
+    $_SESSION['login'] = 'login';
+    $_SESSION['session'] = "GURU BK";
+    $_SESSION['nipy'] = $users['nipy'];
+    $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
+    echo "<script>
+    alert('Anda Berhasil Login');
+    document.location.href = 'bk';
+    </script>";
+  }else if($users['level'] == 'pembina'){
+    $_SESSION['login'] = 'login';
+    $_SESSION['session'] = "GURU Pembina";
+    $_SESSION['nipy'] = $users['nipy'];
+    $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
+    echo "<script>
+    alert('Anda Berhasil Login');
+    document.location.href = 'pembina';
+    </script>";
+  }else if ($users['level'] == "siswa"){
     $_SESSION['login'] = 'login';
     $_SESSION['nama_lengkap'] = $users['nama_lengkap'];
     $_SESSION['session'] = "SISWA";

@@ -55,6 +55,7 @@ include "../../koneksi.php";
               <option value="Formatif">Formatif</option>
               <option value="Sumatif">Sumatif</option>
               <option value="Sumatif_Akhir">Sumatif Akhir</option>
+              <option value="cetak">Cetak Nilai Ke Raport</option>
             </select>
           </div>
         </div>

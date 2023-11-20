@@ -10,7 +10,7 @@
 
  $cek_guru = mysqli_query($koneksi, "select * from tb_users where nipy = '".$_SESSION['nipy']."'");
 $guru = mysqli_fetch_array($cek_guru);
- $sql = "SELECT * FROM tb_walikelas WHERE nipy='".$_SESSION['nipy']."'";
+ $sql = "SELECT * FROM tb_walikelas WHERE id_walikelas = '".$_GET['id_walikelas']."'";
   $query = mysqli_query($koneksi, $sql);
   $rows = mysqli_fetch_array($query);
 ?>

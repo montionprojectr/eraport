@@ -1,55 +1,44 @@
 <div class="row">
   <div class="col-sm-12">
     <ol class="breadcrumb <?= $bg_breadcrumb;  ?>">
-	    <li><a href="#" class="pr-1"><i class="fas fa-home"></i> Home</a></li>
-	    <li class="active"> > <?= '' . $_GET['page'] ?: 'Dashboard'; ?></li>
-	  </ol>
+      <li><a href="guru" class="pr-1"><i class="fas fa-home"></i> Home</a></li>
+      <li class="active"> > <?= '' . $_GET['page'] ?: 'Dashboard'; ?></li>
+    </ol>
   </div><!-- /.col -->
  
 </div><!-- /.row -->
 <?php
 
- $cek_guru = mysqli_query($koneksi, "select * from tb_users where nipy = '".$_SESSION['nipy']."'");
+$cek_guru = mysqli_query($koneksi, "select * from tb_users where nipy = '".$_SESSION['nipy']."'");
 $guru = mysqli_fetch_array($cek_guru);
- $sql = "SELECT * FROM tb_walikelas WHERE nipy='".$_SESSION['nipy']."'";
-  $query = mysqli_query($koneksi, $sql);
-  $rows = mysqli_fetch_array($query);
+$sql = "SELECT * FROM tb_walikelas WHERE id_walikelas = '".$_GET['id_walikelas']."'";
+$query = mysqli_query($koneksi, $sql);
+$rows = mysqli_fetch_array($query);
 ?>
-       
-            <!-- <?=$rows['kelas'];?> <?=$rows['komp_keahlian'];?> <?=$rows['pkelas'];?> -->
-
-<form method="post" action="guru?page=naik">            
-
-<div class="card-body">
-				<table  class="table table-sm table-bordered table-striped" >
-					<thead>
-						<tr>
-							<th><center>NO</center></th>
-	<!-- 						<th><center>KELAS</center></th> -->
-							<th><center>NIS</center></th>
-							<th><center>NAMA</center></th>
+<div class="card">
+  <div class="card-header bg-primary">
+    <h3 class="card-title">KONTROL KENAIKAN SISWA KELAS : <?=$rows['kelas']." ".$rows['komp_keahlian']." ".$rows['pkelas'];?> </h3>
+  </div>
+  <div class="card-body">
+  <form method="post" action="guru?page=naik&id_walikelas=<?= $rows['id_walikelas']; ?>">            
+        <table  class="table table-sm table-bordered table-striped" >
+          <thead>
+            <tr>
+              <th><center>NO</center></th>
+  <!--            <th><center>KELAS</center></th> -->
+              <th><center>NIS</center></th>
+              <th><center>NAMA</center></th>
               <th><center><input type="checkbox" onchange="checkAll(this)" name="id">PILIH SISWA</center></th>
-							<th><center>STATUS</center></th>
-						</tr>
-						</tr>
-					</thead>
-					<tbody>
+              <th><center>STATUS</center></th>
+            </tr>
+          </thead>
+          <tbody>
 
-						 <?php 
-       $i=1;
-
-
-          $query = mysqli_query($koneksi, "select  * from tb_leger WHERE kelas='$rows[kelas]' and jurusan='$rows[komp_keahlian]' and pemkelas='$rows[pkelas]' and th_pelajaran='$rows[th_pelajaran]' and semester='Genap'");
-          while ($data = mysqli_fetch_array($query)) 
-          {
+      <?php 
+      $i=1;
+      $query = mysqli_query($koneksi, "select  * from tb_leger WHERE kelas='$rows[kelas]' and jurusan='$rows[komp_keahlian]' and pemkelas='$rows[pkelas]' and th_pelajaran='$rows[th_pelajaran]' and semester='Genap'");
+      while ($data = mysqli_fetch_array($query)){
             echo "<tr>";
-        
-    
-            ?>
-
-            <?php
-
-     
             echo "<td><center>".$i."</td></center>";
             // echo "<td><center>".$data['kelas'].' '.$data['jurusan'].' '.$data['pemkelas']."</td></center>";
             echo "<td><center>".$data['nis']."</td></center>";
@@ -71,14 +60,13 @@ $guru = mysqli_fetch_array($cek_guru);
             }
             ?>
           
-					</tbody>
-				</table>
-<br>
-				<input  class='btn btn-primary'  type='submit' name='simpan' value='Naikan' disabled="">
-			</form>
-
-			</div>
-<?php  ?>
+          </tbody>
+        </table>
+        <a href="guru" class="btn btn-primary">Kembali</a>
+        <input  class='btn btn-primary'  type='submit' name='simpan' value='Naikan' disabled="">
+</form>    
+  </div>
+</div>
 <script type="text/javascript">
  function checkAll(ele) {
       var checkboxes = document.getElementsByTagName('input');

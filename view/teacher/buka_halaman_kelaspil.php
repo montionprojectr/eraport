@@ -39,11 +39,11 @@ if (isset($_POST['semester'])) {
        ?>
     <div class="col-sm-6">
       <div class="card">
-        <div class="card-header bg-danger">
+        <div class="card-header bg-primary">
           <h3 class="card-title">KELAS : <?= $d['nama_kelaspil']." '".$data['nama_submapel']."'"; ?></h3>
         </div>
         <div class="card-body">
-          <a href="guru" class="btn btn-primary">Kembali</a>
+          <a href="guru" class="btn btn-success">Kembali</a>
           <a href="?page=buka_halaman_kelaspil&id_kelasmappil=<?= $d['id_kelasmappil']; ?>" class="btn btn-primary" >Buka Kelas</a>
         </div>
       </div>
@@ -60,14 +60,14 @@ if (isset($_POST['semester'])) {
 
       if ($row = mysqli_num_rows($query) > 0) { ?>
       <div class="card">
-        <div class="card-header bg-danger">
+        <div class="card-header bg-primary">
           <h3 class="card-title">DAFTAR SISWA MATA PELAJARAN PILIHAN KELAS <?= $kls['nama_kelaspil']; ?></h3>
           <?php 
           $cekkel = mysqli_query($koneksi, "SELECT * FROM tb_ruangsiswa_mappil where id_kelasmappil = '".$kls['id_kelasmappil']."'");
           if ($rows = mysqli_num_rows($cekkel) > 0 ) {
             ?>
             <div class="card-tools">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus"></i> Import Data
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus"></i> Import Data
             </button>
           </div>
             <?php
@@ -167,6 +167,7 @@ if (isset($_POST['semester'])) {
                   if ($r = mysqli_num_rows($cekkelas) > 0 ) {
                     ?>
                     <button type="submit" class="btn btn-primary" name="simpan_datanilai">SIMPAN NILAI</button>
+                    <a href="?page=cetak_nilaipil_keraport&id_kelasmappil=<?= $id_kelasmappil; ?>" class="btn btn-primary">CETAK NILAI KE RAPORT</a>
                     <?php
                   }else{
                     echo "";
@@ -187,7 +188,7 @@ if (isset($_POST['semester'])) {
 <div class="modal fade" id="modal-default">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-success">
         <h4 class="modal-title">Import Data Nilai Kelas Pilihan <?= $kls['nama_kelaspil']; ?></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -197,7 +198,7 @@ if (isset($_POST['semester'])) {
       <div class="row">
         <div class="col-sm-12">
           <div class="card">
-            <div class="card-body bg-dark">
+            <div class="card-body bg-warning">
               <form action="?page=buka_halaman_kelaspil" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <a href="view/teacher/file/export_penilaian_mappil.php?id=<?= $id_kelasmappil; ?>" target="_blank">Download Template Nilai Kelas Pilihan</a>

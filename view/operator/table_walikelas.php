@@ -5,7 +5,7 @@
 			<th>Th. Pelajaran</th>
 			<th>Kelas</th>
 			<th>Guru/Wali</th>
-			<th>Edit</th>
+			<th>Action</th>
 		</tr>		
 	</thead>
 	<tbody>
@@ -23,7 +23,11 @@
 			echo "<td>".$data['th_pelajaran']."</td>";
 			echo "<td class='bg-grey'><b>".$data['class']."</b></td>";
 			echo "<td>".$data['nama_lengkap']."</td>";
-			echo "<td><a href='admin?view=up_walikelas&up=".$data['id_walikelas']."' class='btn btn-primary'><i class='fas fa-edit'></i></a></td>";
+			?>
+			<td><a href='admin?view=up_walikelas&up=<?= $data['id_walikelas']; ?>' class='btn btn-primary'><i class='fas fa-edit'></i></a>
+				<a href='view/operator/del/delete_walikelas.php?id=<?= $data['id_walikelas']; ?>' class='btn btn-danger' onclick="return confirm('Apakah anda yakin ingin menghapus data walikelas?')"><i class='fas fa-trash'></i></a>
+			</td>
+			<?php
 			echo "</tr>";
 		}
 		?>

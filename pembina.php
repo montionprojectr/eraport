@@ -53,7 +53,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="bk" class="nav-link"><?= $_SESSION['session']; ?></a>
+        <a href="pembina" class="nav-link"><?= $_SESSION['session']; ?></a>
       </li>
     </ul>
 
@@ -89,7 +89,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-1">
     <!-- Brand Logo -->
-    <a href="bk" class="brand-link">
+    <a href="pembina" class="brand-link">
       <img src="dist/img/lrapor.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-1"
            style="opacity: .8">
       <span class="brand-text font-weight-light">E-Raport SAPRA2</span>
@@ -159,14 +159,14 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
         if (isset($_GET['page'])) {
           $page = $_GET['page'];
           switch ($page) {
-            case 'kehadiran':
-              require_once('view/bk_page/kehadiran.php');
+            case 'ekskul':
+              require_once('view/pembina_page/ekskul.php');
               break;
             case 'daftar_kelas':
-              require_once('view/bk_page/daftar_kelas.php');
+              require_once('view/pembina_page/daftar_kelas.php');
               break;
-            case 'input_ekskul_absen':
-              require_once('view/bk_page/input_ekskul_absen.php');
+            case 'input_ekskul':
+              require_once('view/pembina_page/input_ekskul.php');
               break;
             
             default:
@@ -174,7 +174,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
               break;
           }
         }else{
-          require_once('view/bk_page/home.php');
+          require_once('view/pembina_page/home.php');
         }
         ?>
         <!-- /.row -->

@@ -1,10 +1,9 @@
 <?php
-include_once('../../eraport/koneksi.php');
+include_once('../koneksi.php');
 $id = $_GET["id"];
 ?>
 <?php
-require('../../eraport/pdf/fpdf.php');   
-include "../../eraport/koneksi.php";
+require('fpdf.php');
  $no=1;
         $sql = "SELECT * FROM tb_siswa, tb_sekolah WHERE id='$id'";
   $query = mysqli_query($koneksi, $sql);
@@ -104,7 +103,7 @@ $pdf->Cell(15);
     $pdf->Cell($width_cell[0],15,'',0,0);
     $pdf->Cell($width_cell[1],15,'Kelurahan',0,0);
     $pdf->Cell($width_cell[2],15,':',0,0);
-    $pdf->Cell($width_cell[3],15,$row['kel'],0,1);
+    $pdf->Cell($width_cell[3],15,$row['kelu'],0,1);
 $pdf->Cell(15);
     $pdf->Cell($width_cell[0],15,'',0,0);
     $pdf->Cell($width_cell[1],15,'Kecamatan',0,0);
@@ -164,6 +163,9 @@ $pdf->Cell(15);
      else if ($row['kelamin']=='P'){
         $pdf->Cell($width_cell[3],7,'Perempuan',0,1);
     }
+    else if ($row['kelamin']==''){
+        $pdf->Cell($width_cell[3],7,'-',0,1);
+    }
 
 $pdf->Cell(15);
     $pdf->Cell($width_cell[0],7,'5.',0,0);
@@ -202,7 +204,7 @@ $pdf->Cell(15);
     $pdf->Cell($width_cell[0],7,'',0,0);
     $pdf->Cell($width_cell[1],7,'Dikelas',0,0);
     $pdf->Cell($width_cell[2],7,':',0,0);
-    $pdf->Cell($width_cell[3],7,$row['kelas'],0,1);
+    $pdf->Cell($width_cell[3],7,$row['kel'],0,1);
 $pdf->Cell(15);
     $pdf->Cell($width_cell[0],7,'',0,0);
     $pdf->Cell($width_cell[1],7,'Pada tanggal',0,0);

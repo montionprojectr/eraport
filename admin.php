@@ -221,6 +221,12 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
             </ul>
         </li>
         <li class="nav-item">
+          <a href="?view=siswa_kenaikan" class="nav-link <?= $_GET['view'] == 'siswa_kenaikan' ? 'active' : ''; ?>">
+            <i class="nav-icon fas fa-table"></i>
+            <p>SISWA KENAIKAN</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="?view=siswa_resign" class="nav-link <?= $_GET['view'] == 'siswa_resign' ? 'active' : ''; ?>">
             <i class="nav-icon fas fa-table"></i>
             <p>SISWA RESIGN</p>
@@ -322,6 +328,9 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
               break;
             case 'pembina_page':
               require_once('view/operator/pembina_page.php');
+              break;
+            case 'siswa_kenaikan':
+              require_once('view/operator/siswa_kenaikan.php');
               break;
             
             default:

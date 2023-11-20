@@ -44,7 +44,7 @@ $row = mysqli_fetch_array($query);
 					<!-- form-group -->
 					<div class="form-group">
 						<label>Kelurahan :</label>
-						<input type="text" name="kelurahan" value="<?= $row['kel'] ?>" class="form-control bg-gray">
+						<input type="text" name="kelurahan" value="<?= $row['kelu'] ?>" class="form-control bg-gray">
 					</div>
 					<!-- form-group -->
 					<div class="form-group">
@@ -118,7 +118,7 @@ if(isset($_POST["simpan_perubahan"])){
  npsn='$npsn', 
  nss='$nss', 
  alamat='$alamat', 
- kel='$kel',
+ kelu='$kel',
  kec='$kec', 
  kab='$kab', 
  prov='$prov', 

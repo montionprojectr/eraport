@@ -104,6 +104,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
         </div>
         <div class="info">
           <a href="?page=profil_guru" class="d-block"><?= $_SESSION['nama_lengkap']; ?></a>
+          <a href="#" class="d-block"><?= $guru['nipy']; ?></a>
         </div>
       </div>
 
@@ -113,76 +114,33 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <?php 
-          $query = mysqli_query($koneksi, "select * from tb_walikelas where nipy = '".$guru['nipy']."'");
+          $query = mysqli_query($koneksi, "select * from tb_walikelas where nipy = '".$guru['nipy']."' group by th_pelajaran desc");
           $row = mysqli_num_rows($query);
-          if ($row > 0) { ?>
-            <li class="nav-item">
-              <a href="" class="nav-link">
-                <i class="nav-icon fas fa-users"></i>
-                <p>
-                Walikelas
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-             <li class="nav-item">
-                <a href="?page=walikelas" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Kelas</p>
-                </a>
-              </li>
-             <li class="nav-item">
-                <a href="?page=ekskul_absen" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Eskul dan Absen</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="?page=leger" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Leger</p>
-                </a>
-              </li>
-               <li class="nav-item">
-                <a href="?page=walikelas"class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Cover dan Raport</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="?page=status" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kenaikan Siswa</p>
-                </a>
-              </li>
-            </ul>
-          </li>
- 
-          <?php }
+          if ($row > 0) {
           ?>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>
-                Master Nilai
-                <i class="fas fa-angle-left right"></i>
-              </p>
+              <i class="nav-icon fas fa-clock"></i>
+              <p>Riwayat Walikelas</p>
+              <i class="fas fa-angle-left right"></i>
             </a>
             <ul class="nav nav-treeview">
+              <?php 
+              while ($res = mysqli_fetch_array($query)) {
+              ?>
               <li class="nav-item">
-                <a href="?page=cover" class="nav-link">
+                <a href="?page=walikelas_page&id_walikelas=<?= $res['id_walikelas']; ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Semester Ganjil</p>
+                  <p><?= $res['th_pelajaran']; ?></p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="?page=raport" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Semester Genap</p>
-                </a>
-              </li>
+            <?php 
+              } ?>
             </ul>
           </li>
+          <?php 
+          }
+          ?>
         <!-- <li class="nav-header">PANDUAN</li>
         <li class="nav-item">
             <a href="https://adminlte.io/docs/3.0" class="nav-link">
@@ -227,11 +185,8 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
             case 'walikelas':
               require_once("view/teacher/walikelas.php");
               break;
-            case 'cover':
-              require_once('view/teacher/cover.php');
-              break;
-            case 'raport':
-              require_once('view/teacher/raport.php');
+            case 'walikelas_page':
+              require_once('view/teacher/walikelas_page.php');
               break;
             case 'import_penilaian':
               require_once('view/teacher/import_penilaian.php');
@@ -256,6 +211,9 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
               break;
             case 'input_ekskul_absen':
               require_once('view/teacher/input_ekskul_absen.php');
+              break;
+            case 'cetak_nilaipil_keraport':
+              require_once('view/teacher/cetak_nilaipil_keraport.php');
               break;
             
             default:
