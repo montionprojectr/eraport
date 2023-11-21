@@ -194,7 +194,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
             <a href="admin?view=siswa" class="nav-link <?= $_GET['view'] == 'siswa' ? 'active' : ''; ?>">
               <i class="nav-icon fas fa-child"></i>
               <p>
-                DATA SISWA
+                DAFTAR SISWA
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>

@@ -9,7 +9,7 @@
 
 <div class="card collapsed-card">
   <div class="card-header bg-success">
-    <h4 class="card-title">INPUT DATA SISWA BARU</h4>
+    <h4 class="card-title">INPUT PESERTA DIDIK BARU</h4>
     <div class="card-tools">
       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
       </button>
@@ -104,17 +104,6 @@
             </div>
           </div></td>
           </tr>
-  <tr>
-            <th><label>Semester</label></th>
-            <td> 
-              <div class="form-group">
-            <select class="form-control-sm select2" style="width: 100%;" name="semester">
-                 <option value="Ganjil">Ganjil</option>
-                <option value="Genap">Genap</option>
-              </select>
-              </div>
-            </td>
-          </tr> 
           <tr>
             <th><label>Tahun Pelajaran</label></th>
             <td> 
@@ -182,19 +171,27 @@ if (isset($_POST['simpan'])) {
   $kelas = $_POST['kelas'];
   $jurusan = $_POST['jurusan'];
   $pemkelas = $_POST['pemkelas'];
-  $semester = $_POST['semester'];
   $th_pelajaran = $_POST['th_pelajaran'];
   
 
 
   require_once('view/operator/id_max.php');
-  $query = mysqli_query($koneksi, "insert into tb_leger(id, nis, nama,  kelas, jurusan, pemkelas, semester, th_pelajaran) values('','$nis','$nama', '$kelas', '$jurusan', '$pemkelas','$semester','$th_pelajaran')");
+  // $query = mysqli_query($koneksi, "insert into tb_leger(id, nis, nama,  kelas, jurusan, pemkelas, semester, th_pelajaran) values('','$nis','$nama', '$kelas', '$jurusan', '$pemkelas','$semester','$th_pelajaran')");
 $kelasku= $kelas.' '.$jurusan.' '.$pemkelas;
-$insert_rols = mysqli_query($koneksi, "insert into tb_siswa(id, nis, nisn, nama, kelamin, kel, kelas, jurusan, pemkelas, semester,th_pelajaran) values('','$nis','$nisn','$nama', '$kelamin', '$kelasku', '$kelas','$jurusan','$pemkelas','$semester','$th_pelajaran')");
+$insert_rols = mysqli_query($koneksi, "insert into tb_siswa(id, nis, nisn, nama, kelamin, kel, kelas, jurusan, pemkelas, th_pelajaran) values('','$nis','$nisn','$nama', '$kelamin', '$kelasku', '$kelas','$jurusan','$pemkelas','$th_pelajaran')");
 
-  if ($query && $insert_rols) {
+  if ($insert_rols) {
     /*input trigger*/
         $insertkelas = mysqli_query($koneksi, "insert tb_siswa_kelas(nis, kelas, jurusan, pemkelas, th_pelajaran) values('$nis','$kelas','$jurusan','$pemkelas','$th_pelajaran')");
+
+        $sqlcp = mysqli_query($koneksi, "select * from tb_semester");
+        while ($dcp = mysqli_fetch_array($sqlcp)) {
+            //insert into tb_capaian berdasarkan semester ganjil dan genap
+            $ins = mysqli_query($koneksi, "insert into tb_capaian(nis, semester, th_pelajaran) values('$nis','".$dcp['semester']."','$th_pelajaran')");
+
+            //insert into tb_leger berdasarkan semester ganjil dan genap
+            $leg = mysqli_query($koneksi, "insert into tb_leger(nis, nama, kelas, jurusan, pemkelas, th_pelajaran, semester) values('$nis','$nama','$kelas','$jurusan','$pemkelas','$th_pelajaran','".$dcp['semester']."')");
+        }
 
           if ($kelas == 'X') {
               

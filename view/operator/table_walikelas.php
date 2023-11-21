@@ -4,6 +4,7 @@
 			<th>No</th>
 			<th>Th. Pelajaran</th>
 			<th>Kelas</th>
+			<th>Nipy</th>
 			<th>Guru/Wali</th>
 			<th>Action</th>
 		</tr>		
@@ -22,6 +23,7 @@
 			echo "<td>".$no++."</td>";
 			echo "<td>".$data['th_pelajaran']."</td>";
 			echo "<td class='bg-grey'><b>".$data['class']."</b></td>";
+			echo "<td>".$data['nipy']."</td>";
 			echo "<td>".$data['nama_lengkap']."</td>";
 			?>
 			<td><a href='admin?view=up_walikelas&up=<?= $data['id_walikelas']; ?>' class='btn btn-primary'><i class='fas fa-edit'></i></a>

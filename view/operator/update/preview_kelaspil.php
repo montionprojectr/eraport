@@ -52,7 +52,7 @@ $sub = mysqli_fetch_array($sql);
 			        		<input type='text' name='namafile' class="form-control" value='<?= $nama_file_new ?>'>
 			        		<input type="text" name="id_kelasmappil" value="<?= $id_kelasmappil; ?>">
 									</div>
-									<table id="example1" class="table table-sm table-bordered table-striped">
+									<table class="table table-sm table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>NIS</th>

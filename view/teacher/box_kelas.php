@@ -3,11 +3,11 @@ include "../../koneksi.php";
   $th_pelajaran = $_POST['th_pelajaran'];
   $nipy = $_POST['nipy'];
 
-  $query = mysqli_query($koneksi, "select * from tb_guru_mapel x inner join tb_mapel y on y.kode_mapel = x.kode_mapel where nipy = '$nipy' and th_pelajaran = '$th_pelajaran' group by id_guru_mapel");
+  $query = mysqli_query($koneksi, "select id_guru_mapel, th_pelajaran, nipy, x.kode_mapel, kode_mapelsub, nama_mapel, x.kelas, komp from tb_guru_mapel x inner join tb_mapel y on y.kode_mapel = x.kode_mapel where nipy = '$nipy' and th_pelajaran = '$th_pelajaran' group by id_guru_mapel");
   while ($data = mysqli_fetch_array($query)) {
     
     // where before = CONCAT_WS(' ', kelas, komp_keahlian) = '".$data['kelas_dan_komp']."'
-    $kelas = mysqli_query($koneksi, "select kelas, komp_keahlian, concat_ws(' ', kelas, komp_keahlian) as kel, pkelas from tb_walikelas where kelas = '".$data['kelas']."' and komp_keahlian = '".$data['komp']."'");
+    $kelas = mysqli_query($koneksi, "select kelas, komp_keahlian, concat_ws(' ', kelas, komp_keahlian) as kel, pkelas from tb_walikelas where kelas = '".$data['kelas']."' and komp_keahlian = '".$data['komp']."' and th_pelajaran = '".$data['th_pelajaran']."'");
       
     while ($dkelas = mysqli_fetch_array($kelas)) {
       if ($dkelas['komp_keahlian'] == 'PPLG') {
@@ -115,6 +115,5 @@ include "../../koneksi.php";
       </div>
     </form>
     </div>
-    <?php
-}
-  ?>
+    <?php }
+?>
