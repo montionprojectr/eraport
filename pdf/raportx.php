@@ -14,19 +14,19 @@ $kelas = $_GET["kelas"];
 <?php
 require('../pdf/fpdf.php');
  $no=1;
-        $sql = "SELECT * FROM tb_siswa, tb_sekolah WHERE nis='$nis' ";
+        $sql = "select * from tb_siswa, tb_sekolah where nis = '$nis' ";
   $query = mysqli_query($koneksi, $sql);
   $row = mysqli_fetch_array($query);{
 
-  $sql1 = "SELECT * FROM tb_leger WHERE  nis='$nis' and semester='$semester' and th_pelajaran='$th_pelajaran'";
+  $sql1 = "select * from tb_leger where nis = '$nis' and semester = '$semester' and th_pelajaran = '$th_pelajaran'";
   $query1 = mysqli_query($koneksi, $sql1);
   $leger = mysqli_fetch_array($query1);
 
-   $sql2 = "SELECT * FROM tb_capaian WHERE nis='$nis' and semester='$semester' and th_pelajaran='$th_pelajaran'";
+   $sql2 = "select * from tb_capaian where nis = '$nis' and semester = '$semester' and th_pelajaran = '$th_pelajaran'";
   $query2 = mysqli_query($koneksi, $sql2);
   $cp = mysqli_fetch_array($query2);
 
-  $sql3 = "SELECT * FROM tb_thpelajaran WHERE semester='$semester' and tahun_pelajaran='$th_pelajaran'";
+  $sql3 = "select * from tb_thpelajaran where semester = '$semester' and tahun_pelajaran = '$th_pelajaran'";
   $query3 = mysqli_query($koneksi, $sql3);
   $th = mysqli_fetch_array($query3);
 
@@ -38,7 +38,7 @@ require('../pdf/fpdf.php');
 unset($_SESSION['penilaian']);
 $cek_guru = mysqli_query($koneksi, "select * from tb_users where nipy = '".$_SESSION['nipy']."'");
 $guru = mysqli_fetch_array($cek_guru);
- $sql = "SELECT * FROM tb_users WHERE nipy='".$_SESSION['nipy']."'";
+ $sql = "select * from tb_users where nipy = '".$_SESSION['nipy']."'";
   $query = mysqli_query($koneksi, $sql);
   $rows = mysqli_fetch_array($query);
 
@@ -71,7 +71,7 @@ function Footer(){
 $nis = $_GET["nis"];
 $semester = $_GET["semester"];
 $th_pelajaran = $_GET["th_pelajaran"];
-       $sql = "SELECT * FROM tb_leger  WHERE  nis='$nis' and semester='$semester' and th_pelajaran='$th_pelajaran'";
+       $sql = "select * from tb_leger where nis = '$nis' and semester = '$semester' and th_pelajaran = '$th_pelajaran'";
   $query = mysqli_query($koneksi, $sql);
   $leger = mysqli_fetch_array($query);
 {

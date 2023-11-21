@@ -10,7 +10,7 @@
 
  $cek_guru = mysqli_query($koneksi, "select * from tb_users where nipy = '".$_SESSION['nipy']."'");
 $guru = mysqli_fetch_array($cek_guru);
- $sql = "SELECT * FROM tb_walikelas WHERE id_walikelas = '".$_GET['id_walikelas']."'";
+ $sql = "select * from tb_walikelas where id_walikelas = '".$_GET['id_walikelas']."'";
   $query = mysqli_query($koneksi, $sql);
   $rows = mysqli_fetch_array($query);
 ?>
@@ -56,7 +56,7 @@ $guru = mysqli_fetch_array($cek_guru);
           $no = 1;
 
 
-          $query = mysqli_query($koneksi, "select  * from tb_leger WHERE kelas='$rows[kelas]' and jurusan='$rows[komp_keahlian]' and pemkelas='$rows[pkelas]' and th_pelajaran='$rows[th_pelajaran]'");
+          $query = mysqli_query($koneksi, "select  * from tb_leger where kelas = '".$rows['kelas']."' and jurusan = '".$rows['komp_keahlian']."' and pemkelas='".$rows['pkelas']."' and th_pelajaran = '".$rows['th_pelajaran']."'");
           while ($data = mysqli_fetch_array($query)) 
           {
             echo "<tr>";

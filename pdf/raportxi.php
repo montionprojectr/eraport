@@ -15,19 +15,19 @@ $kelas = $_GET["kelas"];
 require('../pdf/fpdf.php');
  $no=1;
  
-        $sql = "SELECT * FROM tb_siswa, tb_sekolah WHERE nis='$nis'";
+        $sql = "select * from tb_siswa, tb_sekolah where nis = '$nis'";
   $query = mysqli_query($koneksi, $sql);
   $row = mysqli_fetch_array($query);{
 
-  $sql = "SELECT * FROM tb_leger  WHERE  nis='$nis' and semester='$semester' and th_pelajaran='$th_pelajaran'";
+  $sql = "select * from tb_leger where nis = '$nis' and semester = '$semester' and th_pelajaran = '$th_pelajaran'";
   $query = mysqli_query($koneksi, $sql);
   $leger = mysqli_fetch_array($query);
 
-   $sql = "SELECT * FROM tb_capaian  WHERE nis='$nis' and semester='$semester' and th_pelajaran='$th_pelajaran'";
+   $sql = "select * from tb_capaian where nis = '$nis' and semester = '$semester' and th_pelajaran = '$th_pelajaran'";
   $query = mysqli_query($koneksi, $sql);
   $cp = mysqli_fetch_array($query);
 
-  $sql = "SELECT * FROM tb_thpelajaran  WHERE  semester='$semester' and th_pelajaran='$th_pelajaran'";
+  $sql = "select * from tb_thpelajaran where semester = '$semester' and th_pelajaran = '$th_pelajaran'";
   $query = mysqli_query($koneksi, $sql);
   $th = mysqli_fetch_array($query);
 
@@ -39,7 +39,7 @@ require('../pdf/fpdf.php');
 unset($_SESSION['penilaian']);
 $cek_guru = mysqli_query($koneksi, "select * from tb_users where nipy = '".$_SESSION['nipy']."'");
 $guru = mysqli_fetch_array($cek_guru);
- $sql = "SELECT * FROM tb_users WHERE nipy='".$_SESSION['nipy']."'";
+ $sql = "select * from tb_users where nipy='".$_SESSION['nipy']."'";
   $query = mysqli_query($koneksi, $sql);
   $rows = mysqli_fetch_array($query);
 
