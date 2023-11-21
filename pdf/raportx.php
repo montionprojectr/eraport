@@ -67,7 +67,7 @@ class PDF extends FPDF
 
 // Page footer
 function Footer(){
-    include "../../eraport/koneksi.php";
+
 $nis = $_GET["nis"];
 $semester = $_GET["semester"];
 $th_pelajaran = $_GET["th_pelajaran"];
