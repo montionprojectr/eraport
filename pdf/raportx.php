@@ -67,7 +67,7 @@ class PDF extends FPDF
 
 // Page footer
 function Footer(){
-
+    include "../../eraport/koneksi.php";
 $nis = $_GET["nis"];
 $semester = $_GET["semester"];
 $th_pelajaran = $_GET["th_pelajaran"];
@@ -1158,5 +1158,5 @@ $width_cell=array(110,65);
     $pdf->Cell(75);
     $pdf->Cell($width_cell[0],4,'NIPY. '.$row['nipy'],0,1,'L');
 
- $pdf->Output('D','Raport '. $leger['kelas'].' '. $leger['jurusan'].' '. $leger['pemkelas'].' '.$leger['nama'].' '.$leger['semester'].'.pdf');
+ $pdf->Output('I','Raport '. $leger['kelas'].' '. $leger['jurusan'].' '. $leger['pemkelas'].' '.$leger['nama'].' '.$leger['semester'].'.pdf');
 }?>
