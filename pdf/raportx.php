@@ -12,7 +12,7 @@ $kelas = $_GET["kelas"];
 
 ?>
 <?php
-require('../pdf/fpdf.php');
+require('fpdf.php');
  $no=1;
         $sql = "select * from tb_siswa, tb_sekolah where nis = '$nis' ";
   $query = mysqli_query($koneksi, $sql);
