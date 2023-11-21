@@ -26,7 +26,7 @@ require('fpdf.php');
   $query2 = mysqli_query($koneksi, $sql2);
   $cp = mysqli_fetch_array($query2);
 
-  $sql3 = "select * from tb_thpelajaran where semester = '$semester' and tahun_pelajaran = '$th_pelajaran'";
+  $sql3 = "select * from tb_thpelajaran where semester = '$semester' and th_pelajaran = '$th_pelajaran'";
   $query3 = mysqli_query($koneksi, $sql3);
   $th = mysqli_fetch_array($query3);
 
